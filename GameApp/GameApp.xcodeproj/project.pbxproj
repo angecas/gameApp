@@ -16,6 +16,10 @@
 		792AA1242B6DADAF00771AB3 /* GameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AA1232B6DADAF00771AB3 /* GameAppTests.swift */; };
 		792AA12E2B6DADAF00771AB3 /* GameAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AA12D2B6DADAF00771AB3 /* GameAppUITests.swift */; };
 		792AA1302B6DADAF00771AB3 /* GameAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AA12F2B6DADAF00771AB3 /* GameAppUITestsLaunchTests.swift */; };
+		792AA14B2B6DC3F100771AB3 /* CreatorRolesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AA14A2B6DC3F100771AB3 /* CreatorRolesApi.swift */; };
+		792AA14D2B6DC54400771AB3 /* ApiLayerHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AA14C2B6DC54400771AB3 /* ApiLayerHelpers.swift */; };
+		792AA1502B6DD37500771AB3 /* CreatorRolesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AA14F2B6DD37500771AB3 /* CreatorRolesManager.swift */; };
+		792AA1522B6DD5F200771AB3 /* CreatorRolesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AA1512B6DD5F200771AB3 /* CreatorRolesModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		792AA1292B6DADAF00771AB3 /* GameAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		792AA12D2B6DADAF00771AB3 /* GameAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAppUITests.swift; sourceTree = "<group>"; };
 		792AA12F2B6DADAF00771AB3 /* GameAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		792AA14A2B6DC3F100771AB3 /* CreatorRolesApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorRolesApi.swift; sourceTree = "<group>"; };
+		792AA14C2B6DC54400771AB3 /* ApiLayerHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLayerHelpers.swift; sourceTree = "<group>"; };
+		792AA14F2B6DD37500771AB3 /* CreatorRolesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorRolesManager.swift; sourceTree = "<group>"; };
+		792AA1512B6DD5F200771AB3 /* CreatorRolesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorRolesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,7 @@
 		792AA10B2B6DADAC00771AB3 /* GameApp */ = {
 			isa = PBXGroup;
 			children = (
+				792AA13C2B6DB9BC00771AB3 /* GamesApi */,
 				792AA10C2B6DADAC00771AB3 /* AppDelegate.swift */,
 				792AA10E2B6DADAC00771AB3 /* SceneDelegate.swift */,
 				792AA1102B6DADAC00771AB3 /* ViewController.swift */,
@@ -125,6 +134,89 @@
 				792AA12F2B6DADAF00771AB3 /* GameAppUITestsLaunchTests.swift */,
 			);
 			path = GameAppUITests;
+			sourceTree = "<group>";
+		};
+		792AA13C2B6DB9BC00771AB3 /* GamesApi */ = {
+			isa = PBXGroup;
+			children = (
+				792AA1462B6DBF5A00771AB3 /* CreatorRoles */,
+				792AA1452B6DBF2C00771AB3 /* Creators */,
+				792AA1472B6DC0FE00771AB3 /* Developers */,
+				792AA1422B6DBE4D00771AB3 /* Games */,
+				792AA1412B6DBE4100771AB3 /* Genres */,
+				792AA1492B6DC16D00771AB3 /* Platforms */,
+				792AA1442B6DBEDB00771AB3 /* Publishers */,
+				792AA1432B6DBEBE00771AB3 /* Stores */,
+				792AA1482B6DC15900771AB3 /* Tags */,
+				792AA14C2B6DC54400771AB3 /* ApiLayerHelpers.swift */,
+			);
+			path = GamesApi;
+			sourceTree = "<group>";
+		};
+		792AA1412B6DBE4100771AB3 /* Genres */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Genres;
+			sourceTree = "<group>";
+		};
+		792AA1422B6DBE4D00771AB3 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
+		792AA1432B6DBEBE00771AB3 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		792AA1442B6DBEDB00771AB3 /* Publishers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Publishers;
+			sourceTree = "<group>";
+		};
+		792AA1452B6DBF2C00771AB3 /* Creators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Creators;
+			sourceTree = "<group>";
+		};
+		792AA1462B6DBF5A00771AB3 /* CreatorRoles */ = {
+			isa = PBXGroup;
+			children = (
+				792AA14F2B6DD37500771AB3 /* CreatorRolesManager.swift */,
+				792AA14A2B6DC3F100771AB3 /* CreatorRolesApi.swift */,
+				792AA1512B6DD5F200771AB3 /* CreatorRolesModel.swift */,
+			);
+			path = CreatorRoles;
+			sourceTree = "<group>";
+		};
+		792AA1472B6DC0FE00771AB3 /* Developers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Developers;
+			sourceTree = "<group>";
+		};
+		792AA1482B6DC15900771AB3 /* Tags */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tags;
+			sourceTree = "<group>";
+		};
+		792AA1492B6DC16D00771AB3 /* Platforms */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Platforms;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +350,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				792AA1502B6DD37500771AB3 /* CreatorRolesManager.swift in Sources */,
 				792AA1112B6DADAC00771AB3 /* ViewController.swift in Sources */,
 				792AA10D2B6DADAC00771AB3 /* AppDelegate.swift in Sources */,
 				792AA10F2B6DADAC00771AB3 /* SceneDelegate.swift in Sources */,
+				792AA14D2B6DC54400771AB3 /* ApiLayerHelpers.swift in Sources */,
+				792AA14B2B6DC3F100771AB3 /* CreatorRolesApi.swift in Sources */,
+				792AA1522B6DD5F200771AB3 /* CreatorRolesModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
