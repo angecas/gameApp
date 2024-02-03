@@ -8,14 +8,14 @@
 import Foundation
 
 struct GameCreatorList: Codable {
-    let count: Int
-    let next: String
-    let previous: String
-    let results: [GameCreator]
+    let count: Int?
+    let next: String?
+    let previous: String?
+    let results: [GameCreator]?
 }
 
 struct GameCreator: Codable {
-    let id: Int
-    let name: String
-    let slug: String
+    let id: Int?
+    let name: String?
+    let slug: String?
 }

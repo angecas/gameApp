@@ -12,11 +12,13 @@ enum CreatorRolesApi {
 }
 
 extension CreatorRolesApi: EndpointDescriptor {
+    var page: Int {
+        return 1
+    }
     
-//    var url: URL? {
-//        let baseURL = URL(string: "http://example.com")
-//        return baseURL?.appendingPathComponent(path)
-//    }
+    var pageSize: Int {
+        return 10
+    }
 
     var body: Data? {
         return nil

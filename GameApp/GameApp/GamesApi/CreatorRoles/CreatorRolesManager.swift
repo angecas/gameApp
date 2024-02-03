@@ -15,11 +15,17 @@ struct CreatorRolesManager {
       self.sessionProvider = sessionProvider
    }
     
-    func fetchListOfCreatorPositions() async -> GameCreatorList? {
+    func fetchListOfCreatorPositions() async throws -> GameCreatorList {
         let endpoint = CreatorRolesApi.fetchListOfCreatorPositions
         
-       let response = try? await sessionProvider.request(endpoint, responseType: GameCreatorList.self)
-       return response
+        do {
+            let response = try await sessionProvider.request(endpoint, responseType: GameCreatorList.self)
+            return response
+        } catch {
+            print(error.localizedDescription)
+            print("-----")
+            print(error)
+            throw error
+        }
     }
-
 }

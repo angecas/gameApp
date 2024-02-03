@@ -9,6 +9,7 @@ import Foundation
 
 public typealias Parameters = [String: Any]
 public let commonPath = "https://api.rawg.io/api"
+public let apiKey = "ce61197ae53845159f4f3a9db365fbaf"
 
 public enum HTTPMethod: String {
     case get = "GET"
@@ -19,8 +20,17 @@ public enum HTTPMethod: String {
 
 class SessionProvider {
     func request<T: Decodable>(_ endpoint: EndpointDescriptor, responseType: T.Type) async throws -> T {
-        
-        guard let url = URL(string: endpoint.path) else {
+        guard var urlComponents = URLComponents(string: endpoint.path) else {
+            throw NetworkError.invalidURL
+        }
+
+        urlComponents.queryItems = [
+            URLQueryItem(name: "key", value: apiKey),
+            URLQueryItem(name: "page", value: "\(endpoint.page)"),
+            URLQueryItem(name: "page_size", value: "\(endpoint.pageSize)")
+        ]
+
+        guard let url = urlComponents.url else {
             throw NetworkError.invalidURL
         }
 
@@ -29,6 +39,7 @@ class SessionProvider {
         let response = try decoder.decode(T.self, from: data)
         return response
     }
+
 }
 
 enum NetworkError: Error {
@@ -36,9 +47,11 @@ enum NetworkError: Error {
 }
 
 public protocol EndpointDescriptor {
-
     var path: String { get }
     var HTTPMethod: HTTPMethod { get }
     var parameters: Parameters? { get }
     var body: Data? { get }
+    var page: Int { get }
+    var pageSize: Int { get }
 }
+
