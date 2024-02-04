@@ -12,6 +12,14 @@ class GamesViewController: UIViewController {
     private var genre: Genre?
     private let id: Int
     
+    private lazy var gamesDescriptionHeaderView: GamesDescriptionHeaderView = {
+        let view = GamesDescriptionHeaderView()
+        view.isUserInteractionEnabled = true
+//        view.delegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private let pageTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -20,24 +28,15 @@ class GamesViewController: UIViewController {
         label.textColor = Color.blueishWhite
         return label
     }()
-    
-    private let gamesInfo: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.font = Font.subTitleFont
-        label.textColor = Color.blueishWhite
-        return label
-    }()
-    
+        
     private lazy var gamesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = Color.darkBlue
         collection.register(HomeScreenCell.self, forCellWithReuseIdentifier: "HomeCellIdentifier")
-//        collection.dataSource = self
-//        collection.delegate = self
+        collection.dataSource = self
+        collection.delegate = self
         return collection
     }()
     
@@ -59,7 +58,8 @@ class GamesViewController: UIViewController {
                 let genre = GenresManager()
                 let response = try await genre.fetchGenresById(self.id)
                 self.genre = response
-                gamesInfo.text = response.description
+                gamesDescriptionHeaderView.setContent(with: response.description ?? "")
+                gamesDescriptionHeaderView.isUserInteractionEnabled = true
 
             } catch {
                 print("Error: \(error)")
@@ -72,16 +72,17 @@ class GamesViewController: UIViewController {
         view.backgroundColor = Color.darkBlue
 
         view.addSubview(pageTitle)
-        view.addSubview(gamesInfo)
+        view.addSubview(gamesDescriptionHeaderView)
+        gamesDescriptionHeaderView.isUserInteractionEnabled = true
 //        view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
             pageTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             pageTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             pageTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16),
-            gamesInfo.topAnchor.constraint(equalTo: pageTitle.bottomAnchor),
-            gamesInfo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            gamesInfo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16),
+            gamesDescriptionHeaderView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor),
+            gamesDescriptionHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            gamesDescriptionHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
 
 //            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -90,6 +91,23 @@ class GamesViewController: UIViewController {
 //            collectionView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 8)
         ])
     }
+}
 
+extension GamesViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return 3
+    }
     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        return UICollectionViewCell()
+    }
+}
+
+extension GamesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    }
+
 }

@@ -28,6 +28,7 @@
 		792AA1652B6F120F00771AB3 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AA1642B6F120F00771AB3 /* Font.swift */; };
 		792AA16A2B6F524700771AB3 /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AA1692B6F524700771AB3 /* GamesViewController.swift */; };
 		792AA16C2B6F54B200771AB3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 792AA16B2B6F54B200771AB3 /* Localizable.strings */; };
+		792AA16E2B6FFD1D00771AB3 /* GamesDescriptionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AA16D2B6FFD1C00771AB3 /* GamesDescriptionHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		792AA1642B6F120F00771AB3 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		792AA1692B6F524700771AB3 /* GamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
 		792AA16B2B6F54B200771AB3 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		792AA16D2B6FFD1C00771AB3 /* GamesDescriptionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesDescriptionHeaderView.swift; sourceTree = "<group>"; };
 		A074781D28E090C29D6066A6 /* Pods-GameApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameApp.debug.xcconfig"; path = "Target Support Files/Pods-GameApp/Pods-GameApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B25127AA37EB54F42D1A0A7D /* Pods_GameApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -292,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				792AA1692B6F524700771AB3 /* GamesViewController.swift */,
+				792AA16D2B6FFD1C00771AB3 /* GamesDescriptionHeaderView.swift */,
 			);
 			path = GamesManu;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				792AA16E2B6FFD1D00771AB3 /* GamesDescriptionHeaderView.swift in Sources */,
 				792AA1502B6DD37500771AB3 /* CreatorRolesManager.swift in Sources */,
 				792AA1552B6DE33400771AB3 /* SplashScreenViewController.swift in Sources */,
 				792AA1652B6F120F00771AB3 /* Font.swift in Sources */,

@@ -24,12 +24,12 @@ class HomeScreenCell: UICollectionViewCell {
         imageView.alpha = 0.5
         return imageView
     }()
-
-    private let overlayLabel: UILabel = {
+    
+    private let counterLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
-        label.font = Font.subHeadingBoldFont
+        label.font = Font.bodyFont
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -69,10 +69,8 @@ class HomeScreenCell: UICollectionViewCell {
     
     private func setupUI() {
         contentView.addSubview(imageView)
-        contentView.addSubview(overlayLabel)
                 
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        overlayLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             imageView.widthAnchor.constraint(equalToConstant: 100),
@@ -92,10 +90,13 @@ class HomeScreenCell: UICollectionViewCell {
         ])
         
         overlayView.addSubview(titleLabel)
+        overlayView.addSubview(counterLabel)
 
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor),
+            counterLabel.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor),
+            counterLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4)
         ])
 
     }
@@ -107,6 +108,8 @@ class HomeScreenCell: UICollectionViewCell {
         imageView.sd_setImage(with: URL(string: genre.imageBackground))
         
         titleLabel.text = genre.name
-
+        if genre.gamesCount > 0 {
+            counterLabel.text = genre.gamesCount == 1 ? "\(genre.gamesCount) game" : "\(genre.gamesCount) games"
+        }
     }
 }
