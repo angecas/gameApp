@@ -15,7 +15,12 @@ struct UserDefaultsHelper {
         return nil
     }
 
-    static func saveSelectedGenre(genreId: Int) {
+    static func setSelectedGenre(genreId: Int) {
         UserDefaults.standard.set(String(genreId), forKey: "selectedGenre")
     }
+    
+    static func removeSelectedGenre() {
+        UserDefaults.standard.removeObject(forKey: "selectedGenre")
+    }
+
 }

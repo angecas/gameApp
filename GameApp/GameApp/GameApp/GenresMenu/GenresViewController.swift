@@ -126,7 +126,6 @@ extension GenresViewController: UICollectionViewDataSource {
         if let genres = genres {
             if indexPath.row < genres.results.count {
                 let genre = genres.results[indexPath.row]
-                print("IndexPath: \(indexPath), Genre Count: \(genres.results.count)")
                 cell.configure(genre: genre)
             } else {
                 print("Index out of range: \(indexPath.row), Genre Count: \(genres.results.count)")
@@ -146,8 +145,8 @@ extension GenresViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //save to user defaults
         
-        if let id = genres?.results[indexPath.row].id, let name = genres?.results[indexPath.row].name {
-            UserDefaultsHelper.saveSelectedGenre(genreId: id)
+        if let id = genres?.results[indexPath.row].id {
+            UserDefaultsHelper.setSelectedGenre(genreId: id)
 
             let gamesViewController = GamesViewController(id: id)
             navigationController?.pushViewController(gamesViewController, animated: true)

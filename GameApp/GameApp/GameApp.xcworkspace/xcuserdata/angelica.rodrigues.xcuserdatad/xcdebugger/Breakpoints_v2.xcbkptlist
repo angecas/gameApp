@@ -7,17 +7,97 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "044072AA-414A-4157-8F25-704B2330E8EB"
+            uuid = "9FCCF28E-4E98-4BAF-8BF9-ECC539BEBF14"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GameApp/GamesMenu/GamesDescriptionHeaderView.swift"
+            filePath = "GameApp/GamesMenu/GamesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "toggleTapAction()"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "setNavigationActions()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9FCCF28E-4E98-4BAF-8BF9-ECC539BEBF14 - c15d578c56ac79f1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.setNavigationActions() -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "185">
+               </Location>
+               <Location
+                  uuid = "9FCCF28E-4E98-4BAF-8BF9-ECC539BEBF14 - c15d578c56ac79f1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.setNavigationActions() -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "63">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AA3AC063-36CA-4B94-8BF2-AF142A3241B1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameApp/GamesMenu/GamesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "GamesViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "AA3AC063-36CA-4B94-8BF2-AF142A3241B1 - ba04b41ec2613ceb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.willClose() -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "61">
+               </Location>
+               <Location
+                  uuid = "AA3AC063-36CA-4B94-8BF2-AF142A3241B1 - ba04b41ec2613ceb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.willClose() -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

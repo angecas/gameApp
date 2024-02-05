@@ -70,7 +70,21 @@ class GamesViewController: UIViewController {
                 print("Error: \(error)")
             }
         }
+        setNavigationActions()
         setupUI()
+    }
+    
+    
+    @objc
+    func willNavigateBack() {
+        self.navigationController?.popToRootViewController(animated: true)
+        UserDefaultsHelper.removeSelectedGenre()
+    }
+
+    func setNavigationActions() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward.circle.fill"), style: .plain,
+                                                           target: self, action: #selector(willNavigateBack))
+
     }
 
     

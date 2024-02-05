@@ -51,22 +51,22 @@ class SplashViewController: UIViewController {
         
         if let selectedGenredId = UserDefaultsHelper.getSelectedGenre() {
             
-            let mainViewController = GamesViewController(id: selectedGenredId)
-            
+            let mainViewController = GenresViewController()
             let navigationController = UINavigationController(rootViewController: mainViewController)
+            
+            navigationController.pushViewController(GamesViewController(id: selectedGenredId), animated: false)
             navigationController.modalPresentationStyle = .fullScreen
+
             present(navigationController, animated: true, completion: nil)
-            
-            
         } else {
             
             let mainViewController = GenresViewController()
             let navigationController = UINavigationController(rootViewController: mainViewController)
             navigationController.modalPresentationStyle = .fullScreen
             present(navigationController, animated: true, completion: nil)
-            
         }
     }
+
     
     private func shakeIcon() {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")

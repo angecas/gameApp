@@ -80,7 +80,6 @@ class GamesDescriptionHeaderView: UIView {
             height = gamesInfo.sizeThatFits(CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)).height
         }
 
-        print("Updated height: \(height)")
         frame.size.height = height
     }
 
@@ -118,7 +117,6 @@ class GamesDescriptionHeaderView: UIView {
     }
     
     @objc private func toggleTapAction() {
-        print("oioi")
         self.showMore.toggle()
 
         gamesInfo.textContainer.maximumNumberOfLines = showMore ? 0 : 3
@@ -153,7 +151,6 @@ class GamesDescriptionHeaderView: UIView {
             let size = (labelText as NSString).boundingRect(with: CGSize(width: gamesInfo.frame.size.width, height: CGFloat.greatestFiniteMagnitude), options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: gamesInfo.font!], context: nil)
             
             let sizeThatFits = gamesInfo.sizeThatFits(CGSize(width: gamesInfo.frame.width, height: CGFloat.greatestFiniteMagnitude))
-            print(size.height, "<<<")
             
             self.teste = size.height
             
