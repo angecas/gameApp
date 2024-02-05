@@ -23,7 +23,7 @@ class GamesViewController: UIViewController {
     private lazy var pageTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Font.extraLargeBoldTitleFont
+        label.font = Font.boldLargeTitleFont
         label.textColor = Color.blueishWhite
         return label
     }()
@@ -95,11 +95,9 @@ class GamesViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = Color.darkBlue
-
         view.addSubview(pageTitle)
         view.addSubview(gamesDescriptionHeaderView)
         view.addSubview(gamesCollectionView)
-        
 
         NSLayoutConstraint.activate([
             pageTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),

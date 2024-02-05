@@ -99,8 +99,6 @@ class GenresViewController: UIViewController {
             pageTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             pageTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16),
             
-//            text.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            text.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
                     collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
                     collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
