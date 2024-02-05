@@ -55,6 +55,7 @@ class GamesViewController: UIViewController {
                 
         gamesCollectionView.delegate = self
         
+        LoadingManager.shared.showLoading()
         Task {
             do {
                 let genre = GenresManager()
@@ -65,11 +66,15 @@ class GamesViewController: UIViewController {
                 
                 gamesDescriptionHeaderView.setContent(with: description ?? "")
                 gamesDescriptionHeaderView.isUserInteractionEnabled = true
+                LoadingManager.shared.hideLoading()
 
             } catch {
+                LoadingManager.shared.hideLoading()
+
                 print("Error: \(error)")
             }
         }
+
         setNavigationActions()
         setupUI()
     }

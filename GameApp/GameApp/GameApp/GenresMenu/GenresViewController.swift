@@ -43,15 +43,17 @@ class GenresViewController: UIViewController {
 
         super.viewDidLoad()
         collectionView.refreshControl = refreshControl
-
+        LoadingManager.shared.showLoading()
         Task {
             do {
                 let genres = GenresManager()
                 let response = try await genres.fetchListOfGamesGenres()
                 self.genres = response
                 self.collectionView.reloadData()
+                LoadingManager.shared.hideLoading()
             } catch {
                 print("Error: \(error)")
+                LoadingManager.shared.hideLoading()
             }
         }
         setupUI()
