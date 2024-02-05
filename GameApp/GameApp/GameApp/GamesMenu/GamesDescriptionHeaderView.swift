@@ -45,7 +45,7 @@ class GamesDescriptionHeaderView: UIView {
         label.backgroundColor = Color.blueishWhite
         label.layer.cornerRadius = 16
         label.lineBreakMode = .byWordWrapping
-        
+        label.isHidden = true
         return label
     }()
     
