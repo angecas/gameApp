@@ -7,145 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A768019A-F620-49EA-8043-52A7AF6A850C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GameApp/GamesMenu/GamesViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "collectionView(_:layout:referenceSizeForHeaderInSection:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CB562DFD-BF13-4031-AA18-BA59C6AA63CC"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GameApp/GamesMenu/GamesViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "collectionView(_:layout:referenceSizeForHeaderInSection:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "CB562DFD-BF13-4031-AA18-BA59C6AA63CC - 3655addac42b23e2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GamesDescriptionHeaderView.collectionView(_: __C.UICollectionView, layout: __C.UICollectionViewLayout, referenceSizeForHeaderInSection: Swift.Int) -&gt; __C.CGSize"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "158"
-                  endingLineNumber = "158"
-                  offsetFromSymbolStart = "242">
-               </Location>
-               <Location
-                  uuid = "CB562DFD-BF13-4031-AA18-BA59C6AA63CC - 3655addac42b231d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GamesDescriptionHeaderView.collectionView(_: __C.UICollectionView, layout: __C.UICollectionViewLayout, referenceSizeForHeaderInSection: Swift.Int) -&gt; __C.CGSize"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "157"
-                  endingLineNumber = "157"
-                  offsetFromSymbolStart = "184">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "39A48047-9D2F-40F4-8B58-2E880DC6DEE6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GameApp/GamesMenu/GamesViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "collectionView(_:layout:referenceSizeForHeaderInSection:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "39A48047-9D2F-40F4-8B58-2E880DC6DEE6 - 3655addac42b23e2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GamesDescriptionHeaderView.collectionView(_: __C.UICollectionView, layout: __C.UICollectionViewLayout, referenceSizeForHeaderInSection: Swift.Int) -&gt; __C.CGSize"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "158"
-                  endingLineNumber = "158"
-                  offsetFromSymbolStart = "242">
-               </Location>
-               <Location
-                  uuid = "39A48047-9D2F-40F4-8B58-2E880DC6DEE6 - 3655addac42b233c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GamesDescriptionHeaderView.collectionView(_: __C.UICollectionView, layout: __C.UICollectionViewLayout, referenceSizeForHeaderInSection: Swift.Int) -&gt; __C.CGSize"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "156"
-                  endingLineNumber = "156"
-                  offsetFromSymbolStart = "179">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8175B057-0416-40DB-A23E-1FE9796DDDF8"
+            uuid = "E8F17BFA-4AF7-4E94-BFEB-C3FE3F12000D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GameApp/GamesMenu/GamesDescriptionHeaderView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "toggleTapAction()"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "setContent(with:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A6C9FC37-FC4D-4FC6-A463-6E1744970493"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GameApp/GamesMenu/GamesViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "GamesViewController"
-            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
