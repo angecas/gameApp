@@ -48,10 +48,24 @@ class SplashViewController: UIViewController {
     }
 
     @objc private func showMainViewController() {
-        let mainViewController = HomeScreenViewController()
-        let navigationController = UINavigationController(rootViewController: mainViewController)
-        navigationController.modalPresentationStyle = .fullScreen
-        present(navigationController, animated: true, completion: nil)
+        
+        if let selectedGenredId = UserDefaultsHelper.getSelectedGenre() {
+            
+            let mainViewController = GamesViewController(id: selectedGenredId)
+            
+            let navigationController = UINavigationController(rootViewController: mainViewController)
+            navigationController.modalPresentationStyle = .fullScreen
+            present(navigationController, animated: true, completion: nil)
+            
+            
+        } else {
+            
+            let mainViewController = GenresViewController()
+            let navigationController = UINavigationController(rootViewController: mainViewController)
+            navigationController.modalPresentationStyle = .fullScreen
+            present(navigationController, animated: true, completion: nil)
+            
+        }
     }
     
     private func shakeIcon() {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeScreenViewController: UIViewController {
+class GenresViewController: UIViewController {
     // MARK: - Properties
     private var genres: GenresList?
 
@@ -25,7 +25,7 @@ class HomeScreenViewController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = Color.darkBlue
-        collection.register(HomeScreenCell.self, forCellWithReuseIdentifier: "HomeCellIdentifier")
+        collection.register(GridCell.self, forCellWithReuseIdentifier: "CellIdentifier")
         collection.dataSource = self
         collection.delegate = self
         return collection
@@ -70,12 +70,6 @@ class HomeScreenViewController: UIViewController {
     
     // MARK: - Helpers
     
-//    func loadCollection(items: GenresList) {
-//        self.genres = items
-//        collectionView.reloadData()
-//    }
-    
-    
     @objc private func handleRefresh(_ sender: UIRefreshControl) {
         refreshControl.endRefreshing()
 
@@ -117,7 +111,7 @@ class HomeScreenViewController: UIViewController {
 
 // MARK: - Collection DataSource
 
-extension HomeScreenViewController: UICollectionViewDataSource {
+extension GenresViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return self.genres?.results.count ?? 0
@@ -125,7 +119,7 @@ extension HomeScreenViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCellIdentifier", for: indexPath) as? HomeScreenCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellIdentifier", for: indexPath) as? GridCell else {
             fatalError("Failed to dequeue a cell of type CustomImageCell")
         }
 
@@ -148,18 +142,19 @@ extension HomeScreenViewController: UICollectionViewDataSource {
 
 // MARK: - Collection Delegate
 
-extension HomeScreenViewController: UICollectionViewDelegate {
+extension GenresViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //save to user defaults
         
-        if let id = genres?.results[indexPath.row].id {
+        if let id = genres?.results[indexPath.row].id, let name = genres?.results[indexPath.row].name {
+            UserDefaultsHelper.saveSelectedGenre(genreId: id)
 
             let gamesViewController = GamesViewController(id: id)
             navigationController?.pushViewController(gamesViewController, animated: true)
         }
     }
 }
-extension HomeScreenViewController: UICollectionViewDelegateFlowLayout {
+extension GenresViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_: UICollectionView,
                         layout _: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {

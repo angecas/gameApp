@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SDWebImage
 
-class HomeScreenCell: UICollectionViewCell {
+class GridCell: UICollectionViewCell {
     private var genre: Genre?
     
     private let imageView: UIImageView = {

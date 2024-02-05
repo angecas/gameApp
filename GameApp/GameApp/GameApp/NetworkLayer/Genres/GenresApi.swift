@@ -25,12 +25,7 @@ extension GenresApi: EndpointDescriptor {
     var body: Data? {
         return nil
     }
-    
-//    var ordering: Data? {
-//        return nil
-//    } //?
-//    
-    
+
     var HTTPMethod: HTTPMethod {
         switch self {
         case .fetchListOfGamesGenres, .fetchGenresById:

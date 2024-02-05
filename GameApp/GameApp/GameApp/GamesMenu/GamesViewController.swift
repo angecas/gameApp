@@ -20,10 +20,9 @@ class GamesViewController: UIViewController {
         return view
     }()
     
-    private let pageTitle: UILabel = {
+    private lazy var pageTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = NSLocalizedString("games", comment: "")
         label.font = Font.extraLargeBoldTitleFont
         label.textColor = Color.blueishWhite
         return label
@@ -34,7 +33,7 @@ class GamesViewController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = Color.darkBlue
-        collection.register(HomeScreenCell.self, forCellWithReuseIdentifier: "HomeCellIdentifier")
+        collection.register(GridCell.self, forCellWithReuseIdentifier: "CellIdentifier")
         collection.dataSource = self
         collection.delegate = self
         return collection
@@ -43,6 +42,8 @@ class GamesViewController: UIViewController {
     init(id: Int) {
         self.id = id
         super.init(nibName: nil, bundle: nil)
+        
+
     }
     
     required init?(coder: NSCoder) {
@@ -51,7 +52,7 @@ class GamesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         gamesCollectionView.delegate = self
         
         Task {
@@ -59,6 +60,7 @@ class GamesViewController: UIViewController {
                 let genre = GenresManager()
                 let response = try await genre.fetchGenresById(self.id)
                 self.genre = response
+                self.pageTitle.text = response.name
                 let description = SharedHelpers().removeHtmlTagsAndDecodeEntities(from: response.description)
                 
                 gamesDescriptionHeaderView.setContent(with: description ?? "")
@@ -104,7 +106,7 @@ extension GamesViewController: UICollectionViewDataSource {
     
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCellIdentifier", for: indexPath) as? HomeScreenCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellIdentifier", for: indexPath) as? GridCell else {
             fatalError("Unable to dequeue HomeScreenCell")
         }
         

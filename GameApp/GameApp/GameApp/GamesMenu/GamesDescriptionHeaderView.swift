@@ -39,9 +39,11 @@ class GamesDescriptionHeaderView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = Font.boldbodyFont
-        label.textColor = Color.blueishWhite
         label.isUserInteractionEnabled = true
         label.text = NSLocalizedString("show-more", comment: "")
+        label.textColor = Color.darkBlue
+        label.backgroundColor = Color.blueishWhite
+        label.layer.cornerRadius = 16
         label.lineBreakMode = .byWordWrapping
         
         return label
@@ -84,23 +86,18 @@ class GamesDescriptionHeaderView: UIView {
 
     
     private func configureUI() {
-        backgroundColor = .red
         addSubview(gamesInfo)
         addSubview(toggleTextLabel)
         toggleTextLabel.isUserInteractionEnabled = true
-        
-        toggleTextLabel.isUserInteractionEnabled = true
-
-        
+                
         let toggleTap = UITapGestureRecognizer(target: self, action: #selector(toggleTapAction))
 
         toggleTextLabel.addGestureRecognizer(toggleTap)
         
         heightConstraint =
-        gamesInfo.heightAnchor.constraint(equalToConstant: 200)
+        gamesInfo.heightAnchor.constraint(equalToConstant: 60)
         heightConstraint.isActive = true
 
-        
         NSLayoutConstraint.activate([
             gamesInfo.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             gamesInfo.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
@@ -110,7 +107,6 @@ class GamesDescriptionHeaderView: UIView {
             
             toggleTextLabel.topAnchor.constraint(equalTo: gamesInfo.bottomAnchor, constant: 8),
             toggleTextLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            toggleTextLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             toggleTextLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
 
@@ -126,13 +122,15 @@ class GamesDescriptionHeaderView: UIView {
         self.showMore.toggle()
 
         gamesInfo.textContainer.maximumNumberOfLines = showMore ? 0 : 3
-        
-//        updateSize()
-        
-        heightConstraint.constant = showMore ? self.teste : 200
+                
+        heightConstraint.constant = showMore ? self.teste : 60
         updateConstraints()
                                 
-        toggleTextLabel.text = showMore ? NSLocalizedString("show-more", comment: "") : NSLocalizedString("show-less", comment: "")
+        toggleTextLabel.text = showMore ? NSLocalizedString("show-less", comment: "") : NSLocalizedString("show-more", comment: "")
+                                
+        toggleTextLabel.textColor = showMore ? Color.blueishWhite : Color.darkBlue
+        
+        toggleTextLabel.backgroundColor = showMore ? Color.darkBlue : Color.blueishWhite
         
         self.delegate?.didToggleShowMore(self)
 
