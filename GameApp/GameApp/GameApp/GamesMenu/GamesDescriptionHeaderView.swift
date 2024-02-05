@@ -17,7 +17,6 @@ class GamesDescriptionHeaderView: UIView {
     
     private var showMore: Bool = false
     private var heightConstraint: NSLayoutConstraint!
-    private var heightConstraint2: NSLayoutConstraint!
 
     private lazy var gamesInfo: UITextView = {
         let text = UITextView()
@@ -33,8 +32,6 @@ class GamesDescriptionHeaderView: UIView {
         text.textColor = Color.blueishWhite
         text.backgroundColor = Color.darkBlue
         text.isUserInteractionEnabled = false
-//        let toggleTap = UITapGestureRecognizer(target: self, action: #selector(toggleTapAction))
-//        text.addGestureRecognizer(toggleTap)
         return text
     }()
     
@@ -98,19 +95,17 @@ class GamesDescriptionHeaderView: UIView {
         let toggleTap = UITapGestureRecognizer(target: self, action: #selector(toggleTapAction))
 
         toggleTextLabel.addGestureRecognizer(toggleTap)
-//        heightConstraint = 
-//            heightAnchor.constraint(equalToConstant: 300)
-//           heightConstraint.isActive = true
-        heightConstraint2 =
+        
+        heightConstraint =
         gamesInfo.heightAnchor.constraint(equalToConstant: 200)
-        heightConstraint2.isActive = true
+        heightConstraint.isActive = true
 
         
         NSLayoutConstraint.activate([
             gamesInfo.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             gamesInfo.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             gamesInfo.topAnchor.constraint(equalTo: self.topAnchor),
-            heightConstraint2,
+            heightConstraint,
 //            gamesInfo.bottomAnchor.constraint(equalTo: toggleTextLabel.topAnchor, constant: -16),
             
             toggleTextLabel.topAnchor.constraint(equalTo: gamesInfo.bottomAnchor, constant: 8),
@@ -134,8 +129,7 @@ class GamesDescriptionHeaderView: UIView {
         
 //        updateSize()
         
-//        heightConstraint.constant = showMore ? self.teste : 400
-        heightConstraint2.constant = showMore ? self.teste : 400
+        heightConstraint.constant = showMore ? self.teste : 200
         updateConstraints()
                                 
         toggleTextLabel.text = showMore ? NSLocalizedString("show-more", comment: "") : NSLocalizedString("show-less", comment: "")
@@ -162,9 +156,6 @@ class GamesDescriptionHeaderView: UIView {
             
             let sizeThatFits = gamesInfo.sizeThatFits(CGSize(width: gamesInfo.frame.width, height: CGFloat.greatestFiniteMagnitude))
             print(size.height, "<<<")
-        
-//            heightConstraint.constant = size.height
-//            heightConstraint2.constant = size.height
             
             self.teste = size.height
             
