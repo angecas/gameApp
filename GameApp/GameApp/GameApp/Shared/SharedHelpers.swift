@@ -30,20 +30,27 @@ class SharedHelpers {
             return nil
         }
     }
-}
-
-class ResultReusableView: UICollectionReusableView {
     
-    func configureWithView(_ view: UIView) {
-        addSubview(view)
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            view.topAnchor.constraint(equalTo: topAnchor),
-            view.leadingAnchor.constraint(equalTo: leadingAnchor),
-            view.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
-            view.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
+    @objc func shakeView(uiView: UIView?) {
+        if let uiView = uiView {
+            let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+            animation.timingFunctions = [CAMediaTimingFunction(name: .easeInEaseOut)]
+            animation.values = [-10.0, 10.0, -8.0, 8.0, -6.0, 6.0, -4.0, 4.0, 0.0]
+            animation.duration = 1
+            uiView.layer.add(animation, forKey: "shake")
+        }
     }
+    
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = #"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"#
+        
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        
+        return emailPredicate.evaluate(with: email)
+    }
+    
+    func isValidPassword(_ password: String) -> Bool {
+        return password.count >= 8
+    }
+
 }

@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,10 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let splashViewController = SplashViewController()
+        let loginViewController = LoginViewController()
+        let navigationController = UINavigationController(rootViewController: loginViewController)
         
-        window?.rootViewController = splashViewController
+        window?.rootViewController = navigationController
+        //descomenta
+//        let splashViewController = SplashViewController()
+//        window?.rootViewController = splashViewController
         window?.makeKeyAndVisible()
+        FirebaseApp.configure()
+
         return true
     }
 

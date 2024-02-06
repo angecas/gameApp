@@ -16,9 +16,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         self.window = window
 
-        let rootViewController = SplashViewController()
-        window.rootViewController = rootViewController
+        //descomenta
+//        let rootViewController = SplashViewController()
+        //        window.rootViewController = rootViewController
+        
+        let rootViewController = LoginViewController()
+        
+        let navigationController = UINavigationController(rootViewController: rootViewController) // Embed in navigation controller
+        window.rootViewController = navigationController
 
+    
         window.makeKeyAndVisible()
     }
 

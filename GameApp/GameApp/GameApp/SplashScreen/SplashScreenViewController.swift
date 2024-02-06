@@ -69,11 +69,6 @@ class SplashViewController: UIViewController {
 
     
     private func shakeIcon() {
-        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-        animation.timingFunctions = [CAMediaTimingFunction(name: .easeInEaseOut)]
-        animation.values = [-10.0, 10.0, -8.0, 8.0, -6.0, 6.0, -4.0, 4.0, 0.0]
-        animation.duration = 1
-        splashImageView.layer.add(animation, forKey: "shake")
+        SharedHelpers().shakeView(uiView: splashImageView)
     }
-
 }

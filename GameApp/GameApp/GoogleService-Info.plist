@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDeDtL2FuwfjGiXaWEY79H1uRxv6Ih9nHo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>549388679265</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.rodriguesangelica.GameApp</string>
+	<key>PROJECT_ID</key>
+	<string>gameapp-a90a2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gameapp-a90a2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:549388679265:ios:61ac3a0f4aa7b07dafd220</string>
+</dict>
+</plist>
