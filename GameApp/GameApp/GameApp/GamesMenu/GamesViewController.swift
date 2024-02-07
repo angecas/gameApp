@@ -10,12 +10,12 @@ import UIKit
 class GamesViewController: UIViewController {
     // MARK: - Properties
     private var genre: Genre?
+    private var games: [Game]?
     private let id: Int
 
     private lazy var gamesDescriptionHeaderView: GamesDescriptionHeaderView = {
         let view = GamesDescriptionHeaderView()
         view.isUserInteractionEnabled = true
-        view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -30,12 +30,14 @@ class GamesViewController: UIViewController {
         
     private lazy var gamesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 50
+        layout.minimumInteritemSpacing = 50
+        layout.itemSize = CGSize(width: 80, height: 80)
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = Color.darkBlue
-        collection.register(GridCell.self, forCellWithReuseIdentifier: "CellIdentifier")
-        collection.dataSource = self
-        collection.delegate = self
+        collection.register(GridCell2.self, forCellWithReuseIdentifier: "CellIdentifier")
         return collection
     }()
     
@@ -52,9 +54,8 @@ class GamesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        gamesCollectionView.delegate = self
-        
+//        gamesCollectionView.delegate = self
+
         LoadingManager.shared.showLoading()
         Task {
             do {
@@ -74,6 +75,29 @@ class GamesViewController: UIViewController {
                 print("Error: \(error)")
             }
         }
+        
+        Task {
+            do {
+                let games = GamesManager()
+                let response = try await games.fetchListOfGames(id: self.id)
+                
+                print(response, "<<<")
+                DispatchQueue.main.async {
+                    self.gamesCollectionView.reloadData()
+
+                self.games = response.results
+                self.gamesCollectionView.reloadData()
+                }
+                
+                LoadingManager.shared.hideLoading()
+
+            } catch {
+                LoadingManager.shared.hideLoading()
+                print("Error: \(error)")
+            }
+        }
+        gamesCollectionView.delegate = self
+        gamesCollectionView.dataSource = self
 
         setNavigationActions()
         setupUI()
@@ -82,6 +106,7 @@ class GamesViewController: UIViewController {
     
     @objc
     func willNavigateBack() {
+        print(games?.count)
         self.navigationController?.popToRootViewController(animated: true)
         UserDefaultsHelper.removeSelectedGenre()
     }
@@ -118,17 +143,27 @@ class GamesViewController: UIViewController {
 
 extension GamesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        print(games?.count ?? 0)
+        return games?.count ?? 0
     }
     
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellIdentifier", for: indexPath) as? GridCell else {
-            fatalError("Unable to dequeue HomeScreenCell")
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellIdentifier", for: indexPath) as? GridCell2 else {
+            fatalError("Failed to dequeue a cell of type CustomImageCell")
         }
-        
-        // Configure the cell here
-        
+
+        if let games = games {
+            if indexPath.row < games.count {
+                let game = games[indexPath.row]
+                cell.configure(game: game)
+            } else {
+                print("Index out of range: \(indexPath.row), Genre Count: \(games.count)")
+            }
+        } else {
+            print("Genres array is nil")
+        }
+
         return cell
     }
 
@@ -148,38 +183,53 @@ extension GamesViewController: UICollectionViewDataSource {
 
 extension GamesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Handle item selection
+        print("tapped")
     }
+    
 }
 
 extension GamesViewController: GamesDescriptionHeaderViewDelegate {
     func didToggleShowMore(_ view: GamesDescriptionHeaderView) {
-        gamesCollectionView.reloadData()
         gamesCollectionView.collectionViewLayout.invalidateLayout()
         gamesCollectionView.setContentOffset(CGPoint(x: 0, y: -gamesCollectionView.contentInset.top), animated: false)
         gamesCollectionView.reloadData()
-
 
     }
 }
 
 extension GamesDescriptionHeaderView: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (UIScreen.main.bounds.size.width/2)-43, height: 400)
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 8, left: 8, bottom: 0, right: 8)
     }
+    
+    func collectionView(_: UICollectionView,
+                        layout _: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt _: Int) -> CGFloat {
+        return 60
+    }
+    
+    func collectionView(_: UICollectionView,
+                        layout _: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: 90, height: 90)
+    }
+
+    
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: (UIScreen.main.bounds.size.width/2)-43, height: 400)
+//    }
     
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let indexPath = IndexPath(row: 0, section: section)
         let headerSize = calculateHeaderSize()
-        //        return CGSize(width: collectionView.bounds.width, height: gamesDescriptionHeaderView.frame.size.height)
-
         return headerSize
         
-//        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
-
     }
 }

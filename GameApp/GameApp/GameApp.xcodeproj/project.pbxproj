@@ -44,6 +44,7 @@
 		79CCE4D12B71B7EB00F9F31E /* UITextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CCE4D02B71B7EB00F9F31E /* UITextFieldView.swift */; };
 		79CCE4D62B71C1A000F9F31E /* GameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AA1232B6DADAF00771AB3 /* GameAppTests.swift */; };
 		79CCE4D92B71C5D300F9F31E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CCE4D82B71C5D300F9F31E /* SignupViewController.swift */; };
+		79FFA86B2B74314E00104BE4 /* GridCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FFA86A2B74314E00104BE4 /* GridCell2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		79CCE4C92B71A0DA00F9F31E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		79CCE4D02B71B7EB00F9F31E /* UITextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldView.swift; sourceTree = "<group>"; };
 		79CCE4D82B71C5D300F9F31E /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		79FFA86A2B74314E00104BE4 /* GridCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell2.swift; sourceTree = "<group>"; };
 		A074781D28E090C29D6066A6 /* Pods-GameApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameApp.debug.xcconfig"; path = "Target Support Files/Pods-GameApp/Pods-GameApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B25127AA37EB54F42D1A0A7D /* Pods_GameApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -335,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				792AA1622B6EF02700771AB3 /* GridCell.swift */,
+				79FFA86A2B74314E00104BE4 /* GridCell2.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				79CCE4D92B71C5D300F9F31E /* SignupViewController.swift in Sources */,
 				79CCE4C12B71721200F9F31E /* UserDefaultsHelper.swift in Sources */,
 				79CCE4D12B71B7EB00F9F31E /* UITextFieldView.swift in Sources */,
+				79FFA86B2B74314E00104BE4 /* GridCell2.swift in Sources */,
 				792AA16E2B6FFD1D00771AB3 /* GamesDescriptionHeaderView.swift in Sources */,
 				792AA1502B6DD37500771AB3 /* CreatorRolesManager.swift in Sources */,
 				79CCE4C32B719C7B00F9F31E /* LoadingView.swift in Sources */,

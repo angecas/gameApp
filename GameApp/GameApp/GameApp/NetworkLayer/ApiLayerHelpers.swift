@@ -35,7 +35,7 @@ class SessionProvider {
                 if let stringValue = "\(value)" as? String {
                     urlComponents.queryItems?.append(URLQueryItem(name: key, value: stringValue))
                 } else {
-                    // Handle other types as needed
+                    // Handle other types if needed
                 }
             }
         }
@@ -44,12 +44,15 @@ class SessionProvider {
             throw NetworkError.invalidURL
         }
 
-        let (data, _) = try await URLSession.shared.data(from: url)
+        var request = URLRequest(url: url)
+        request.httpMethod = endpoint.HTTPMethod.rawValue
+        request.addValue("application/json", forHTTPHeaderField: "Accept") // Add this line to set Accept header
+
+        let (data, _) = try await URLSession.shared.data(for: request)
         let decoder = JSONDecoder()
         let response = try decoder.decode(T.self, from: data)
         return response
     }
-
 }
 
 enum NetworkError: Error {

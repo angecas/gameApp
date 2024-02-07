@@ -111,5 +111,15 @@ class GridCell: UICollectionViewCell {
         if genre.gamesCount > 0 {
             counterLabel.text = genre.gamesCount == 1 ? "\(genre.gamesCount) game" : "\(genre.gamesCount) games"
         }
-    }
+    }   
+    
+//    func configure(game: Game) {
+//
+//        imageView.sd_imageIndicator = SDWebImageActivityIndicator.white
+//
+//        imageView.sd_setImage(with: URL(string: game.background_image ?? ""))
+//        
+//        titleLabel.text = game.name
+//        counterLabel.text = ""
+//    }
 }

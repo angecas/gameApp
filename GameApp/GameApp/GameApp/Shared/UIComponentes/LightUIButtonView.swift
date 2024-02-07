@@ -27,10 +27,7 @@ class LightUIButtonView: UIButton {
         self.layer.masksToBounds = true
         self.translatesAutoresizingMaskIntoConstraints = false
     }
-
-
 }
-
 
 private let signUpButton: UIButton = {
     let button = UIButton()

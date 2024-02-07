@@ -65,11 +65,8 @@ class SignupViewController: UIViewController {
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
         view.addSubview(signUpButton)
-        
-        let signupTapGesture = UITapGestureRecognizer(target: self, action: #selector(tapSignup))
-        signUpButton.addGestureRecognizer(signupTapGesture)
-        
-
+                
+        signUpButton.addTarget(self, action: #selector(tapSignup), for: .touchUpInside)
 
         NSLayoutConstraint.activate([
             stack.centerXAnchor.constraint(equalTo: view.centerXAnchor),

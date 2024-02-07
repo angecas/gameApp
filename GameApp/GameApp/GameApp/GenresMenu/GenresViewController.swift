@@ -10,7 +10,7 @@ import UIKit
 class GenresViewController: UIViewController {
     // MARK: - Properties
     private var genres: GenresList?
-
+    
     private let pageTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -38,9 +38,9 @@ class GenresViewController: UIViewController {
     }()
     
     // MARK: - LyfeCycle
-
+    
     override func viewDidLoad() {
-
+        
         super.viewDidLoad()
         collectionView.refreshControl = refreshControl
         LoadingManager.shared.showLoading()
@@ -57,24 +57,24 @@ class GenresViewController: UIViewController {
             }
         }
         setupUI()
-                
-//        Task {
-//            do {
-//                let creatorRolesManager = CreatorRolesManager()
-//                let response = try await creatorRolesManager.fetchListOfCreatorPositions()
-//                print(response)
-//            } catch {
-//                print("Error: \(error)")
-//            }
-//        }
-
+        
+        //        Task {
+        //            do {
+        //                let creatorRolesManager = CreatorRolesManager()
+        //                let response = try await creatorRolesManager.fetchListOfCreatorPositions()
+        //                print(response)
+        //            } catch {
+        //                print("Error: \(error)")
+        //            }
+        //        }
+        
     }
     
     // MARK: - Helpers
     
     @objc private func handleRefresh(_ sender: UIRefreshControl) {
         refreshControl.endRefreshing()
-
+        
         Task {
             do {
                 let genres = GenresManager()
@@ -90,18 +90,18 @@ class GenresViewController: UIViewController {
     
     private func setupUI(){
         view.backgroundColor = Color.darkBlue
-
+        
         view.addSubview(pageTitle)
         view.addSubview(collectionView)
-
+        
         NSLayoutConstraint.activate([
             pageTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             pageTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             pageTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16),
             
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-                    collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-                    collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 8)
         ])
     }
@@ -122,7 +122,7 @@ extension GenresViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellIdentifier", for: indexPath) as? GridCell else {
             fatalError("Failed to dequeue a cell of type CustomImageCell")
         }
-
+        
         if let genres = genres {
             if indexPath.row < genres.results.count {
                 let genre = genres.results[indexPath.row]
@@ -133,8 +133,8 @@ extension GenresViewController: UICollectionViewDataSource {
         } else {
             print("Genres array is nil")
         }
-
-
+        
+        
         return cell
     }
 }
@@ -147,7 +147,7 @@ extension GenresViewController: UICollectionViewDelegate {
         
         if let id = genres?.results[indexPath.row].id {
             UserDefaultsHelper.setSelectedGenre(genreId: id)
-
+            
             let gamesViewController = GamesViewController(id: id)
             navigationController?.pushViewController(gamesViewController, animated: true)
         }
@@ -170,8 +170,8 @@ extension GenresViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-
+        
         return UIEdgeInsets(top: 8, left: 8, bottom: 0, right: 8)
     }
-
+    
 }

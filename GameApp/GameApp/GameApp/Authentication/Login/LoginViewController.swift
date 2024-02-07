@@ -60,10 +60,8 @@ class LoginViewController: UIViewController {
         
         let labelTapGesture = UITapGestureRecognizer(target: self, action: #selector(tapSignUp))
         createAccountLabel.addGestureRecognizer(labelTapGesture)
-        
-        let loginTapGesture = UITapGestureRecognizer(target: self, action: #selector(tapLogin))
-        loginButton.addGestureRecognizer(loginTapGesture)
-        
+                
+        loginButton.addTarget(self, action: #selector(tapLogin), for: .touchUpInside)
 
         view.addSubview(loginImageView)
         view.addSubview(emailTextField)

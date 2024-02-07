@@ -6,3 +6,23 @@
 //
 
 import Foundation
+
+struct GamesManager {
+   
+   let sessionProvider: SessionProvider
+   
+   init(sessionProvider: SessionProvider = SessionProvider()) {
+      self.sessionProvider = sessionProvider
+   }
+    
+    func fetchListOfGames(id: Int) async throws -> GamesModel {
+        let endpoint = GamesApi.fetchListOfGames(id: id)
+        
+        do {
+            let response = try await sessionProvider.request(endpoint, responseType: GamesModel.self)
+            return response
+        } catch {
+            throw error
+        }
+    }
+}
