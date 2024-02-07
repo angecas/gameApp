@@ -174,7 +174,6 @@ struct Game: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        // Initialize other properties...
         slug = try? container.decode(String.self, forKey: .slug)
         name = try? container.decode(String.self, forKey: .name)
         playtime = try? container.decode(Int.self, forKey: .playtime)

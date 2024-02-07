@@ -31,9 +31,11 @@ class GamesViewController: UIViewController {
     private lazy var gamesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 50
-        layout.minimumInteritemSpacing = 50
-        layout.itemSize = CGSize(width: 80, height: 80)
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        layout.itemSize = CGSize(width: 100, height: 120)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 4)
+
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = Color.darkBlue
@@ -106,7 +108,6 @@ class GamesViewController: UIViewController {
     
     @objc
     func willNavigateBack() {
-        print(games?.count)
         self.navigationController?.popToRootViewController(animated: true)
         UserDefaultsHelper.removeSelectedGenre()
     }
@@ -194,42 +195,5 @@ extension GamesViewController: GamesDescriptionHeaderViewDelegate {
         gamesCollectionView.setContentOffset(CGPoint(x: 0, y: -gamesCollectionView.contentInset.top), animated: false)
         gamesCollectionView.reloadData()
 
-    }
-}
-
-extension GamesDescriptionHeaderView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        
-        return UIEdgeInsets(top: 8, left: 8, bottom: 0, right: 8)
-    }
-    
-    func collectionView(_: UICollectionView,
-                        layout _: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt _: Int) -> CGFloat {
-        return 60
-    }
-    
-    func collectionView(_: UICollectionView,
-                        layout _: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: 90, height: 90)
-    }
-
-    
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: (UIScreen.main.bounds.size.width/2)-43, height: 400)
-//    }
-    
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let indexPath = IndexPath(row: 0, section: section)
-        let headerSize = calculateHeaderSize()
-        return headerSize
-        
     }
 }
