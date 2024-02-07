@@ -33,6 +33,7 @@
 		79A7632F2B726D4900B78146 /* LightUIButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A7632E2B726D4900B78146 /* LightUIButtonView.swift */; };
 		79A7633D2B72C8C700B78146 /* ResultReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A7633C2B72C8C700B78146 /* ResultReusableView.swift */; };
 		79A7633F2B72D01A00B78146 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79A7633E2B72D01A00B78146 /* GoogleService-Info.plist */; };
+		79A763422B72F96000B78146 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A763412B72F96000B78146 /* AuthService.swift */; };
 		79CCE4B92B71651500F9F31E /* GamesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CCE4B82B71651500F9F31E /* GamesApi.swift */; };
 		79CCE4BB2B71653F00F9F31E /* GamesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CCE4BA2B71653F00F9F31E /* GamesManager.swift */; };
 		79CCE4BD2B71655000F9F31E /* GamesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CCE4BC2B71655000F9F31E /* GamesModel.swift */; };
@@ -94,6 +95,7 @@
 		79A7632E2B726D4900B78146 /* LightUIButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightUIButtonView.swift; sourceTree = "<group>"; };
 		79A7633C2B72C8C700B78146 /* ResultReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultReusableView.swift; sourceTree = "<group>"; };
 		79A7633E2B72D01A00B78146 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		79A763412B72F96000B78146 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		79CCE4B82B71651500F9F31E /* GamesApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesApi.swift; sourceTree = "<group>"; };
 		79CCE4BA2B71653F00F9F31E /* GamesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesManager.swift; sourceTree = "<group>"; };
 		79CCE4BC2B71655000F9F31E /* GamesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesModel.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 		79CCE4BF2B716BD500F9F31E /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				79A763412B72F96000B78146 /* AuthService.swift */,
 				79A7632B2B7267BC00B78146 /* Login */,
 				79CCE4D72B71C58900F9F31E /* Signup */,
 				79A7632C2B72688A00B78146 /* AuthenticationViewModel.swift */,
@@ -547,6 +550,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79A763422B72F96000B78146 /* AuthService.swift in Sources */,
 				79CCE4D92B71C5D300F9F31E /* SignupViewController.swift in Sources */,
 				79CCE4C12B71721200F9F31E /* UserDefaultsHelper.swift in Sources */,
 				79CCE4D12B71B7EB00F9F31E /* UITextFieldView.swift in Sources */,

@@ -96,13 +96,11 @@ class SignupViewController: UIViewController {
     @objc func tapSignup() {
         
         if let email = emailTextField.text, let password = passwordTextField.text {
-            
-            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            AuthService().registerUser(email: email, password: password) { error in
                 if let error = error {
-                    print("Error creating user: \(error.localizedDescription)")
-                   return
+                    print("Registration failed: \(error.localizedDescription)")
                 } else {
-                    print("User created successfully")
+                    print("User registered successfully")
                 }
             }
         }

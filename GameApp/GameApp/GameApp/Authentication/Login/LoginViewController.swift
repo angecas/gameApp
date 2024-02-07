@@ -61,6 +61,9 @@ class LoginViewController: UIViewController {
         let labelTapGesture = UITapGestureRecognizer(target: self, action: #selector(tapSignUp))
         createAccountLabel.addGestureRecognizer(labelTapGesture)
         
+        let loginTapGesture = UITapGestureRecognizer(target: self, action: #selector(tapLogin))
+        loginButton.addGestureRecognizer(loginTapGesture)
+        
 
         view.addSubview(loginImageView)
         view.addSubview(emailTextField)
@@ -102,6 +105,19 @@ class LoginViewController: UIViewController {
     @objc private func shakeIcon() {
         SharedHelpers().shakeView(uiView: loginImageView)
     }  
+    
+    @objc private func tapLogin() {
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            AuthService().login(email: email, password: password) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    print("login in")
+                    self.dismiss(animated: true)
+                }
+            }
+        }
+    }
     
     @objc private func tapSignUp() {
         let signupViewController = SignupViewController()

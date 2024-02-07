@@ -4,8 +4,7 @@
 //
 //  Created by Angélica Rodrigues on 03/02/2024.
 //
-import UIKit
-
+import FirebaseAuth
 import UIKit
 
 class SplashViewController: UIViewController {
@@ -25,11 +24,35 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        logout()
         setupUI()
+        authenticatUserAndSeteUI()
         perform(#selector(showMainViewController), with: nil, afterDelay: 2.0)
     }
 
     // MARK: - Helpers
+    
+    private func authenticatUserAndSeteUI() {
+        if Auth.auth().currentUser == nil {
+            print("not logged")
+            DispatchQueue.main.async {
+                let navigationController = UINavigationController(rootViewController: LoginViewController())
+                navigationController.modalPresentationStyle = .fullScreen
+                self.present(navigationController, animated: true)
+            }
+        } else {
+                print("logged")
+        }
+    }
+
+    
+    private func logout() {
+        do {
+            try Auth.auth().signOut()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
 
     private func setupUI() {
         view.backgroundColor = Color.darkBlue
