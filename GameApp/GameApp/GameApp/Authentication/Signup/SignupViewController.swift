@@ -88,7 +88,6 @@ class SignupViewController: UIViewController {
             signUpButton.heightAnchor.constraint(equalToConstant: 24),
         ])
     }
-    //create a shared toaster that shows the error message
     
     @objc func tapSignup() {
         
@@ -98,6 +97,11 @@ class SignupViewController: UIViewController {
                     print("Registration failed: \(error.localizedDescription)")
                 } else {
                     print("User registered successfully")
+                    DispatchQueue.main.async {
+                        let navigationController = UINavigationController(rootViewController: GenresViewController())
+                        navigationController.modalPresentationStyle = .fullScreen
+                        self.present(navigationController, animated: true)
+                    }
                 }
             }
         }

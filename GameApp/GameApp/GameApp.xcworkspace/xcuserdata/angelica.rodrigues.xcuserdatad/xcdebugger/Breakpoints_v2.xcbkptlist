@@ -7,47 +7,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "80E66DC5-8F00-43ED-AF64-1CEC83781C8E"
+            uuid = "99EDA46A-9A0B-457B-8815-3939E37C6AEF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GameApp/NetworkLayer/ApiLayerHelpers.swift"
+            filePath = "GameApp/Shared/Cells/GridCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "request(_:responseType:)"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "configure(genre:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "80E66DC5-8F00-43ED-AF64-1CEC83781C8E - 92979f95bd08781c"
+                  uuid = "99EDA46A-9A0B-457B-8815-3939E37C6AEF - 1ddb3cc7c90cf8d8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for GameApp.SessionProvider.request&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(_: GameApp.EndpointDescriptor, responseType: &#x3c4;_0_0.Type) async throws -&gt; &#x3c4;_0_0"
+                  symbolName = "GameApp.GridCell.configure(genre: GameApp.Genre) -&gt; ()"
                   moduleName = "GameApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/NetworkLayer/ApiLayerHelpers.swift"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/Shared/Cells/GridCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "698">
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "263">
                </Location>
                <Location
-                  uuid = "80E66DC5-8F00-43ED-AF64-1CEC83781C8E - 92979f95bd08781c"
+                  uuid = "99EDA46A-9A0B-457B-8815-3939E37C6AEF - 1ddb3cc7c90cf8d8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for GameApp.SessionProvider.request&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(_: GameApp.EndpointDescriptor, responseType: &#x3c4;_0_0.Type) async throws -&gt; &#x3c4;_0_0"
+                  symbolName = "GameApp.GridCell.configure(genre: GameApp.Genre) -&gt; ()"
                   moduleName = "GameApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/NetworkLayer/ApiLayerHelpers.swift"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/Shared/Cells/GridCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "829">
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "317">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -55,16 +55,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "62E5710E-D124-437F-A1CE-E5377EFF0811"
+            uuid = "7AEB51D5-D0EB-4BA8-847B-25156DCB71FB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GameApp/NetworkLayer/ApiLayerHelpers.swift"
+            filePath = "GameApp/Shared/Cells/GridCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "request(_:responseType:)"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "configure(genre:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -37,4 +37,12 @@ struct AuthService {
             }
         }
     }
+    func logout(completion: @escaping (Error?) -> Void) {
+        do {
+               try Auth.auth().signOut()
+               completion(nil) // No error occurred
+           } catch let error as NSError {
+               print(error.localizedDescription)
+               completion(error) // Pass the error to the completion handler
+           }    }
 }

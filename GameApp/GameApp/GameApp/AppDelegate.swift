@@ -16,17 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let loginViewController = LoginViewController()
-        let navigationController = UINavigationController(rootViewController: loginViewController)
-        
-        window?.rootViewController = navigationController
+//        let loginViewController = LoginViewController()
+//        let navigationController = UINavigationController(rootViewController: loginViewController)
+//        
+//        window?.rootViewController = navigationController
         //descomenta
-//        let splashViewController = SplashViewController()
-//        window?.rootViewController = splashViewController
+        let splashViewController = SplashViewController()
+        window?.rootViewController = splashViewController
+        
         window?.makeKeyAndVisible()
-        FirebaseApp.configure()
 
         return true
     }

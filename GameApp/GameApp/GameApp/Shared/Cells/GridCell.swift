@@ -102,16 +102,19 @@ class GridCell: UICollectionViewCell {
     }
     
     func configure(genre: Genre) {
-
-        imageView.sd_imageIndicator = SDWebImageActivityIndicator.white
-
-        imageView.sd_setImage(with: URL(string: genre.imageBackground))
         
-        titleLabel.text = genre.name
-        if genre.gamesCount > 0 {
-            counterLabel.text = genre.gamesCount == 1 ? "\(genre.gamesCount) game" : "\(genre.gamesCount) games"
+        imageView.sd_imageIndicator = SDWebImageActivityIndicator.white
+        
+        if let imageRemotePath = genre.imageBackground {
+            imageView.sd_setImage(with: URL(string: imageRemotePath))
         }
-    }   
+        if let genreName = genre.name, let gameCount =  genre.gamesCount {
+            titleLabel.text = genreName
+            if gameCount > 0 {
+                counterLabel.text = genre.gamesCount == 1 ? "\(gameCount) game" : "\(gameCount) games"
+            }
+        }
+    }
     
 //    func configure(game: Game) {
 //

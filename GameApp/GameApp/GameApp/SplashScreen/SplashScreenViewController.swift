@@ -26,8 +26,9 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
 //        logout()
         setupUI()
-        authenticatUserAndSeteUI()
-        perform(#selector(showMainViewController), with: nil, afterDelay: 2.0)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.authenticatUserAndSeteUI()
+        }
     }
 
     // MARK: - Helpers
@@ -42,17 +43,22 @@ class SplashViewController: UIViewController {
             }
         } else {
                 print("logged")
+            DispatchQueue.main.async {
+                let navigationController = UINavigationController(rootViewController: GenresViewController())
+                navigationController.modalPresentationStyle = .fullScreen
+                self.present(navigationController, animated: true)
+            }            
         }
     }
 
     
-    private func logout() {
-        do {
-            try Auth.auth().signOut()
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
+//    private func logout() {
+//        do {
+//            try Auth.auth().signOut()
+//        } catch let error {
+//            print(error.localizedDescription)
+//        }
+//    }
 
     private func setupUI() {
         view.backgroundColor = Color.darkBlue

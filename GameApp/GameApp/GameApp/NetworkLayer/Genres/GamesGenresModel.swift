@@ -11,15 +11,15 @@ struct GenresList: Codable {
     let count: Int
     let next: String?
     let previous: String?
-    let results: [Genre]
+    var results: [Genre]
 }
 
 struct Genre: Codable {
     let id: Int
-    let name: String
-    let slug: String
-    let gamesCount: Int
-    let imageBackground: String
+    let name: String?
+    let slug: String?
+    let gamesCount: Int?
+    let imageBackground: String?
     let description: String?
 
     enum CodingKeys: String, CodingKey {

@@ -8,18 +8,23 @@
 import Foundation
 
 enum GenresApi {
-    case fetchListOfGamesGenres(ordering: String?)
+    case fetchListOfGamesGenres(page: Int)
     case fetchGenresById(id: Int)
 }
 
 extension GenresApi: EndpointDescriptor {
     
     var page: Int {
-        return 1
-    }
-    
+         switch self {
+         case .fetchListOfGamesGenres(let page):
+             return page
+         case .fetchGenresById(id: let id):
+             return 10
+         }
+     }
+
     var pageSize: Int {
-        return 10
+        return 9
     }
 
     var body: Data? {
@@ -34,8 +39,8 @@ extension GenresApi: EndpointDescriptor {
     }
     var parameters: Parameters? {
        switch self {
-       case .fetchListOfGamesGenres(let ordering):
-           return ["ordering": ordering as Any]
+       case .fetchListOfGamesGenres:
+           return nil
        case .fetchGenresById:
            return nil
        }

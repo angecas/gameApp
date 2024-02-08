@@ -15,8 +15,8 @@ struct GenresManager {
       self.sessionProvider = sessionProvider
    }
     
-    func fetchListOfGamesGenres() async throws -> GenresList {
-        let endpoint = GenresApi.fetchListOfGamesGenres(ordering: nil)
+    func fetchListOfGamesGenres(page: Int) async throws -> GenresList {
+        let endpoint = GenresApi.fetchListOfGamesGenres(page: page)
         
         do {
             let response = try await sessionProvider.request(endpoint, responseType: GenresList.self)

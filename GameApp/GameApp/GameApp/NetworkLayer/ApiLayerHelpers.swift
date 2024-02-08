@@ -57,9 +57,10 @@ class SessionProvider {
         return response
     }
 }
-
 enum NetworkError: Error {
     case invalidURL
+    case invalidResponse
+    case requestFailed
 }
 
 public protocol EndpointDescriptor {

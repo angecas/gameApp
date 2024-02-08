@@ -6,10 +6,25 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class GenresViewController: UIViewController {
     // MARK: - Properties
+    private var currentPage = 1
+    private var isLoadingData = false
+
+    
     private var genres: GenresList?
+    private lazy var floatingButton: UIButton = {
+        let floatingButton = UIButton()
+        floatingButton.setTitle("Out", for: .normal)
+        floatingButton.backgroundColor = .black
+        floatingButton.layer.cornerRadius = 25
+        floatingButton.translatesAutoresizingMaskIntoConstraints = false
+
+        return floatingButton
+    }()
+    
     
     private let pageTitle: UILabel = {
         let label = UILabel()
@@ -44,45 +59,72 @@ class GenresViewController: UIViewController {
         super.viewDidLoad()
         collectionView.refreshControl = refreshControl
         LoadingManager.shared.showLoading()
-        Task {
-            do {
-                let genres = GenresManager()
-                let response = try await genres.fetchListOfGamesGenres()
-                self.genres = response
-                self.collectionView.reloadData()
-                LoadingManager.shared.hideLoading()
-            } catch {
-                print("Error: \(error)")
-                LoadingManager.shared.hideLoading()
-            }
-        }
+        fetchData()
         setupUI()
         
     }
     
     // MARK: - Helpers
     
+    //no sign up or a ir para o genres quando fazes o registo
+    //no logout por a ir para a pagina de login
+    
+    @objc private func logout() {
+        do {
+            try Auth.auth().signOut()
+            self.navigationController?.popToRootViewController(animated: true)
+            DispatchQueue.main.async {
+                let navigationController = UINavigationController(rootViewController: LoginViewController())
+                navigationController.modalPresentationStyle = .fullScreen
+                self.present(navigationController, animated: true)
+            }
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func fetchData() {
+         guard !isLoadingData else { return }
+         isLoadingData = true
+
+         Task {
+             do {
+                 let genres = GenresManager()
+                 let response = try await genres.fetchListOfGamesGenres(page: self.currentPage)
+
+                 DispatchQueue.main.async {
+                     if let existingGenres = self.genres {
+                         self.genres?.results.append(contentsOf: response.results)
+                     } else {
+                         self.genres = response
+                     }
+                     self.collectionView.reloadData()
+                     self.isLoadingData = false
+                 }
+
+                 LoadingManager.shared.hideLoading()
+
+             } catch {
+                 self.isLoadingData = false
+                 LoadingManager.shared.hideLoading()
+                 print("Error: \(error)")
+             }
+         }
+     }
+    
     @objc private func handleRefresh(_ sender: UIRefreshControl) {
         refreshControl.endRefreshing()
-        
-        Task {
-            do {
-                let genres = GenresManager()
-                let response = try await genres.fetchListOfGamesGenres()
-                self.genres = response
-                self.collectionView.reloadData()
-            } catch {
-                print("Error: \(error)")
-            }
-        }
+        fetchData()
         collectionView.reloadData()
     }
     
     private func setupUI(){
         view.backgroundColor = Color.darkBlue
-        
+        view.addSubview(floatingButton)
         view.addSubview(pageTitle)
         view.addSubview(collectionView)
+        
+        floatingButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             pageTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -91,8 +133,15 @@ class GenresViewController: UIViewController {
             
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 8)
+            collectionView.bottomAnchor.constraint(equalTo: floatingButton.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 8),
+            
+            floatingButton.widthAnchor.constraint(equalToConstant: 50),
+            floatingButton.heightAnchor.constraint(equalToConstant: 50),
+            floatingButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+
+            floatingButton.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -10),
+
         ])
     }
 }
@@ -144,6 +193,19 @@ extension GenresViewController: UICollectionViewDelegate {
     }
 }
 extension GenresViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let lastItem = indexPath.item
+        let totalItems = collectionView.numberOfItems(inSection: 0)
+
+        if lastItem == totalItems - 1 {
+            currentPage += 1
+            fetchData()
+        }
+    }
+
+    
+    
     func collectionView(_: UICollectionView,
                         layout _: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
