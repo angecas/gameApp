@@ -3,4 +3,54 @@
    uuid = "50458C53-62B1-4647-81BF-1D032D32A996"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1DE86F81-46CD-4A4A-B932-75BAF1E608D2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameApp/NetworkLayer/Games/GamesManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "fetchListOfGames(id:page:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1DE86F81-46CD-4A4A-B932-75BAF1E608D2 - e02fec53ae1b717c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for GameApp.GamesManager.fetchListOfGames(id: Swift.Int) async throws -&gt; GameApp.GamesModel"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/NetworkLayer/Games/GamesManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "1DE86F81-46CD-4A4A-B932-75BAF1E608D2 - 441b31714f21b229"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for GameApp.GamesManager.fetchListOfGames(id: Swift.Int, page: Swift.Int) async throws -&gt; GameApp.GamesModel"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/NetworkLayer/Games/GamesManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "233">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

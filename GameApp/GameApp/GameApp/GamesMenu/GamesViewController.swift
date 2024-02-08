@@ -12,6 +12,9 @@ class GamesViewController: UIViewController {
     private var genre: Genre?
     private var games: [Game]?
     private let id: Int
+    
+    private var currentPage = 1
+    private var isLoadingData = false
 
     private lazy var gamesDescriptionHeaderView: GamesDescriptionHeaderView = {
         let view = GamesDescriptionHeaderView()
@@ -46,8 +49,6 @@ class GamesViewController: UIViewController {
     init(id: Int) {
         self.id = id
         super.init(nibName: nil, bundle: nil)
-        
-
     }
     
     required init?(coder: NSCoder) {
@@ -56,7 +57,6 @@ class GamesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        gamesCollectionView.delegate = self
 
         LoadingManager.shared.showLoading()
         Task {
@@ -73,37 +73,46 @@ class GamesViewController: UIViewController {
 
             } catch {
                 LoadingManager.shared.hideLoading()
-
                 print("Error: \(error)")
             }
         }
         
-        Task {
-            do {
-                let games = GamesManager()
-                let response = try await games.fetchListOfGames(id: self.id)
-                
-                print(response, "<<<")
-                DispatchQueue.main.async {
-                    self.gamesCollectionView.reloadData()
+        fetchData()
 
-                self.games = response.results
-                self.gamesCollectionView.reloadData()
-                }
-                
-                LoadingManager.shared.hideLoading()
-
-            } catch {
-                LoadingManager.shared.hideLoading()
-                print("Error: \(error)")
-            }
-        }
         gamesCollectionView.delegate = self
         gamesCollectionView.dataSource = self
-
         setNavigationActions()
         setupUI()
     }
+    
+    private func fetchData() {
+         guard !isLoadingData else { return }
+         isLoadingData = true
+
+         Task {
+             do {
+                 let games = GamesManager()
+                 let response = try await games.fetchListOfGames(id: self.id, page: self.currentPage)
+                 
+                 DispatchQueue.main.async {
+                     if let existingGames = self.games {
+                         self.games?.append(contentsOf: response.results ?? [])
+                     } else {
+                         self.games = response.results
+                     }
+                     self.gamesCollectionView.reloadData()
+                     self.isLoadingData = false
+                 }
+                 
+                 LoadingManager.shared.hideLoading()
+
+             } catch {
+                 self.isLoadingData = false
+                 LoadingManager.shared.hideLoading()
+                 print("Error: \(error)")
+             }
+         }
+     }
     
     
     @objc
@@ -144,7 +153,6 @@ class GamesViewController: UIViewController {
 
 extension GamesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(games?.count ?? 0)
         return games?.count ?? 0
     }
     
@@ -194,6 +202,34 @@ extension GamesViewController: GamesDescriptionHeaderViewDelegate {
         gamesCollectionView.collectionViewLayout.invalidateLayout()
         gamesCollectionView.setContentOffset(CGPoint(x: 0, y: -gamesCollectionView.contentInset.top), animated: false)
         gamesCollectionView.reloadData()
-
     }
 }
+
+extension GamesViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let lastItem = indexPath.item
+        let totalItems = collectionView.numberOfItems(inSection: 0)
+
+        if lastItem == totalItems - 1 {
+            currentPage += 1
+
+            Task {
+                do {
+                    let games = GamesManager()
+                    let response = try await games.fetchListOfGames(id: self.id, page: self.currentPage)
+
+                    DispatchQueue.main.async {
+                        if let results = response.results, !results.isEmpty {
+                            self.games?.append(contentsOf: results)
+                            self.gamesCollectionView.reloadData()
+                        }
+                    }
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+        }
+    }
+}
+
+

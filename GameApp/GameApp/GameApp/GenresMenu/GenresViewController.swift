@@ -58,16 +58,6 @@ class GenresViewController: UIViewController {
         }
         setupUI()
         
-        //        Task {
-        //            do {
-        //                let creatorRolesManager = CreatorRolesManager()
-        //                let response = try await creatorRolesManager.fetchListOfCreatorPositions()
-        //                print(response)
-        //            } catch {
-        //                print("Error: \(error)")
-        //            }
-        //        }
-        
     }
     
     // MARK: - Helpers

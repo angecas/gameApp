@@ -8,17 +8,20 @@
 import Foundation
 
 enum GamesApi {
-    case fetchListOfGames(id: Int)
+    case fetchListOfGames(id: Int, page: Int)
 }
 
 extension GamesApi: EndpointDescriptor {
     
     var page: Int {
-        return 1
-    }
+         switch self {
+         case .fetchListOfGames(_, let page):
+             return page
+         }
+     }
     
     var pageSize: Int {
-        return 10
+        return 9
     }
 
     var body: Data? {
