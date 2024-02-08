@@ -29,5 +29,24 @@ class UITextFieldView: UITextField {
         self.layer.borderColor = Color.blueishWhite.cgColor
         self.autocapitalizationType = .none
         self.autocorrectionType = .no
+
+        if isSecured {
+            let eyeImageView = UIImageView(image: UIImage(systemName: "eye.fill")?.withRenderingMode(.alwaysTemplate).withTintColor(Color.darkBlue))
+            eyeImageView.isUserInteractionEnabled = true
+            eyeImageView.tintColor = UIColor.lightGray
+            eyeImageView.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+            eyeImageView.contentMode = .center
+            self.rightView = eyeImageView
+            self.rightViewMode = .always
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(togglePasswordVisibility))
+            eyeImageView.addGestureRecognizer(tapGesture)
+        }
+    }
+
+    @objc private func togglePasswordVisibility() {
+        self.isSecureTextEntry.toggle()
+        if let eyeImageView = self.rightView as? UIImageView {
+            eyeImageView.tintColor = self.isSecureTextEntry ? UIColor.lightGray : Color.darkBlue
+        }
     }
 }

@@ -8,6 +8,8 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    let toastController = ToastViewController()
+
     private let loginImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "gamecontroller.fill")?.withRenderingMode(.alwaysTemplate)
@@ -109,6 +111,7 @@ class LoginViewController: UIViewController {
             AuthService().login(email: email, password: password) { error in
                 if let error = error {
                     print(error.localizedDescription)
+                    print("Error Code: \(error)")
                 } else {
                     print("login in")
                     self.dismiss(animated: true)
@@ -121,6 +124,15 @@ class LoginViewController: UIViewController {
         let signupViewController = SignupViewController()
            navigationController?.pushViewController(signupViewController, animated: true)
     }
+    
+    func showCustomToast() {
+        present(toastController, animated: true, completion: nil)
+        toastController.showToast(message: "Your message goes here.")
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5.0, execute: {
+            self.toastController.dismiss(animated: true)
+        })
+    }
 }
 
 extension LoginViewController: UITextFieldDelegate {
@@ -128,27 +140,13 @@ extension LoginViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == emailTextField {
             print("finished email")
+            showCustomToast()
         } else {
             print("finished pass")
         }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-
-        if textField == emailTextField, let text = textField.text {
-            print("finished email")
-            if SharedHelpers().isValidEmail( text) {
-                emailTextField.layer.borderWidth = 2
-                emailTextField.layer.borderColor = UIColor.red.cgColor
-            }
-        } else {
-            if let text = textField.text {
-                if SharedHelpers().isValidPassword(text) {
-                    passwordTextField.layer.borderWidth = 2
-                    passwordTextField.layer.borderColor = UIColor.red.cgColor
-                }
-            }
-        }
         return true
     }
 }

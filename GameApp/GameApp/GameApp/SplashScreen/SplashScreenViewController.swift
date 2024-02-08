@@ -24,7 +24,6 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        logout()
         setupUI()
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.authenticatUserAndSeteUI()
@@ -42,24 +41,31 @@ class SplashViewController: UIViewController {
                 self.present(navigationController, animated: true)
             }
         } else {
-                print("logged")
-            DispatchQueue.main.async {
-                let navigationController = UINavigationController(rootViewController: GenresViewController())
-                navigationController.modalPresentationStyle = .fullScreen
-                self.present(navigationController, animated: true)
-            }            
+            print("logged")
+            
+            if let selectedGenredId = UserDefaultsHelper.getSelectedGenre() {
+                if let selectedGenredId = UserDefaultsHelper.getSelectedGenre() {
+                    
+                    DispatchQueue.main.async {
+                        let mainViewController = GenresViewController()
+                        let navigationController = UINavigationController(rootViewController: mainViewController)
+                        
+                        navigationController.pushViewController(GamesViewController(id: selectedGenredId), animated: false)
+                        navigationController.modalPresentationStyle = .fullScreen
+                        
+                        self.present(navigationController, animated: true, completion: nil)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        let navigationController = UINavigationController(rootViewController: GenresViewController())
+                        navigationController.modalPresentationStyle = .fullScreen
+                        self.present(navigationController, animated: true)
+                    }
+                }
+            }
         }
+        
     }
-
-    
-//    private func logout() {
-//        do {
-//            try Auth.auth().signOut()
-//        } catch let error {
-//            print(error.localizedDescription)
-//        }
-//    }
-
     private func setupUI() {
         view.backgroundColor = Color.darkBlue
         view.addSubview(splashImageView)
