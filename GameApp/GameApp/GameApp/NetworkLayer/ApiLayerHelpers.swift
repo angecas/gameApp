@@ -23,6 +23,8 @@ class SessionProvider {
         guard var urlComponents = URLComponents(string: endpoint.path) else {
             throw NetworkError.invalidURL
         }
+        
+        print(endpoint.path)
 
         urlComponents.queryItems = [
             URLQueryItem(name: "key", value: apiKey),
@@ -35,7 +37,6 @@ class SessionProvider {
                 if let stringValue = "\(value)" as? String {
                     urlComponents.queryItems?.append(URLQueryItem(name: key, value: stringValue))
                 } else {
-                    // Handle other types if needed
                 }
             }
         }
@@ -45,9 +46,11 @@ class SessionProvider {
         }
 
         var request = URLRequest(url: url)
+        
+        print(url, "<<<")
         request.httpMethod = endpoint.HTTPMethod.rawValue
-        request.addValue("application/json", forHTTPHeaderField: "Accept") // Add this line to set Accept header
-
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
         let (data, _) = try await URLSession.shared.data(for: request)
         let decoder = JSONDecoder()
         let response = try decoder.decode(T.self, from: data)

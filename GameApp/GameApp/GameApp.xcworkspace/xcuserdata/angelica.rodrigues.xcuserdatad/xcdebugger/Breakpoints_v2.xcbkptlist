@@ -7,49 +7,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1DE86F81-46CD-4A4A-B932-75BAF1E608D2"
+            uuid = "80E66DC5-8F00-43ED-AF64-1CEC83781C8E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GameApp/NetworkLayer/Games/GamesManager.swift"
+            filePath = "GameApp/NetworkLayer/ApiLayerHelpers.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "fetchListOfGames(id:page:)"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "request(_:responseType:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "1DE86F81-46CD-4A4A-B932-75BAF1E608D2 - e02fec53ae1b717c"
+                  uuid = "80E66DC5-8F00-43ED-AF64-1CEC83781C8E - 92979f95bd08781c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for GameApp.GamesManager.fetchListOfGames(id: Swift.Int) async throws -&gt; GameApp.GamesModel"
+                  symbolName = "(1) suspend resume partial function for GameApp.SessionProvider.request&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(_: GameApp.EndpointDescriptor, responseType: &#x3c4;_0_0.Type) async throws -&gt; &#x3c4;_0_0"
                   moduleName = "GameApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/NetworkLayer/Games/GamesManager.swift"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/NetworkLayer/ApiLayerHelpers.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "216">
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "698">
                </Location>
                <Location
-                  uuid = "1DE86F81-46CD-4A4A-B932-75BAF1E608D2 - 441b31714f21b229"
+                  uuid = "80E66DC5-8F00-43ED-AF64-1CEC83781C8E - 92979f95bd08781c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for GameApp.GamesManager.fetchListOfGames(id: Swift.Int, page: Swift.Int) async throws -&gt; GameApp.GamesModel"
+                  symbolName = "(1) suspend resume partial function for GameApp.SessionProvider.request&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(_: GameApp.EndpointDescriptor, responseType: &#x3c4;_0_0.Type) async throws -&gt; &#x3c4;_0_0"
                   moduleName = "GameApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/NetworkLayer/Games/GamesManager.swift"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/NetworkLayer/ApiLayerHelpers.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "233">
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "829">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "62E5710E-D124-437F-A1CE-E5377EFF0811"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameApp/NetworkLayer/ApiLayerHelpers.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "request(_:responseType:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -106,6 +106,8 @@ class GamesDescriptionHeaderView: UIView {
         heightConstraint.constant = showMore ? self.headerHeight : 60
         updateConstraints()
         toggleTextLabel.text = showMore ? NSLocalizedString("show-less", comment: "") : NSLocalizedString("show-more", comment: "")
+        gamesInfo.isScrollEnabled = showMore ? true : false
+
         toggleTextLabel.textColor = showMore ? Color.blueishWhite : Color.darkBlue
         toggleTextLabel.backgroundColor = showMore ? Color.darkBlue : Color.blueishWhite
         self.delegate?.didToggleShowMore(self)
