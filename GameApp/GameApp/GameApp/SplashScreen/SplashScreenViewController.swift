@@ -55,16 +55,15 @@ class SplashViewController: UIViewController {
                         
                         self.present(navigationController, animated: true, completion: nil)
                     }
-                } else {
-                    DispatchQueue.main.async {
-                        let navigationController = UINavigationController(rootViewController: GenresViewController())
-                        navigationController.modalPresentationStyle = .fullScreen
-                        self.present(navigationController, animated: true)
-                    }
                 }
-            }
+            } else {
+               DispatchQueue.main.async {
+                   let navigationController = UINavigationController(rootViewController: GenresViewController())
+                   navigationController.modalPresentationStyle = .fullScreen
+                   self.present(navigationController, animated: true)
+               }
+           }
         }
-        
     }
     private func setupUI() {
         view.backgroundColor = Color.darkBlue
@@ -82,25 +81,25 @@ class SplashViewController: UIViewController {
         ])
     }
 
-    @objc private func showMainViewController() {
-        
-        if let selectedGenredId = UserDefaultsHelper.getSelectedGenre() {
-            
-            let mainViewController = GenresViewController()
-            let navigationController = UINavigationController(rootViewController: mainViewController)
-            
-            navigationController.pushViewController(GamesViewController(id: selectedGenredId), animated: false)
-            navigationController.modalPresentationStyle = .fullScreen
-
-            present(navigationController, animated: true, completion: nil)
-        } else {
-            
-            let mainViewController = GenresViewController()
-            let navigationController = UINavigationController(rootViewController: mainViewController)
-            navigationController.modalPresentationStyle = .fullScreen
-            present(navigationController, animated: true, completion: nil)
-        }
-    }
+//    @objc private func showMainViewController() {
+//        
+//        if let selectedGenredId = UserDefaultsHelper.getSelectedGenre() {
+//            
+//            let mainViewController = GenresViewController()
+//            let navigationController = UINavigationController(rootViewController: mainViewController)
+//            
+//            navigationController.pushViewController(GamesViewController(id: selectedGenredId), animated: false)
+//            navigationController.modalPresentationStyle = .fullScreen
+//
+//            present(navigationController, animated: true, completion: nil)
+//        } else {
+//            
+//            let mainViewController = GenresViewController()
+//            let navigationController = UINavigationController(rootViewController: mainViewController)
+//            navigationController.modalPresentationStyle = .fullScreen
+//            present(navigationController, animated: true, completion: nil)
+//        }
+//    }
 
     
     private func shakeIcon() {
