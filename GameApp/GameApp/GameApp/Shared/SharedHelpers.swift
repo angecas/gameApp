@@ -31,6 +31,12 @@ class SharedHelpers {
         }
     }
     
+    func showCustomToast(_ controller: UIViewController, loginMessage: String) {
+        let toastController = ToastViewController(message: loginMessage)
+        controller.present(toastController, animated: true, completion: nil)
+        toastController.hideToast()
+    }
+    
     @objc func shakeView(uiView: UIView?) {
         if let uiView = uiView {
             let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")

@@ -12,8 +12,6 @@ class GenresViewController: UIViewController {
     // MARK: - Properties
     private var currentPage = 1
     private var isLoadingData = false
-
-    
     private var genres: GenresList?
     private lazy var floatingButton: UIButton = {
         let floatingButton = UIButton()
@@ -70,6 +68,8 @@ class GenresViewController: UIViewController {
     //no logout por a ir para a pagina de login
     
     @objc private func logout() {
+        
+        /*
         do {
             try Auth.auth().signOut()
             self.navigationController?.popToRootViewController(animated: true)
@@ -81,6 +81,7 @@ class GenresViewController: UIViewController {
         } catch let error {
             print(error.localizedDescription)
         }
+         */
     }
     
     private func fetchData() {

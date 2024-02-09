@@ -36,7 +36,7 @@ class GamesViewController: UIViewController {
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 50
         layout.minimumInteritemSpacing = 10
-        layout.itemSize = CGSize(width: 100, height: 120)
+        layout.itemSize = CGSize(width: 100, height: 150)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 4)
 
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -81,8 +81,8 @@ class GamesViewController: UIViewController {
 
         gamesCollectionView.delegate = self
         gamesCollectionView.dataSource = self
-        setNavigationActions()
         setupUI()
+        setNavigationActions()
     }
     
     private func fetchData() {
@@ -194,8 +194,11 @@ extension GamesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("tapped")
         
-        print(games?[indexPath.row].genres)
-        print(games?[indexPath.row].released)
+//        print(games?[indexPath.row].genres)
+        print(games?[indexPath.row].updated)
+        if let cell = collectionView.cellForItem(at: indexPath) as? GridCell2 {
+            cell.showCellDetails()
+        }
     }
     
 }

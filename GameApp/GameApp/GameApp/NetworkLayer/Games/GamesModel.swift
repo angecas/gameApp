@@ -169,7 +169,7 @@ struct Game: Codable {
     let dominant_color: String?
     let short_screenshots: [ShortScreenshot]?
     let parent_platforms: [Platform]?
-    let genres: [Tag]?
+//    let genres: [Tag]?
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -204,7 +204,7 @@ struct Game: Codable {
         dominant_color = try? container.decode(String.self, forKey: .dominant_color)
         short_screenshots = try? container.decode([ShortScreenshot].self, forKey: .short_screenshots)
         parent_platforms = try? container.decode([Platform].self, forKey: .parent_platforms)
-        genres = try? container.decode([Tag].self, forKey: .genres)
+//        genres = try? container.decode([Tag].self, forKey: .genres)
 
         // Initialize reviews_text_count directly in the main initializer
         let reviewsTextCountString = try? container.decode(String.self, forKey: .reviews_text_count)

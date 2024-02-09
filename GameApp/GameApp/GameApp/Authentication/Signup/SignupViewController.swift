@@ -27,7 +27,7 @@ class SignupViewController: UIViewController {
         return label
     }()
     
-    private let signUpButton: LightUIButtonView = LightUIButtonView(buttonText: "Sign up!")
+    private let signUpButton: LightUIButtonView = LightUIButtonView(buttonText: "Sign up")
 
     private let emailTextField: UITextFieldView = UITextFieldView(placeholder: "Email")
     
@@ -67,12 +67,14 @@ class SignupViewController: UIViewController {
         view.addSubview(signUpButton)
                 
         signUpButton.addTarget(self, action: #selector(tapSignup), for: .touchUpInside)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
 
         NSLayoutConstraint.activate([
             stack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
 
-            emailTextField.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 24),
+            emailTextField.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 32),
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             emailTextField.heightAnchor.constraint(equalToConstant: 36),
@@ -84,9 +86,13 @@ class SignupViewController: UIViewController {
             
             signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             signUpButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 32),
-            signUpButton.widthAnchor.constraint(equalToConstant: 100),
-            signUpButton.heightAnchor.constraint(equalToConstant: 24),
+            signUpButton.widthAnchor.constraint(equalToConstant: 120),
+            signUpButton.heightAnchor.constraint(equalToConstant: 36),
         ])
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @objc func tapSignup() {
@@ -94,7 +100,7 @@ class SignupViewController: UIViewController {
         if let email = emailTextField.text, let password = passwordTextField.text {
             AuthService().registerUser(email: email, password: password) { error in
                 if let error = error {
-                    print("Registration failed: \(error.localizedDescription)")
+                    SharedHelpers().showCustomToast(self, loginMessage: error.localizedDescription)
                 } else {
                     print("User registered successfully")
                     DispatchQueue.main.async {

@@ -15,6 +15,16 @@ class GridCell2: UICollectionViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    private lazy var gameDetailsLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = Color.blueishWhite
+        label.font = Font.bodyFont
+        label.numberOfLines = 0
+        label.isHidden = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
@@ -56,10 +66,10 @@ class GridCell2: UICollectionViewCell {
 
     
     private func setupUI() {
-        contentView.backgroundColor = .red
         contentView.addSubview(backView)
         backView.addSubview(imageView)
         backView.addSubview(nameLabel)
+        backView.addSubview(gameDetailsLabel)
         
         NSLayoutConstraint.activate([
             backView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -76,7 +86,15 @@ class GridCell2: UICollectionViewCell {
             nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 4),
             nameLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor),
             nameLabel.trailingAnchor.constraint(equalTo: backView.trailingAnchor),
+            
+            gameDetailsLabel.topAnchor.constraint(equalTo: backView.bottomAnchor, constant: 4),
+            gameDetailsLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor),
+            gameDetailsLabel.trailingAnchor.constraint(equalTo: backView.trailingAnchor),
         ])
+    }
+    
+    func showCellDetails() {
+        gameDetailsLabel.isHidden.toggle()
     }
     
     func configure(game: Game) {
@@ -86,6 +104,8 @@ class GridCell2: UICollectionViewCell {
         imageView.sd_setImage(with: URL(string: game.background_image ?? ""))
         
         nameLabel.text = game.name
-        
+        if let released = game.released {
+            gameDetailsLabel.text = "Released: \(released)"
+        }
     }
 }

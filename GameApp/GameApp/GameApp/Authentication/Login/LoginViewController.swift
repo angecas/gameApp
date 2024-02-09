@@ -8,7 +8,6 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    let toastController = ToastViewController()
 
     private let loginImageView: UIImageView = {
         let imageView = UIImageView()
@@ -29,7 +28,7 @@ class LoginViewController: UIViewController {
     
     private let createAccountLabel: UILabel = {
         let label = UILabel()
-        var mutableString = NSMutableAttributedString(string: "Don't have an account yet? Sign up", attributes: [NSAttributedString.Key.font: Font.bodyFont!, NSAttributedString.Key.foregroundColor: UIColor.white])
+        var mutableString = NSMutableAttributedString(string: "Don't have an account yet? Sign up", attributes: [NSAttributedString.Key.font: Font.subTitleFont!, NSAttributedString.Key.foregroundColor: UIColor.white])
         
         mutableString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemBlue, range: NSRange(location:27,length:7))
         label.attributedText = mutableString
@@ -64,6 +63,8 @@ class LoginViewController: UIViewController {
         createAccountLabel.addGestureRecognizer(labelTapGesture)
                 
         loginButton.addTarget(self, action: #selector(tapLogin), for: .touchUpInside)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
 
         view.addSubview(loginImageView)
         view.addSubview(emailTextField)
@@ -80,7 +81,7 @@ class LoginViewController: UIViewController {
             loginImageView.widthAnchor.constraint(equalToConstant: 94),
             loginImageView.heightAnchor.constraint(equalToConstant: 94),
             
-            emailTextField.topAnchor.constraint(equalTo: loginImageView.bottomAnchor, constant: 24),
+            emailTextField.topAnchor.constraint(equalTo: loginImageView.bottomAnchor, constant: 32),
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             emailTextField.heightAnchor.constraint(equalToConstant: 36),
@@ -90,15 +91,15 @@ class LoginViewController: UIViewController {
             passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             passwordTextField.heightAnchor.constraint(equalToConstant: 36),
             
-            createAccountLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8),
+            createAccountLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 32),
             createAccountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             createAccountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             createAccountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginButton.topAnchor.constraint(equalTo: createAccountLabel.bottomAnchor, constant: 32),
-            loginButton.widthAnchor.constraint(equalToConstant: 100),
-            loginButton.heightAnchor.constraint(equalToConstant: 24),
+            loginButton.widthAnchor.constraint(equalToConstant: 120),
+            loginButton.heightAnchor.constraint(equalToConstant: 36),
         ])
     }
     
@@ -110,8 +111,7 @@ class LoginViewController: UIViewController {
         if let email = emailTextField.text, let password = passwordTextField.text {
             AuthService().login(email: email, password: password) { error in
                 if let error = error {
-                    print(error.localizedDescription)
-                    print("Error Code: \(error)")
+                    SharedHelpers().showCustomToast(self, loginMessage: error.localizedDescription)
                 } else {
                     print("login in")
                     self.dismiss(animated: true)
@@ -120,32 +120,17 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     @objc private func tapSignUp() {
         let signupViewController = SignupViewController()
            navigationController?.pushViewController(signupViewController, animated: true)
     }
-    
-    func showCustomToast() {
-        present(toastController, animated: true, completion: nil)
-        toastController.showToast(message: "Your message goes here.")
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5.0, execute: {
-            self.toastController.dismiss(animated: true)
-        })
-    }
 }
 
 extension LoginViewController: UITextFieldDelegate {
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == emailTextField {
-            print("finished email")
-            showCustomToast()
-        } else {
-            print("finished pass")
-        }
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return true
     }
