@@ -129,6 +129,8 @@ class GamesViewController: UIViewController {
 
     
     private func setupUI() {
+        gamesCollectionView.reloadData()
+
         view.backgroundColor = Color.darkBlue
         view.addSubview(pageTitle)
         view.addSubview(gamesDescriptionHeaderView)
@@ -192,15 +194,10 @@ extension GamesViewController: UICollectionViewDataSource {
 
 extension GamesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("tapped")
-        
-//        print(games?[indexPath.row].genres)
-        print(games?[indexPath.row].updated)
         if let cell = collectionView.cellForItem(at: indexPath) as? GridCell2 {
             cell.showCellDetails()
         }
     }
-    
 }
 
 extension GamesViewController: GamesDescriptionHeaderViewDelegate {

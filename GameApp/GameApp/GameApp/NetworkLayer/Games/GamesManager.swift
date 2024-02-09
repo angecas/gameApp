@@ -16,7 +16,7 @@ struct GamesManager {
    }
     
     func fetchListOfGames(id: Int, page: Int) async throws -> GamesModel {
-        let endpoint = GamesApi.fetchListOfGames(id: id, page: page)
+        let endpoint = GamesApi.fetchListOfGames(genres: id, page: page)
         
         do {
             let response = try await sessionProvider.request(endpoint, responseType: GamesModel.self)

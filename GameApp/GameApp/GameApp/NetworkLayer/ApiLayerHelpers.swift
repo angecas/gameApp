@@ -47,7 +47,6 @@ class SessionProvider {
 
         var request = URLRequest(url: url)
         
-        print(url, "<<<")
         request.httpMethod = endpoint.HTTPMethod.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         

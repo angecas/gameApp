@@ -28,7 +28,6 @@ struct GenresManager {
     
     func fetchGenresById(_ id: Int) async throws -> Genre {
         let endpoint = GenresApi.fetchGenresById(id: id)
-        
         do {
             let response = try await sessionProvider.request(endpoint, responseType: Genre.self)
             return response

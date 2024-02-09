@@ -34,15 +34,12 @@ class SplashViewController: UIViewController {
     
     private func authenticatUserAndSeteUI() {
         if Auth.auth().currentUser == nil {
-            print("not logged")
             DispatchQueue.main.async {
                 let navigationController = UINavigationController(rootViewController: LoginViewController())
                 navigationController.modalPresentationStyle = .fullScreen
                 self.present(navigationController, animated: true)
             }
-        } else {
-            print("logged")
-            
+        } else {            
             if let selectedGenredId = UserDefaultsHelper.getSelectedGenre() {
                 if let selectedGenredId = UserDefaultsHelper.getSelectedGenre() {
                     
