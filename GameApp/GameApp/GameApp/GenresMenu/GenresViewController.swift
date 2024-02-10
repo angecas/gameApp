@@ -15,14 +15,15 @@ class GenresViewController: UIViewController {
     private var genres: GenresList?
     private lazy var floatingButton: UIButton = {
         let floatingButton = UIButton()
-        floatingButton.setTitle("Out", for: .normal)
-        floatingButton.backgroundColor = .black
+        floatingButton.setTitle("Logout", for: .normal)
+        floatingButton.setTitleColor(.white, for: .normal)
+        floatingButton.backgroundColor = Color.darkGrey
         floatingButton.layer.cornerRadius = 25
+        floatingButton.titleLabel?.font = Font.bodyFont
         floatingButton.translatesAutoresizingMaskIntoConstraints = false
 
         return floatingButton
     }()
-    
     
     private let pageTitle: UILabel = {
         let label = UILabel()
@@ -59,17 +60,13 @@ class GenresViewController: UIViewController {
         LoadingManager.shared.showLoading()
         fetchData()
         setupUI()
+        setUpDoubleTap()
         
     }
     
     // MARK: - Helpers
     
-    //no sign up or a ir para o genres quando fazes o registo
-    //no logout por a ir para a pagina de login
-    
     @objc private func logout() {
-        
-        /*
         do {
             try Auth.auth().signOut()
             self.navigationController?.popToRootViewController(animated: true)
@@ -81,8 +78,43 @@ class GenresViewController: UIViewController {
         } catch let error {
             print(error.localizedDescription)
         }
-         */
     }
+    
+    @objc func didDoubleTapCollectionView() {
+           let pointInCollectionView = doubleTapGesture.location(in: collectionView)
+           if let selectedIndexPath = collectionView.indexPathForItem(at: pointInCollectionView) {
+               let selectedCell = collectionView.cellForItem(at: selectedIndexPath)
+               
+               let tappedGenredId = genres?.results[selectedIndexPath.row].id
+
+               var favoriteGenres = UserDefaultsHelper.getFavoriteGenres()
+                                  
+                   if let tappedGenredId = tappedGenredId {
+                       if !favoriteGenres.contains(tappedGenredId) {
+                           
+                           if favoriteGenres.count < 5 {
+                               UserDefaultsHelper.setFavoriteGenres(genreId: tappedGenredId)
+                               collectionView.reloadData()
+                           } else {
+                               SharedHelpers().showCustomToast(self, loginMessage: "Add only up to 5 favorite genres.")
+                           }
+                       } else {
+                           UserDefaultsHelper.removeFavoriteGenre(genreId: tappedGenredId)
+                           collectionView.reloadData()
+                       }
+                   }
+                              
+           }
+       }
+    
+    private var doubleTapGesture: UITapGestureRecognizer!
+      func setUpDoubleTap() {
+          doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(didDoubleTapCollectionView))
+          doubleTapGesture.numberOfTapsRequired = 2
+          collectionView.addGestureRecognizer(doubleTapGesture)
+          doubleTapGesture.delaysTouchesBegan = true
+      }
+
     
     private func fetchData() {
          guard !isLoadingData else { return }
@@ -137,7 +169,7 @@ class GenresViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: floatingButton.topAnchor),
             collectionView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 8),
             
-            floatingButton.widthAnchor.constraint(equalToConstant: 50),
+            floatingButton.widthAnchor.constraint(equalToConstant: 70),
             floatingButton.heightAnchor.constraint(equalToConstant: 50),
             floatingButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
 
@@ -146,8 +178,6 @@ class GenresViewController: UIViewController {
         ])
     }
 }
-
-
 
 // MARK: - Collection DataSource
 
@@ -166,14 +196,10 @@ extension GenresViewController: UICollectionViewDataSource {
         if let genres = genres {
             if indexPath.row < genres.results.count {
                 let genre = genres.results[indexPath.row]
-                cell.configure(genre: genre)
-            } else {
-                print("Index out of range: \(indexPath.row), Genre Count: \(genres.results.count)")
+                let isFavorite = UserDefaultsHelper.getFavoriteGenres().contains(genre.id)
+                cell.configure(genre: genre, isFavoriteGenre: isFavorite)
             }
-        } else {
-            print("Genres array is nil")
         }
-        
         
         return cell
     }
@@ -182,9 +208,20 @@ extension GenresViewController: UICollectionViewDataSource {
 // MARK: - Collection Delegate
 
 extension GenresViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        longPressGesture.minimumPressDuration = 0.5
+        longPressGesture.delegate = self
+        collectionView.addGestureRecognizer(longPressGesture)
+        return true
+    }
+
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //save to user defaults
         
+
         if let id = genres?.results[indexPath.row].id {
             UserDefaultsHelper.setSelectedGenre(genreId: id)
             
@@ -204,8 +241,6 @@ extension GenresViewController: UICollectionViewDelegateFlowLayout {
             fetchData()
         }
     }
-
-    
     
     func collectionView(_: UICollectionView,
                         layout _: UICollectionViewLayout,
@@ -226,5 +261,15 @@ extension GenresViewController: UICollectionViewDelegateFlowLayout {
         
         return UIEdgeInsets(top: 8, left: 8, bottom: 0, right: 8)
     }
-    
+}
+
+extension GenresViewController: UIGestureRecognizerDelegate {
+    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
+           if gestureRecognizer.state == .began {
+               if let indexPath = collectionView.indexPathForItem(at: gestureRecognizer.location(in: collectionView)),
+                  let id = genres?.results[indexPath.row].id {
+                   print("Long press on cell with ID: \(id)")
+               }
+           }
+       }
 }

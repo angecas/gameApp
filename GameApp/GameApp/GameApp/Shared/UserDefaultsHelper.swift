@@ -14,7 +14,7 @@ struct UserDefaultsHelper {
         }
         return nil
     }
-
+    
     static func setSelectedGenre(genreId: Int) {
         UserDefaults.standard.set(String(genreId), forKey: "selectedGenre")
     }
@@ -22,5 +22,35 @@ struct UserDefaultsHelper {
     static func removeSelectedGenre() {
         UserDefaults.standard.removeObject(forKey: "selectedGenre")
     }
-
+    
+    static func getFavoriteGenres() -> [Int] {
+        if let genreIds = UserDefaults.standard.array(forKey: "selectedFavoriteGenres") as? [Int] {
+            return genreIds
+        }
+        return []
+    }
+    
+    static func setFavoriteGenres(genreId: Int) {
+        var favoriteGenres = getFavoriteGenres()
+        
+        if !favoriteGenres.contains(genreId) {
+//            if favoriteGenres.count < 5 {
+                favoriteGenres.append(genreId)
+                UserDefaults.standard.set(favoriteGenres, forKey: "selectedFavoriteGenres")
+//            } else {
+//                //add alert toaster
+//                print("Cannot add more than 5 favorite genres.")
+//            }
+        }
+    }
+    
+    static func removeFavoriteGenre(genreId: Int) {
+        var favoriteGenres = getFavoriteGenres()
+        
+        if let index = favoriteGenres.firstIndex(of: genreId) {
+            favoriteGenres.remove(at: index)
+            UserDefaults.standard.set(favoriteGenres, forKey: "selectedFavoriteGenres")
+        }
+    }
+    
 }

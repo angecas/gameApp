@@ -8,10 +8,22 @@
 import Foundation
 
 struct GenresList: Codable {
-    let count: Int
+    let count: Int?
     let next: String?
     let previous: String?
-    var results: [Genre]
+    var results: [Genre] = []
+
+    enum CodingKeys: String, CodingKey {
+        case count, next, previous, results
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        count = try container.decodeIfPresent(Int.self, forKey: .count)
+        next = try container.decodeIfPresent(String.self, forKey: .next)
+        previous = try container.decodeIfPresent(String.self, forKey: .previous)
+        results = try container.decodeIfPresent([Genre].self, forKey: .results) ?? []
+    }
 }
 
 struct Genre: Codable {
@@ -28,3 +40,4 @@ struct Genre: Codable {
         case imageBackground = "image_background"
     }
 }
+
