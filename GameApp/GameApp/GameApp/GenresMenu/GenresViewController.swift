@@ -52,6 +52,10 @@ class GenresViewController: UIViewController {
     }()
     
     // MARK: - LyfeCycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+    }
     
     override func viewDidLoad() {
         
@@ -68,6 +72,7 @@ class GenresViewController: UIViewController {
     
     @objc private func logout() {
         do {
+            UserDefaultsHelper.resetUserDefaults()
             try Auth.auth().signOut()
             self.navigationController?.popToRootViewController(animated: true)
             DispatchQueue.main.async {
@@ -82,12 +87,10 @@ class GenresViewController: UIViewController {
     
     @objc func didDoubleTapCollectionView() {
            let pointInCollectionView = doubleTapGesture.location(in: collectionView)
-           if let selectedIndexPath = collectionView.indexPathForItem(at: pointInCollectionView) {
-               let selectedCell = collectionView.cellForItem(at: selectedIndexPath)
-               
+           if let selectedIndexPath = collectionView.indexPathForItem(at: pointInCollectionView) {               
                let tappedGenredId = genres?.results[selectedIndexPath.row].id
 
-               var favoriteGenres = UserDefaultsHelper.getFavoriteGenres()
+               let favoriteGenres = UserDefaultsHelper.getFavoriteGenres()
                                   
                    if let tappedGenredId = tappedGenredId {
                        if !favoriteGenres.contains(tappedGenredId) {
@@ -126,7 +129,7 @@ class GenresViewController: UIViewController {
                  let response = try await genres.fetchListOfGamesGenres(page: self.currentPage)
 
                  DispatchQueue.main.async {
-                     if let existingGenres = self.genres {
+                     if self.genres != nil {
                          self.genres?.results.append(contentsOf: response.results)
                      } else {
                          self.genres = response

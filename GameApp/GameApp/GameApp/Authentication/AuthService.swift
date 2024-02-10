@@ -29,7 +29,7 @@ struct AuthService {
         }
     }
     func login(email: String, password: String, completion: @escaping (Error?) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: email) { authResult, error in
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 completion(error)
             } else {
@@ -37,12 +37,13 @@ struct AuthService {
             }
         }
     }
+
     func logout(completion: @escaping (Error?) -> Void) {
         do {
                try Auth.auth().signOut()
-               completion(nil) // No error occurred
+               completion(nil)
            } catch let error as NSError {
                print(error.localizedDescription)
-               completion(error) // Pass the error to the completion handler
+               completion(error)
            }    }
 }

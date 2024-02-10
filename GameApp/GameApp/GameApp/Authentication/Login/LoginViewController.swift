@@ -113,7 +113,6 @@ class LoginViewController: UIViewController {
                 if let error = error {
                     SharedHelpers().showCustomToast(self, loginMessage: error.localizedDescription)
                 } else {
-                    print("login in")
                     self.dismiss(animated: true)
                 }
             }

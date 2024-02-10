@@ -24,8 +24,6 @@ class SessionProvider {
             throw NetworkError.invalidURL
         }
         
-        print(endpoint.path)
-
         urlComponents.queryItems = [
             URLQueryItem(name: "key", value: apiKey),
             URLQueryItem(name: "page", value: "\(endpoint.page)"),
