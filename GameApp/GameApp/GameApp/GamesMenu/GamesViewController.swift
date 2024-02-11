@@ -62,28 +62,12 @@ class GamesViewController: UIViewController {
         super.viewDidLoad()
 
         LoadingManager.shared.showLoading()
-        Task {
-            do {
-                let genre = GenresManager()
-                let response = try await genre.fetchGenresById(self.id)
-                self.genre = response
-                self.pageTitle.text = response.name
-                let description = SharedHelpers().removeHtmlTagsAndDecodeEntities(from: response.description)
-                
-                gamesDescriptionHeaderView.setContent(with: description ?? "")
-                gamesDescriptionHeaderView.isUserInteractionEnabled = true
-                LoadingManager.shared.hideLoading()
-
-            } catch {
-                LoadingManager.shared.hideLoading()
-                print("Error: \(error)")
-            }
-        }
         
-        fetchData()
-
         gamesCollectionView.delegate = self
         gamesCollectionView.dataSource = self
+        fetchDetail()
+        fetchData()
+
         setupUI()
         setNavigationActions()
     }
@@ -110,6 +94,27 @@ class GamesViewController: UIViewController {
             gamesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             gamesCollectionView.topAnchor.constraint(equalTo: gamesDescriptionHeaderView.bottomAnchor, constant: 8)
         ])
+    }
+    
+    private func fetchDetail() {
+        Task {
+            do {
+                let genre = GenresManager()
+                let response = try await genre.fetchGenresById(self.id)
+                self.genre = response
+                self.pageTitle.text = response.name
+                let description = SharedHelpers().removeHtmlTagsAndDecodeEntities(from: response.description)
+                
+                gamesDescriptionHeaderView.setContent(with: description ?? "")
+                gamesDescriptionHeaderView.isUserInteractionEnabled = true
+                LoadingManager.shared.hideLoading()
+
+            } catch {
+                LoadingManager.shared.hideLoading()
+                print("Error: \(error)")
+            }
+        }
+
     }
 
     private func fetchData() {
