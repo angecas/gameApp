@@ -6,10 +6,10 @@ GameApp is a mobile application that ( so far ) allows users to explore and disc
 
 ## Part I
 
-- Implemented authentication with Firebase (create user, sin in and sign out).
+- Implemented authentication with Firebase (create user, sign in and sign out).
 - Tested in bigger and smaller mobile devices
-- Listed the type of genres and games with infinite scrolling and allows to mark and select double tapping favorite genres.
-- Allow to open the details of each game genre, by seeing details and the games.
+- Listed the type of genres and games with infinite scrolling and allows to mark favorite genres by double tapping.
+- Allow to open the details of each game genre: shome details and associated games.
 
 
 
