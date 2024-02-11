@@ -11,9 +11,8 @@ import FirebaseAuth
 class GenresViewController: UIViewController {
     
     // MARK: - Properties
-    private var currentPage = 1
-    private var isLoadingData = false
-    private var genres: GenresList?
+    
+    private var viewModel: GenresViewModel
     
     private lazy var floatingButton: UIButton = {
         let floatingButton = UIButton()
@@ -52,6 +51,18 @@ class GenresViewController: UIViewController {
         return refreshControl
     }()
     
+    
+    // MARK: - Inits
+    
+    init() {
+        self.viewModel = GenresViewModel()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - LyfeCycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -59,11 +70,11 @@ class GenresViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        self.viewModel.delegate = self
         collectionView.refreshControl = refreshControl
         LoadingManager.shared.showLoading()
-        fetchData()
+        viewModel.fetchData()
         setupUI()
         setUpDoubleTap()
     }
@@ -114,8 +125,8 @@ class GenresViewController: UIViewController {
     
     @objc func didDoubleTapCollectionView() {
            let pointInCollectionView = doubleTapGesture.location(in: collectionView)
-           if let selectedIndexPath = collectionView.indexPathForItem(at: pointInCollectionView) {               
-               let tappedGenredId = genres?.results[selectedIndexPath.row].id
+           if let selectedIndexPath = collectionView.indexPathForItem(at: pointInCollectionView) {
+               let tappedGenredId = viewModel.genres?.results[selectedIndexPath.row].id
 
                let favoriteGenres = UserDefaultsHelper.getFavoriteGenres()
                                   
@@ -144,39 +155,9 @@ class GenresViewController: UIViewController {
           doubleTapGesture.delaysTouchesBegan = true
       }
 
-    
-    private func fetchData() {
-         guard !isLoadingData else { return }
-         isLoadingData = true
-
-         Task {
-             do {
-                 let genres = GenresManager()
-                 let response = try await genres.fetchListOfGamesGenres(page: self.currentPage)
-
-                 DispatchQueue.main.async {
-                     if self.genres != nil {
-                         self.genres?.results.append(contentsOf: response.results)
-                     } else {
-                         self.genres = response
-                     }
-                     self.collectionView.reloadData()
-                     self.isLoadingData = false
-                 }
-
-                 LoadingManager.shared.hideLoading()
-
-             } catch {
-                 self.isLoadingData = false
-                 LoadingManager.shared.hideLoading()
-                 print("Error: \(error)")
-             }
-         }
-     }
-    
     @objc private func handleRefresh(_ sender: UIRefreshControl) {
         refreshControl.endRefreshing()
-        fetchData()
+        viewModel.fetchData()
         collectionView.reloadData()
     }
 }
@@ -186,7 +167,7 @@ class GenresViewController: UIViewController {
 extension GenresViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return self.genres?.results.count ?? 0
+        return viewModel.genres?.results.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -195,7 +176,7 @@ extension GenresViewController: UICollectionViewDataSource {
             fatalError("Failed to dequeue a cell of type CustomImageCell")
         }
         
-        if let genres = genres {
+        if let genres = viewModel.genres {
             if indexPath.row < genres.results.count {
                 let genre = genres.results[indexPath.row]
                 let isFavorite = UserDefaultsHelper.getFavoriteGenres().contains(genre.id)
@@ -209,18 +190,10 @@ extension GenresViewController: UICollectionViewDataSource {
 // MARK: - Collection Delegate
 
 extension GenresViewController: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
-        longPressGesture.minimumPressDuration = 0.5
-        longPressGesture.delegate = self
-        collectionView.addGestureRecognizer(longPressGesture)
-        return true
-    }
-    
+        
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if let id = genres?.results[indexPath.row].id {
+        if let id = viewModel.genres?.results[indexPath.row].id {
             UserDefaultsHelper.setSelectedGenre(genreId: id)
             
             let gamesViewController = GamesViewController(id: id)
@@ -238,8 +211,8 @@ extension GenresViewController: UICollectionViewDelegateFlowLayout {
         let totalItems = collectionView.numberOfItems(inSection: 0)
 
         if lastItem == totalItems - 1 {
-            currentPage += 1
-            fetchData()
+            viewModel.currentPage += 1
+            viewModel.fetchData()
         }
     }
     
@@ -264,13 +237,8 @@ extension GenresViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - UIGestureRecognizer Delegate
-extension GenresViewController: UIGestureRecognizerDelegate {
-    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
-           if gestureRecognizer.state == .began {
-               if let indexPath = collectionView.indexPathForItem(at: gestureRecognizer.location(in: collectionView)),
-                  let id = genres?.results[indexPath.row].id {
-               }
-           }
-       }
+extension GenresViewController: GenresViewModelDelegate {
+    func didFetchData(_ model: GenresViewModel) {
+        self.collectionView.reloadData()
+    }
 }

@@ -8,12 +8,10 @@
 import UIKit
 
 class GamesViewController: UIViewController {
+    
     // MARK: - Properties
-    private var genre: Genre?
-    private var games: [Game]?
     private let id: Int
-    private var currentPage = 1
-    private var isLoadingData = false
+    private var viewModel: GamesviewModel
 
     private lazy var gamesDescriptionHeaderView: GamesDescriptionHeaderView = {
         let view = GamesDescriptionHeaderView()
@@ -49,7 +47,10 @@ class GamesViewController: UIViewController {
     
     init(id: Int) {
         self.id = id
+        self.viewModel = GamesviewModel(id: id)
         super.init(nibName: nil, bundle: nil)
+        
+        self.viewModel.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -65,8 +66,8 @@ class GamesViewController: UIViewController {
         
         gamesCollectionView.delegate = self
         gamesCollectionView.dataSource = self
-        fetchDetail()
-        fetchData()
+        viewModel.fetchDetail()
+        viewModel.fetchData()
 
         setupUI()
         setNavigationActions()
@@ -95,58 +96,7 @@ class GamesViewController: UIViewController {
             gamesCollectionView.topAnchor.constraint(equalTo: gamesDescriptionHeaderView.bottomAnchor, constant: 8)
         ])
     }
-    
-    private func fetchDetail() {
-        Task {
-            do {
-                let genre = GenresManager()
-                let response = try await genre.fetchGenresById(self.id)
-                self.genre = response
-                self.pageTitle.text = response.name
-                let description = SharedHelpers().removeHtmlTagsAndDecodeEntities(from: response.description)
-                
-                gamesDescriptionHeaderView.setContent(with: description ?? "")
-                gamesDescriptionHeaderView.isUserInteractionEnabled = true
-                LoadingManager.shared.hideLoading()
 
-            } catch {
-                LoadingManager.shared.hideLoading()
-                print("Error: \(error)")
-            }
-        }
-
-    }
-
-    private func fetchData() {
-         guard !isLoadingData else { return }
-         isLoadingData = true
-
-         Task {
-             do {
-                 let games = GamesManager()
-                 let response = try await games.fetchListOfGames(id: self.id, page: self.currentPage)
-                 
-                 DispatchQueue.main.async {
-                     if let existingGames = self.games {
-                         self.games?.append(contentsOf: response.results ?? [])
-                     } else {
-                         self.games = response.results
-                     }
-                     self.gamesCollectionView.reloadData()
-                     self.isLoadingData = false
-                 }
-                 
-                 LoadingManager.shared.hideLoading()
-
-             } catch {
-                 self.isLoadingData = false
-                 LoadingManager.shared.hideLoading()
-                 print("Error: \(error)")
-             }
-         }
-     }
-    
-    
     @objc
     func willNavigateBack() {
         self.navigationController?.popToRootViewController(animated: true)
@@ -162,7 +112,7 @@ class GamesViewController: UIViewController {
 // MARK: - CollectionView DataSource
 extension GamesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return games?.count ?? 0
+        return viewModel.games?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -170,7 +120,7 @@ extension GamesViewController: UICollectionViewDataSource {
             fatalError("Failed to dequeue a cell of type CustomImageCell")
         }
 
-        if let games = games {
+        if let games = viewModel.games {
             if indexPath.row < games.count {
                 let game = games[indexPath.row]
                 cell.configure(game: game)
@@ -221,26 +171,22 @@ extension GamesViewController: UICollectionViewDelegateFlowLayout {
         let lastItem = indexPath.item
         let totalItems = collectionView.numberOfItems(inSection: 0)
 
-        if lastItem == totalItems - 1 {
-            currentPage += 1
-
-            Task {
-                do {
-                    let games = GamesManager()
-                    let response = try await games.fetchListOfGames(id: self.id, page: self.currentPage)
-
-                    DispatchQueue.main.async {
-                        if let results = response.results, !results.isEmpty {
-                            self.games?.append(contentsOf: results)
-                            self.gamesCollectionView.reloadData()
-                        }
-                    }
-                } catch {
-                    print("Error: \(error)")
-                }
-            }
-        }
+        self.viewModel.fetchMoreData(lastItem: lastItem, totalItems: totalItems)
     }
 }
 
 
+extension GamesViewController: GamesviewModelDelegate {
+    func didFetchData(_ model: GamesviewModel) {
+        self.gamesCollectionView.reloadData()
+
+    }
+    
+    func didFetchDetail(_ model: GamesviewModel, genre: Genre) {
+        self.pageTitle.text = genre.name
+        let description = SharedHelpers().removeHtmlTagsAndDecodeEntities(from: genre.description)
+        
+        gamesDescriptionHeaderView.setContent(with: description ?? "")
+        gamesDescriptionHeaderView.isUserInteractionEnabled = true
+    }
+}
