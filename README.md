@@ -1,6 +1,6 @@
 # gameApp
 
-GameApp is a mobile application that ( so far ) allows users to explore and discover various game genres. The app provides features for authentication, genre selection, and game details.
+GameApp is a mobile application that ( so far ) allows users to explore and discover various game genres present in RAWG database. The app provides features for authentication, genre selection, and game details.
 
 # App flow
 
