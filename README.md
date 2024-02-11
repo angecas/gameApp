@@ -1,16 +1,15 @@
 # gameApp
 
-GameApp is a mobile application that ( so far ) allows users to explore and discover various game genres present in RAWG database. The app provides features for authentication, genre selection, and game details.
-
+GameApp is a mobile application that (currently) enables users to explore and discover a wide range of game genres available in the RAWG database. The app includes features for authentication, selecting genres, and accessing detailed game information.
 # App overview
 
 ## Part I
 
-- Implemented authentication with Firebase (create user, sign in and sign out).
-- Tested in bigger and smaller mobile devices
-- Listed the type of genres and games with infinite scrolling and allows to mark favorite genres by double tapping.
-- Allow to open the details of each game genre: shome details and associated games.
-
+- Implemented Firebase authentication (create user, sign in, and sign out).
+- Tested on various screen sizes, including larger and smaller mobile devices.
+- Listed Genres and Games with Infinite Scrolling.
+- Lets users mark favorite genres easily with a double tap.
+- Provided access to detailed information for each game genre, including summary details and associated games.
 
 
 https://github.com/angecas/gameApp/assets/72696978/6a7ca485-7dc7-4194-a352-9698ef9d30d8
@@ -18,14 +17,15 @@ https://github.com/angecas/gameApp/assets/72696978/6a7ca485-7dc7-4194-a352-9698e
 
 ## Part II
 
-- Using user defaults, one can keep the previously selected genre when reopening the app.
+- With user defaults, the app remembers the previously selected genre when reopened.
+
 
 https://github.com/angecas/gameApp/assets/72696978/9c8b138c-92f3-4c7d-ba74-063ae05ba791
 
 ## Part III
 
-- Limited the favorite genres up to 5, warning the user with global toaster alert.
-- It is also posssible to see some details of each genre game, by pressing and showing the released date.
+- Utilizes global toaster alerts to inform users about app limitations, such as a maximum of 5 favorite genre selections.
+- Additionally, users can view some details of each game genre by pressing and revealing the release date.
 
 https://github.com/angecas/gameApp/assets/72696978/67bd353c-1e1e-48bf-9632-770211321385
 
