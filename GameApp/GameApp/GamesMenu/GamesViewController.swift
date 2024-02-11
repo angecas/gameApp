@@ -92,7 +92,7 @@ class GamesViewController: UIViewController {
 
             gamesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             gamesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            gamesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            gamesCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             gamesCollectionView.topAnchor.constraint(equalTo: gamesDescriptionHeaderView.bottomAnchor, constant: 8)
         ])
     }

@@ -4,15 +4,14 @@
 //
 //  Created by Angélica Rodrigues on 03/02/2024.
 //
-import UIKit
-
+import FirebaseAuth
 import UIKit
 
 class SplashViewController: UIViewController {
 
     // MARK: - Properties
 
-    private let splashImageView: UIImageView = {
+    private lazy var splashImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "gamecontroller.fill")?.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = Color.blueishWhite
@@ -26,17 +25,19 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        perform(#selector(showMainViewController), with: nil, afterDelay: 2.0)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.authenticatUserAndSeteUI()
+        }
     }
 
     // MARK: - Helpers
-
+    
     private func setupUI() {
         view.backgroundColor = Color.darkBlue
         view.addSubview(splashImageView)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.shakeIcon()
+            SharedHelpers().shakeView(uiView: self.splashImageView)
         }
 
         NSLayoutConstraint.activate([
@@ -46,20 +47,35 @@ class SplashViewController: UIViewController {
             splashImageView.widthAnchor.constraint(equalToConstant: 85),
         ])
     }
-
-    @objc private func showMainViewController() {
-        let mainViewController = HomeScreenViewController()
-        let navigationController = UINavigationController(rootViewController: mainViewController)
-        navigationController.modalPresentationStyle = .fullScreen
-        present(navigationController, animated: true, completion: nil)
-    }
     
-    private func shakeIcon() {
-        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-        animation.timingFunctions = [CAMediaTimingFunction(name: .easeInEaseOut)]
-        animation.values = [-10.0, 10.0, -8.0, 8.0, -6.0, 6.0, -4.0, 4.0, 0.0]
-        animation.duration = 1
-        splashImageView.layer.add(animation, forKey: "shake")
+    private func authenticatUserAndSeteUI() {
+        if Auth.auth().currentUser == nil {
+            DispatchQueue.main.async {
+                let navigationController = UINavigationController(rootViewController: LoginViewController())
+                navigationController.modalPresentationStyle = .fullScreen
+                self.present(navigationController, animated: true)
+            }
+        } else {            
+            if UserDefaultsHelper.getSelectedGenre() != nil {
+                if let selectedGenredId = UserDefaultsHelper.getSelectedGenre() {
+                    
+                    DispatchQueue.main.async {
+                        let mainViewController = GenresViewController()
+                        let navigationController = UINavigationController(rootViewController: mainViewController)
+                        
+                        navigationController.pushViewController(GamesViewController(id: selectedGenredId), animated: false)
+                        navigationController.modalPresentationStyle = .fullScreen
+                        
+                        self.present(navigationController, animated: true, completion: nil)
+                    }
+                }
+            } else {
+               DispatchQueue.main.async {
+                   let navigationController = UINavigationController(rootViewController: GenresViewController())
+                   navigationController.modalPresentationStyle = .fullScreen
+                   self.present(navigationController, animated: true)
+               }
+           }
+        }
     }
-
 }

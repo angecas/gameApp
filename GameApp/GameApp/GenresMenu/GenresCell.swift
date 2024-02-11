@@ -19,7 +19,7 @@ class GenresCell: UICollectionViewCell {
     private var genre: Genre?
     private var genreId: Int?
     
-    let favoritesImageView: UIImageView = {
+    private lazy var favoritesImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "heart.fill")?.withTintColor(.red)
         imageView.tintColor = .red
@@ -31,7 +31,7 @@ class GenresCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    private let imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -44,7 +44,7 @@ class GenresCell: UICollectionViewCell {
         return imageView
     }()
     
-    private let counterLabel: UILabel = {
+    private lazy var counterLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
@@ -55,7 +55,7 @@ class GenresCell: UICollectionViewCell {
         return label
     }()
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = Font.subTitleFont
@@ -64,7 +64,7 @@ class GenresCell: UICollectionViewCell {
         return label
     }()
     
-    private let overlayView: UIView = {
+    private lazy var overlayView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
