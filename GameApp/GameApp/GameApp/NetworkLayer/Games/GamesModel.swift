@@ -1,68 +1,9 @@
-////
-////  GamesModel.swift
-////  GameApp
-////
-////  Created by Angélica Rodrigues on 05/02/2024.
-////
 //
-//import Foundation
+//  GamesModel.swift
+//  GameApp
 //
-//// ESRBRating model
-//struct ESRBRating: Codable {
-//    let id: Int?
-//    let slug: String?
-//    let name: String?
-//}
+//  Created by Angélica Rodrigues on 05/02/2024.
 //
-//// Requirements model
-//struct Requirements: Codable {
-//    let minimum: String?
-//    let recommended: String?
-//}
-//
-//// Platform model
-//struct Platform: Codable {
-//    let id: Int?
-//    let slug: String?
-//    let name: String?
-//}
-//
-//// PlatformInfo model
-//struct PlatformInfo: Codable {
-//    let platform: Platform?
-//    let released_at: String?
-//    let requirements: Requirements?
-//}
-//
-//// Game model
-//struct Game: Codable {
-//    let id: Int?
-//    let slug: String?
-//    let name: String?
-//    let released: String?
-//    let tba: Bool?
-//    let background_image: String?
-//    let rating: Double?
-//    let rating_top: Double?
-//    let ratings: [String: Int]?
-//    let ratings_count: Int?
-//    let reviews_text_count: String?
-//    let added: Int?
-//    let added_by_status: [String: Int]?
-//    let metacritic: Int?
-//    let playtime: Int?
-//    let suggestions_count: Int?
-//    let updated: String?
-//    let esrb_rating: ESRBRating?
-//    let platforms: [PlatformInfo]?
-//}
-//
-//struct GamesModel: Codable {
-//    let count: Int?
-//    let next: String?
-//    let previous: String?
-//    let results: [Game]?
-//}
 
 import Foundation
 struct GamesModel: Codable {
@@ -71,21 +12,19 @@ struct GamesModel: Codable {
     let previous: String?
     let results: [Game]?
 }
-// Store model
+
 struct Store: Codable {
     let id: Int?
     let name: String?
     let slug: String?
 }
 
-// Platform model
 struct Platform: Codable {
     let id: Int?
     let name: String?
     let slug: String?
 }
 
-// Rating model
 struct Rating: Codable {
     let id: Int?
     let title: String?
@@ -93,7 +32,6 @@ struct Rating: Codable {
     let percent: Double
 }
 
-// Charts model
 struct Charts: Codable {
     let year: YearChart?
 }
@@ -104,7 +42,6 @@ struct YearChart: Codable {
     let position: Int?
 }
 
-// Clip model
 struct Clip: Codable {
     let clip: String?
     let clips: [String: String]?
@@ -112,7 +49,6 @@ struct Clip: Codable {
     let preview: String?
 }
 
-// Tag model
 struct Tag: Codable {
     let id: Int?
     let name: String?
@@ -122,21 +58,17 @@ struct Tag: Codable {
     let image_background: String?
 }
 
-// ESRBRating model
 struct ESRBRating: Codable {
     let id: Int?
     let name: String?
     let slug: String?
 }
 
-// ShortScreenshot model
 struct ShortScreenshot: Codable {
     let id: Int?
     let image: String?
 }
 
-
-// Game model
 struct Game: Codable {
     let slug: String?
     let name: String?

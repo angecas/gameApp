@@ -11,7 +11,7 @@ class SplashViewController: UIViewController {
 
     // MARK: - Properties
 
-    private let splashImageView: UIImageView = {
+    private lazy var splashImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "gamecontroller.fill")?.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = Color.blueishWhite
@@ -32,6 +32,22 @@ class SplashViewController: UIViewController {
 
     // MARK: - Helpers
     
+    private func setupUI() {
+        view.backgroundColor = Color.darkBlue
+        view.addSubview(splashImageView)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            SharedHelpers().shakeView(uiView: self.splashImageView)
+        }
+
+        NSLayoutConstraint.activate([
+            splashImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            splashImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            splashImageView.heightAnchor.constraint(equalToConstant: 85),
+            splashImageView.widthAnchor.constraint(equalToConstant: 85),
+        ])
+    }
+    
     private func authenticatUserAndSeteUI() {
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
@@ -40,7 +56,7 @@ class SplashViewController: UIViewController {
                 self.present(navigationController, animated: true)
             }
         } else {            
-            if let selectedGenredId = UserDefaultsHelper.getSelectedGenre() {
+            if UserDefaultsHelper.getSelectedGenre() != nil {
                 if let selectedGenredId = UserDefaultsHelper.getSelectedGenre() {
                     
                     DispatchQueue.main.async {
@@ -61,45 +77,5 @@ class SplashViewController: UIViewController {
                }
            }
         }
-    }
-    private func setupUI() {
-        view.backgroundColor = Color.darkBlue
-        view.addSubview(splashImageView)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.shakeIcon()
-        }
-
-        NSLayoutConstraint.activate([
-            splashImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            splashImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            splashImageView.heightAnchor.constraint(equalToConstant: 85),
-            splashImageView.widthAnchor.constraint(equalToConstant: 85),
-        ])
-    }
-
-//    @objc private func showMainViewController() {
-//        
-//        if let selectedGenredId = UserDefaultsHelper.getSelectedGenre() {
-//            
-//            let mainViewController = GenresViewController()
-//            let navigationController = UINavigationController(rootViewController: mainViewController)
-//            
-//            navigationController.pushViewController(GamesViewController(id: selectedGenredId), animated: false)
-//            navigationController.modalPresentationStyle = .fullScreen
-//
-//            present(navigationController, animated: true, completion: nil)
-//        } else {
-//            
-//            let mainViewController = GenresViewController()
-//            let navigationController = UINavigationController(rootViewController: mainViewController)
-//            navigationController.modalPresentationStyle = .fullScreen
-//            present(navigationController, animated: true, completion: nil)
-//        }
-//    }
-
-    
-    private func shakeIcon() {
-        SharedHelpers().shakeView(uiView: splashImageView)
     }
 }

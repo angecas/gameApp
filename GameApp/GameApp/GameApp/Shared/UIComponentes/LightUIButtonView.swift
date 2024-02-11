@@ -29,14 +29,3 @@ class LightUIButtonView: UIButton {
     }
 }
 
-private let signUpButton: UIButton = {
-    let button = UIButton()
-    button.setTitle("Sign up!", for: .normal)
-    button.titleLabel?.font = Font.boldSubTitleFont
-    button.setTitleColor(Color.darkBlue, for: .normal)
-    button.backgroundColor = Color.blueishWhite
-    button.layer.cornerRadius = 8
-    button.layer.masksToBounds = true
-    button.translatesAutoresizingMaskIntoConstraints = false
-    return button
-}()

@@ -55,6 +55,11 @@
             value = "UTC"
             isEnabled = "YES">
          </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "RAWG_API_KEY"
+            value = "ce61197ae53845159f4f3a9db365fbaf"
+            isEnabled = "YES">
+         </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction

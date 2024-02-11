@@ -9,9 +9,11 @@ import FirebaseAuth
 
 class SignupViewController: UIViewController {
     
+    // MARK: - Properties
+    
     private let signUpLabel: UILabel = {
         let label = UILabel()
-        label.text = "Welcome"
+        label.text = NSLocalizedString("welcome", comment: "")
         label.font = Font.boldLargeTitleFont
         label.textColor = Color.blueishWhite
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -20,19 +22,20 @@ class SignupViewController: UIViewController {
     
     private let signUpDescriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Enter your credentials."
+        label.text = NSLocalizedString("enter-credentials", comment: "")
         label.font = Font.boldbodyFont
         label.textColor = Color.blueishWhite
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let signUpButton: LightUIButtonView = LightUIButtonView(buttonText: "Sign up")
+    private let signUpButton: LightUIButtonView = LightUIButtonView(buttonText: NSLocalizedString("sign-up", comment: ""))
 
-    private let emailTextField: UITextFieldView = UITextFieldView(placeholder: "Email")
+    private let emailTextField: UITextFieldView = UITextFieldView(placeholder: NSLocalizedString("email", comment: ""))
     
-    private let passwordTextField: UITextFieldView =  UITextFieldView(placeholder: "Password", isSecured: true)
+    private let passwordTextField: UITextFieldView =  UITextFieldView(placeholder: NSLocalizedString("password", comment: ""), isSecured: true)
     
+    // MARK: - Inits
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -41,12 +44,15 @@ class SignupViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
     }
-
+    
+    // MARK: - Helpers
     
     private func setupUI() {
         view.backgroundColor = Color.darkBlue
@@ -98,11 +104,10 @@ class SignupViewController: UIViewController {
     @objc func tapSignup() {
         
         if let email = emailTextField.text, let password = passwordTextField.text {
-            AuthService().registerUser(email: email, password: password) { error in
+            AuthService.shared.registerUser(email: email, password: password) { error in
                 if let error = error {
                     SharedHelpers().showCustomToast(self, loginMessage: error.localizedDescription)
                 } else {
-                    print("User registered successfully")
                     DispatchQueue.main.async {
                         let navigationController = UINavigationController(rootViewController: GenresViewController())
                         navigationController.modalPresentationStyle = .fullScreen

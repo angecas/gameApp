@@ -9,3 +9,13 @@
 "games" = "Games";
 "show-more" = "Show more";
 "show-less" = "Show less";
+"logout" = "Logout";
+"login" = "Login";
+"add-up-to-genres" = "Add only up to 5 favorite genres.";
+"welcome" = "Welcome";
+"email" = "Email";
+"password" = "Password";
+"sign-up" = "Sign up";
+"enter-credentials" = "Enter your credentials.";
+"dont-have-account" = "Don't have an account yet? Sign up";
+"released-in" = "Released in";

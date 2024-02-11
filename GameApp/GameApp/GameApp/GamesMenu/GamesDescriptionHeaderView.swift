@@ -6,15 +6,14 @@
 //
 
 import UIKit
-protocol GamesDescriptionHeaderViewDelegate {
+
+protocol GamesDescriptionHeaderViewDelegate: AnyObject {
     func didToggleShowMore(_ view: GamesDescriptionHeaderView)
 }
 
 class GamesDescriptionHeaderView: UIView {
     // MARK: properties
-
-    var delegate: GamesDescriptionHeaderViewDelegate?
-    
+    weak var delegate: GamesDescriptionHeaderViewDelegate?
     private var headerHeight: CGFloat = 0
     private var showMore: Bool = false
     private var heightConstraint: NSLayoutConstraint!

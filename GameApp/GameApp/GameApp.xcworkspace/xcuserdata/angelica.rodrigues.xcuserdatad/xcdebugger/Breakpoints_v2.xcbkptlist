@@ -7,160 +7,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6EAB42E2-7A82-4CA9-8C64-8A18A9F130D2"
+            uuid = "8256D227-B914-4C8C-9DFE-36607D4C3255"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GameApp/GenresMenu/GenresViewController.swift"
+            filePath = "GameApp/GenresMenu/GenresViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "didDoubleTapCollectionView()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6EAB42E2-7A82-4CA9-8C64-8A18A9F130D2 - ba53591a258143af"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GenresViewController.didDoubleTapCollectionView() -&gt; ()"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/GenresMenu/GenresViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "96"
-                  endingLineNumber = "96"
-                  offsetFromSymbolStart = "1460">
-               </Location>
-               <Location
-                  uuid = "6EAB42E2-7A82-4CA9-8C64-8A18A9F130D2 - ba53591a258143af"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GenresViewController.didDoubleTapCollectionView() -&gt; ()"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/GenresMenu/GenresViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "96"
-                  endingLineNumber = "96"
-                  offsetFromSymbolStart = "1456">
-               </Location>
-            </Locations>
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "48425C85-4E37-4E4F-9FDF-22AF43AD9A9E"
+            uuid = "9FB82DDD-CEE6-475B-936C-FD061AF493AA"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GameApp/GenresMenu/GenresViewController.swift"
+            filePath = "GameApp/GenresMenu/GenresViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "didDoubleTapCollectionView()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "48425C85-4E37-4E4F-9FDF-22AF43AD9A9E - ba53591a2581400a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GenresViewController.didDoubleTapCollectionView() -&gt; ()"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/GenresMenu/GenresViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "99"
-                  endingLineNumber = "99"
-                  offsetFromSymbolStart = "1500">
-               </Location>
-               <Location
-                  uuid = "48425C85-4E37-4E4F-9FDF-22AF43AD9A9E - ba53591a2581400a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GenresViewController.didDoubleTapCollectionView() -&gt; ()"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/GenresMenu/GenresViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "99"
-                  endingLineNumber = "99"
-                  offsetFromSymbolStart = "1496">
-               </Location>
-            </Locations>
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2D8C235D-4A34-4E75-BA8F-3FDE81544DB2"
+            uuid = "9F26D84D-B1F7-4F73-8BB1-1D7B2A159ADA"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GameApp/GenresMenu/GenresViewController.swift"
+            filePath = "GameApp/GenresMenu/GenresViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "didDoubleTapCollectionView()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "2D8C235D-4A34-4E75-BA8F-3FDE81544DB2 - ba53591a258140e5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GenresViewController.didDoubleTapCollectionView() -&gt; ()"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/GenresMenu/GenresViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "102"
-                  endingLineNumber = "102"
-                  offsetFromSymbolStart = "1624">
-               </Location>
-               <Location
-                  uuid = "2D8C235D-4A34-4E75-BA8F-3FDE81544DB2 - ba53591a258140e5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GenresViewController.didDoubleTapCollectionView() -&gt; ()"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/TESTEE/gameApp/GameApp/GameApp/GameApp/GenresMenu/GenresViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "102"
-                  endingLineNumber = "102"
-                  offsetFromSymbolStart = "1620">
-               </Location>
-            </Locations>
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E169CCC9-AC0B-4BF6-A0D4-AA23543FE450"
+            uuid = "20AE4603-5631-4622-848D-0BFEA2B6DB5C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GameApp/GenresMenu/GenresViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "didDoubleTapCollectionView()"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

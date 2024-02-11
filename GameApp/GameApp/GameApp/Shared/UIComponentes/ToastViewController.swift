@@ -6,8 +6,7 @@
 //
 
 import UIKit
-//usar para avisar do limite de generos favoritos
-//criar lista de generos favoritos, e se tocas neles abre te o genero
+
 class ToastViewController: UIViewController {
 
     private let toastLabel: UILabel = {

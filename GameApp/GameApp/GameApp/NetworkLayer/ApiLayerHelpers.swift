@@ -7,11 +7,11 @@
 
 import Foundation
 
-public typealias Parameters = [String: Any]
-public let commonPath = "https://api.rawg.io/api"
-public let apiKey = "ce61197ae53845159f4f3a9db365fbaf"
+typealias Parameters = [String: Any]
+let commonPath = "https://api.rawg.io/api"
+let apiKey = ProcessInfo.processInfo.environment["RAWG_API_KEY"] ?? ""
 
-public enum HTTPMethod: String {
+enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"
     case delete  = "DELETE"
@@ -60,7 +60,7 @@ enum NetworkError: Error {
     case requestFailed
 }
 
-public protocol EndpointDescriptor {
+protocol EndpointDescriptor {
     var path: String { get }
     var HTTPMethod: HTTPMethod { get }
     var parameters: Parameters? { get }

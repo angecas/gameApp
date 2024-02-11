@@ -19,7 +19,6 @@ class UITextFieldView: UITextField {
     }
 
     private func configureUI(placeholder: String, isSecured: Bool) {
-        self.translatesAutoresizingMaskIntoConstraints = false
         self.isSecureTextEntry = isSecured
         self.placeholder = placeholder
         self.textColor = UIColor.black
@@ -29,13 +28,14 @@ class UITextFieldView: UITextField {
         self.layer.borderColor = Color.blueishWhite.cgColor
         self.autocapitalizationType = .none
         self.autocorrectionType = .no
+        self.translatesAutoresizingMaskIntoConstraints = false
 
         if isSecured {
             let eyeImageView = UIImageView(image: UIImage(systemName: "eye.fill")?.withRenderingMode(.alwaysTemplate).withTintColor(Color.darkBlue))
-            eyeImageView.isUserInteractionEnabled = true
             eyeImageView.tintColor = UIColor.lightGray
             eyeImageView.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
             eyeImageView.contentMode = .center
+            eyeImageView.isUserInteractionEnabled = true
             self.rightView = eyeImageView
             self.rightViewMode = .always
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(togglePasswordVisibility))

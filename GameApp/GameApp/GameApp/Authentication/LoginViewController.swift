@@ -8,8 +8,9 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    // MARK: - Properties
 
-    private let loginImageView: UIImageView = {
+    private lazy var loginImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "gamecontroller.fill")?.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = Color.blueishWhite
@@ -20,15 +21,15 @@ class LoginViewController: UIViewController {
         return imageView
     }()
     
-    private let emailTextField: UITextFieldView = UITextFieldView(placeholder: "Email")
+    private let emailTextField: UITextFieldView = UITextFieldView(placeholder: NSLocalizedString("email", comment: ""))
     
-    private let passwordTextField: UITextFieldView =  UITextFieldView(placeholder: "Password", isSecured: true)
+    private let passwordTextField: UITextFieldView =  UITextFieldView(placeholder: NSLocalizedString("password", comment: ""), isSecured: true)
     
-    private let loginButton: LightUIButtonView = LightUIButtonView(buttonText: "Login")
+    private let loginButton: LightUIButtonView = LightUIButtonView(buttonText: NSLocalizedString("login", comment: ""))
     
-    private let createAccountLabel: UILabel = {
+    private lazy var createAccountLabel: UILabel = {
         let label = UILabel()
-        var mutableString = NSMutableAttributedString(string: "Don't have an account yet? Sign up", attributes: [NSAttributedString.Key.font: Font.subTitleFont!, NSAttributedString.Key.foregroundColor: UIColor.white])
+        var mutableString = NSMutableAttributedString(string: NSLocalizedString("dont-have-account", comment: ""), attributes: [NSAttributedString.Key.font: Font.subTitleFont!, NSAttributedString.Key.foregroundColor: UIColor.white])
         
         mutableString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemBlue, range: NSRange(location:27,length:7))
         label.attributedText = mutableString
@@ -36,6 +37,8 @@ class LoginViewController: UIViewController {
         label.isUserInteractionEnabled = true
         return label
     }()
+    
+    // MARK: - Inits
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -45,6 +48,8 @@ class LoginViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -53,6 +58,8 @@ class LoginViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
+    
+    // MARK: - Helpers
 
     private func setupUI() {
         view.backgroundColor = Color.darkBlue
@@ -109,11 +116,18 @@ class LoginViewController: UIViewController {
     
     @objc private func tapLogin() {
         if let email = emailTextField.text, let password = passwordTextField.text {
-            AuthService().login(email: email, password: password) { error in
+            AuthService.shared.login(email: email, password: password) { error in
                 if let error = error {
                     SharedHelpers().showCustomToast(self, loginMessage: error.localizedDescription)
                 } else {
-                    self.dismiss(animated: true)
+                     DispatchQueue.main.async {
+                         let mainViewController = GenresViewController()
+                         let navigationController = UINavigationController(rootViewController: mainViewController)
+                         
+                         navigationController.modalPresentationStyle = .fullScreen
+                         
+                         self.present(navigationController, animated: true, completion: nil)
+                     }
                 }
             }
         }
@@ -128,7 +142,7 @@ class LoginViewController: UIViewController {
            navigationController?.pushViewController(signupViewController, animated: true)
     }
 }
-
+// MARK: - TextField Delegate
 extension LoginViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return true

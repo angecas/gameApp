@@ -7,7 +7,7 @@
 import UIKit
 import SDWebImage
 
-class GridCell2: UICollectionViewCell {
+class GamesCell: UICollectionViewCell {
     
     private lazy var backView: UIView = {
         let view = UIView()
@@ -73,7 +73,6 @@ class GridCell2: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             backView.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            backView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             backView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             backView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             backView.widthAnchor.constraint(equalToConstant: 100),
@@ -100,12 +99,10 @@ class GridCell2: UICollectionViewCell {
     func configure(game: Game) {
 
         imageView.sd_imageIndicator = SDWebImageActivityIndicator.white
-
         imageView.sd_setImage(with: URL(string: game.background_image ?? ""))
-        
         nameLabel.text = game.name
         if let released = game.released {
-            gameDetailsLabel.text = "Released: \(released)"
+            gameDetailsLabel.text = NSLocalizedString("released-in", comment: "") + " \(released)"
         }
     }
 }

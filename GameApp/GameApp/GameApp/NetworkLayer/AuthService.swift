@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 
 struct AuthService {
-//    static let shared
+    static let shared = AuthService()
     
     func logout() {
         do {

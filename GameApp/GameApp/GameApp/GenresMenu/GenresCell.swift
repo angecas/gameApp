@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 import SDWebImage
 
-protocol GridCellDelegate: AnyObject {
-    func updateCell(_ cell: GridCell)
-    func showFavoritesErrorToaster(_ cell: GridCell)
+protocol GenresCellDelegate: AnyObject {
+    func updateCell(_ cell: GenresCell)
+    func showFavoritesErrorToaster(_ cell: GenresCell)
 }
 
-class GridCell: UICollectionViewCell {
-    weak var delegate: GridCellDelegate?
+class GenresCell: UICollectionViewCell {
+    weak var delegate: GenresCellDelegate?
     private var genre: Genre?
     private var genreId: Int?
     

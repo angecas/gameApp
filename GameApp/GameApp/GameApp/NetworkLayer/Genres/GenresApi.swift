@@ -18,7 +18,7 @@ extension GenresApi: EndpointDescriptor {
          switch self {
          case .fetchListOfGamesGenres(let page):
              return page
-         case .fetchGenresById(id: let id):
+         case .fetchGenresById(id: _):
              return 10
          }
      }

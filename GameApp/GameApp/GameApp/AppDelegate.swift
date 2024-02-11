@@ -19,12 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        
-//        let loginViewController = LoginViewController()
-//        let navigationController = UINavigationController(rootViewController: loginViewController)
-//        
-//        window?.rootViewController = navigationController
-        //descomenta
+
         let splashViewController = SplashViewController()
         window?.rootViewController = splashViewController
         

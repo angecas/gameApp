@@ -12,7 +12,6 @@ class GamesViewController: UIViewController {
     private var genre: Genre?
     private var games: [Game]?
     private let id: Int
-    
     private var currentPage = 1
     private var isLoadingData = false
 
@@ -42,9 +41,11 @@ class GamesViewController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = Color.darkBlue
-        collection.register(GridCell2.self, forCellWithReuseIdentifier: "CellIdentifier")
+        collection.register(GamesCell.self, forCellWithReuseIdentifier: "CellIdentifier")
         return collection
     }()
+    
+    // MARK: - Inits
     
     init(id: Int) {
         self.id = id
@@ -54,6 +55,8 @@ class GamesViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +87,31 @@ class GamesViewController: UIViewController {
         setupUI()
         setNavigationActions()
     }
-    
+    // MARK: - Helpers
+    private func setupUI() {
+        gamesCollectionView.reloadData()
+
+        view.backgroundColor = Color.darkBlue
+        view.addSubview(pageTitle)
+        view.addSubview(gamesDescriptionHeaderView)
+        view.addSubview(gamesCollectionView)
+
+        NSLayoutConstraint.activate([
+            pageTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            pageTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            pageTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+
+            gamesDescriptionHeaderView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 8),
+            gamesDescriptionHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            gamesDescriptionHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+
+            gamesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            gamesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            gamesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            gamesCollectionView.topAnchor.constraint(equalTo: gamesDescriptionHeaderView.bottomAnchor, constant: 8)
+        ])
+    }
+
     private func fetchData() {
          guard !isLoadingData else { return }
          isLoadingData = true
@@ -126,41 +153,15 @@ class GamesViewController: UIViewController {
                                                            target: self, action: #selector(willNavigateBack))
 
     }
-
-    
-    private func setupUI() {
-        gamesCollectionView.reloadData()
-
-        view.backgroundColor = Color.darkBlue
-        view.addSubview(pageTitle)
-        view.addSubview(gamesDescriptionHeaderView)
-        view.addSubview(gamesCollectionView)
-
-        NSLayoutConstraint.activate([
-            pageTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            pageTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            pageTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-
-            gamesDescriptionHeaderView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 8),
-            gamesDescriptionHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            gamesDescriptionHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-
-            gamesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            gamesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            gamesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            gamesCollectionView.topAnchor.constraint(equalTo: gamesDescriptionHeaderView.bottomAnchor, constant: 8)
-        ])
-    }
 }
-
+// MARK: - CollectionView DataSource
 extension GamesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return games?.count ?? 0
     }
     
-
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellIdentifier", for: indexPath) as? GridCell2 else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellIdentifier", for: indexPath) as? GamesCell else {
             fatalError("Failed to dequeue a cell of type CustomImageCell")
         }
 
@@ -171,10 +172,7 @@ extension GamesViewController: UICollectionViewDataSource {
             } else {
                 print("Index out of range: \(indexPath.row), Genre Count: \(games.count)")
             }
-        } else {
-            print("Genres array is nil")
         }
-
         return cell
     }
 
@@ -192,13 +190,17 @@ extension GamesViewController: UICollectionViewDataSource {
 
 }
 
+// MARK: - CollectionView Delegate
+
 extension GamesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? GridCell2 {
+        if let cell = collectionView.cellForItem(at: indexPath) as? GamesCell {
             cell.showCellDetails()
         }
     }
 }
+
+// MARK: - GamesDescriptionHeaderView Delegate
 
 extension GamesViewController: GamesDescriptionHeaderViewDelegate {
     func didToggleShowMore(_ view: GamesDescriptionHeaderView) {
@@ -207,6 +209,7 @@ extension GamesViewController: GamesDescriptionHeaderViewDelegate {
         gamesCollectionView.reloadData()
     }
 }
+// MARK: - CollectionViewFlowLayout Delegate
 
 extension GamesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

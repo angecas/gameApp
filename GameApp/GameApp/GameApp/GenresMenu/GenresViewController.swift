@@ -9,39 +9,40 @@ import UIKit
 import FirebaseAuth
 
 class GenresViewController: UIViewController {
+    
     // MARK: - Properties
     private var currentPage = 1
     private var isLoadingData = false
     private var genres: GenresList?
+    
     private lazy var floatingButton: UIButton = {
         let floatingButton = UIButton()
-        floatingButton.setTitle("Logout", for: .normal)
+        floatingButton.setTitle(NSLocalizedString("logout", comment: ""), for: .normal)
         floatingButton.setTitleColor(.white, for: .normal)
         floatingButton.backgroundColor = Color.darkGrey
         floatingButton.layer.cornerRadius = 25
         floatingButton.titleLabel?.font = Font.bodyFont
         floatingButton.translatesAutoresizingMaskIntoConstraints = false
-
         return floatingButton
     }()
     
-    private let pageTitle: UILabel = {
+    private lazy var pageTitle: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = NSLocalizedString("genres", comment: "")
         label.font = Font.extraLargeBoldTitleFont
         label.textColor = Color.blueishWhite
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = Color.darkBlue
-        collection.register(GridCell.self, forCellWithReuseIdentifier: "CellIdentifier")
+        collection.register(GenresCell.self, forCellWithReuseIdentifier: "CellIdentifier")
         collection.dataSource = self
         collection.delegate = self
+        collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
     }()
     
@@ -65,10 +66,36 @@ class GenresViewController: UIViewController {
         fetchData()
         setupUI()
         setUpDoubleTap()
-        
     }
     
     // MARK: - Helpers
+    
+    private func setupUI(){
+        view.backgroundColor = Color.darkBlue
+        view.addSubview(floatingButton)
+        view.addSubview(pageTitle)
+        view.addSubview(collectionView)
+        
+        floatingButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            pageTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            pageTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            pageTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16),
+            
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            collectionView.bottomAnchor.constraint(equalTo: floatingButton.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 8),
+            
+            floatingButton.widthAnchor.constraint(equalToConstant: 70),
+            floatingButton.heightAnchor.constraint(equalToConstant: 50),
+            floatingButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+
+            floatingButton.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -10),
+        ])
+    }
+
     
     @objc private func logout() {
         do {
@@ -99,14 +126,13 @@ class GenresViewController: UIViewController {
                                UserDefaultsHelper.setFavoriteGenres(genreId: tappedGenredId)
                                collectionView.reloadData()
                            } else {
-                               SharedHelpers().showCustomToast(self, loginMessage: "Add only up to 5 favorite genres.")
+                               SharedHelpers().showCustomToast(self, loginMessage: NSLocalizedString("add-up-to-genres", comment: ""))
                            }
                        } else {
                            UserDefaultsHelper.removeFavoriteGenre(genreId: tappedGenredId)
                            collectionView.reloadData()
                        }
                    }
-                              
            }
        }
     
@@ -153,33 +179,6 @@ class GenresViewController: UIViewController {
         fetchData()
         collectionView.reloadData()
     }
-    
-    private func setupUI(){
-        view.backgroundColor = Color.darkBlue
-        view.addSubview(floatingButton)
-        view.addSubview(pageTitle)
-        view.addSubview(collectionView)
-        
-        floatingButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
-        
-        NSLayoutConstraint.activate([
-            pageTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            pageTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            pageTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16),
-            
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            collectionView.bottomAnchor.constraint(equalTo: floatingButton.topAnchor),
-            collectionView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 8),
-            
-            floatingButton.widthAnchor.constraint(equalToConstant: 70),
-            floatingButton.heightAnchor.constraint(equalToConstant: 50),
-            floatingButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-
-            floatingButton.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -10),
-
-        ])
-    }
 }
 
 // MARK: - Collection DataSource
@@ -192,7 +191,7 @@ extension GenresViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellIdentifier", for: indexPath) as? GridCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellIdentifier", for: indexPath) as? GenresCell else {
             fatalError("Failed to dequeue a cell of type CustomImageCell")
         }
         
@@ -203,7 +202,6 @@ extension GenresViewController: UICollectionViewDataSource {
                 cell.configure(genre: genre, isFavoriteGenre: isFavorite)
             }
         }
-        
         return cell
     }
 }
@@ -219,12 +217,9 @@ extension GenresViewController: UICollectionViewDelegate {
         collectionView.addGestureRecognizer(longPressGesture)
         return true
     }
-
-    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-
         if let id = genres?.results[indexPath.row].id {
             UserDefaultsHelper.setSelectedGenre(genreId: id)
             
@@ -233,6 +228,9 @@ extension GenresViewController: UICollectionViewDelegate {
         }
     }
 }
+
+// MARK: - CollectionViewFlowLayout Delegate
+
 extension GenresViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -266,12 +264,12 @@ extension GenresViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - UIGestureRecognizer Delegate
 extension GenresViewController: UIGestureRecognizerDelegate {
     @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
            if gestureRecognizer.state == .began {
                if let indexPath = collectionView.indexPathForItem(at: gestureRecognizer.location(in: collectionView)),
                   let id = genres?.results[indexPath.row].id {
-                   print("Long press on cell with ID: \(id)")
                }
            }
        }
