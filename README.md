@@ -18,15 +18,17 @@ https://github.com/angecas/gameApp/assets/72696978/6a7ca485-7dc7-4194-a352-9698e
 
 ## Part II
 
-- With user defaults, the app remembers the previously selected genre when reopened. To remove this genre preselection, one only needs to go back to the genres menu selection.
+- With user defaults, the app remembers the previously selected genre when reopened. To remove this genre pre-selection, one only needs to go back to the genres menu selection.
 
 
-https://github.com/angecas/gameApp/assets/72696978/9c8b138c-92f3-4c7d-ba74-063ae05ba791
+https://github.com/angecas/gameApp/assets/72696978/18b2e3e1-a5f4-4787-9fc4-b147fc3f371d
+
 
 ## Part III
 
-- Utilizes global toaster alerts to inform users about app limitations, such as a maximum of 5 favorite genre selections.
-- Additionally, users can view some details of each game genre by pressing and revealing the release date.
+- Utilizes global toaster alerts to inform users about app limitations, such as a maximum of 5 favorite genre selections or authentication errors.
+- Additionally, users can view some details of each game by selecting the game and opening detailed information.
 
-https://github.com/angecas/gameApp/assets/72696978/67bd353c-1e1e-48bf-9632-770211321385
+
+https://github.com/angecas/gameApp/assets/72696978/956baf90-f188-43be-9986-e676dc4f9c5c
 
