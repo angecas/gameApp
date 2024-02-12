@@ -18,4 +18,8 @@
 "sign-up" = "Sign up";
 "enter-credentials" = "Enter your credentials.";
 "dont-have-account" = "Don't have an account yet? Sign up";
-"released-in" = "Released in";
+"released-date" = "Release date:";
+"update-date" = "Updated date:";
+"rating" = "Rating:";
+"metascore" = "MetaScore:";
+"esrb-rating" = "ESRB rating:";

@@ -101,11 +101,11 @@ struct Game: Codable {
     let dominant_color: String?
     let short_screenshots: [ShortScreenshot]?
     let parent_platforms: [Platform]?
-//    let genres: [Tag]?
-
+    //    let genres: [Tag]?
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-
+        
         slug = try? container.decode(String.self, forKey: .slug)
         name = try? container.decode(String.self, forKey: .name)
         playtime = try? container.decode(Int.self, forKey: .playtime)
@@ -141,6 +141,64 @@ struct Game: Codable {
         // Initialize reviews_text_count directly in the main initializer
         let reviewsTextCountString = try? container.decode(String.self, forKey: .reviews_text_count)
         self.reviews_text_count = Int(reviewsTextCountString ?? "0") ?? 0
+    }
+    
+    func releasedToString() -> String? {
+        if let released = released {
+            
+            let dateFormatterInput = DateFormatter()
+            dateFormatterInput.dateFormat = "yyyy-MM-dd"
+            
+            if let date = dateFormatterInput.date(from: released) {
+                let dateFormatterOutput = DateFormatter()
+                dateFormatterOutput.dateFormat = "MMM d, yyyy"
+                
+                let outputDateString = dateFormatterOutput.string(from: date)
+                
+                return outputDateString
+            }
+        }
+        return nil
+    }
+    
+    func updatedToString() -> String? {
+        if let updated = updated {
+            let dateFormatterInput = DateFormatter()
+            dateFormatterInput.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            
+            if let date = dateFormatterInput.date(from: updated) {
+                let dateFormatterOutput = DateFormatter()
+                dateFormatterOutput.dateFormat = "MMM d, yyyy"
+                
+                return dateFormatterOutput.string(from: date)
+            }
+        }
+        return nil
+    }
+    
+    func chartsToString() -> String? {
+        if let chartPosition = charts?.year?.position, let chartYear = charts?.year?.year {
+            return "# \(chartPosition), \(chartYear)"
+        }
+        return nil
+    }
+    
+    func ratingsToString() -> String? {
+        if let rating = rating, let ratingTop = rating_top {
+            return " \(rating) / \(ratingTop)"
+        }
+        return nil
+    }
+    
+
+    func tagsToString() -> String? {
+        if let tags = tags {
+            let tagNames = tags
+                .filter { $0.language == "eng" }
+                .compactMap { $0.name }
+            return tagNames.joined(separator: ", ")
+        }
+        return nil
     }
 }
 

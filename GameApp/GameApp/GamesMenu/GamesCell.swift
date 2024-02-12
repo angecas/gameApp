@@ -16,15 +16,6 @@ class GamesCell: UICollectionViewCell {
         return view
     }()
     
-    private lazy var gameDetailsLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = Color.blueishWhite
-        label.font = Font.bodyFont
-        label.numberOfLines = 0
-        label.isHidden = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
 
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
@@ -63,13 +54,11 @@ class GamesCell: UICollectionViewCell {
         super.prepareForReuse()
         imageView.image = nil
     }
-
     
     private func setupUI() {
         contentView.addSubview(backView)
         backView.addSubview(imageView)
         backView.addSubview(nameLabel)
-        backView.addSubview(gameDetailsLabel)
         
         NSLayoutConstraint.activate([
             backView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -86,14 +75,7 @@ class GamesCell: UICollectionViewCell {
             nameLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor),
             nameLabel.trailingAnchor.constraint(equalTo: backView.trailingAnchor),
             
-            gameDetailsLabel.topAnchor.constraint(equalTo: backView.bottomAnchor, constant: 4),
-            gameDetailsLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor),
-            gameDetailsLabel.trailingAnchor.constraint(equalTo: backView.trailingAnchor),
         ])
-    }
-    
-    func showCellDetails() {
-        gameDetailsLabel.isHidden.toggle()
     }
     
     func configure(game: Game) {
@@ -101,8 +83,5 @@ class GamesCell: UICollectionViewCell {
         imageView.sd_imageIndicator = SDWebImageActivityIndicator.white
         imageView.sd_setImage(with: URL(string: game.background_image ?? ""))
         nameLabel.text = game.name
-        if let released = game.released {
-            gameDetailsLabel.text = NSLocalizedString("released-in", comment: "") + " \(released)"
-        }
     }
 }

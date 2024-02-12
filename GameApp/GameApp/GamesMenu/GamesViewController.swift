@@ -103,7 +103,7 @@ class GamesViewController: UIViewController {
         UserDefaultsHelper.removeSelectedGenre()
     }
 
-    func setNavigationActions() {
+    private func setNavigationActions() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward.circle.fill"), style: .plain,
                                                            target: self, action: #selector(willNavigateBack))
 
@@ -150,7 +150,16 @@ extension GamesViewController: UICollectionViewDataSource {
 extension GamesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? GamesCell {
-            cell.showCellDetails()
+            
+            if let games = viewModel.games {
+                if indexPath.row < games.count {
+                    let game = games[indexPath.row]
+                    let viewController = GameViewController(game: game)
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                }
+                
+                //            cell.showCellDetails()
+            }
         }
     }
 }

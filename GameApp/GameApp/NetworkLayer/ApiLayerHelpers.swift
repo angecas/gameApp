@@ -25,25 +25,24 @@ class SessionProvider {
         guard var urlComponents = URLComponents(string: endpoint.path) else {
             throw NetworkError.invalidURL
         }
-        
+
+        // Load API key from plist
         guard let apiKey = Bundle.main.path(forResource: "APIKey", ofType: "plist"),
             let contents = NSDictionary(contentsOfFile: apiKey),
-            let apiKey = contents["APIKey"] as? String else {
-          fatalError("APIKey.plist not found or does not contain a valid APIKey")
-      }
+            let apiKeyValue = contents["APIKey"] as? String else {
+                fatalError("APIKey.plist not found or does not contain a valid APIKey")
+        }
 
-        
         urlComponents.queryItems = [
-            URLQueryItem(name: "key", value: apiKey),
+            URLQueryItem(name: "key", value: apiKeyValue),
             URLQueryItem(name: "page", value: "\(endpoint.page)"),
             URLQueryItem(name: "page_size", value: "\(endpoint.pageSize)")
         ]
-        
+
         if let parameters = endpoint.parameters {
             for (key, value) in parameters {
                 if let stringValue = "\(value)" as? String {
                     urlComponents.queryItems?.append(URLQueryItem(name: key, value: stringValue))
-                } else {
                 }
             }
         }
@@ -53,14 +52,24 @@ class SessionProvider {
         }
 
         var request = URLRequest(url: url)
-        
         request.httpMethod = endpoint.HTTPMethod.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        let (data, _) = try await URLSession.shared.data(for: request)
-        let decoder = JSONDecoder()
-        let response = try decoder.decode(T.self, from: data)
-        return response
+
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+
+            if let jsonString = String(data: data, encoding: .utf8) {
+                print("Received JSON data:\n\(jsonString)")
+            }
+
+            let decoder = JSONDecoder()
+            let response = try decoder.decode(T.self, from: data)
+            
+            return response
+        } catch {
+            print("Error performing request: \(error)")
+            throw error
+        }
     }
 }
 enum NetworkError: Error {
