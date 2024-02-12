@@ -1,6 +1,7 @@
 # gameApp
 
-GameApp is a mobile application that (currently) enables users to explore and discover a wide range of game genres available in the RAWG database. The app includes features for authentication, selecting genres, and accessing detailed game information.
+GameApp is a mobile application that (currently) enables users to explore and discover a wide range of game genres available in the RAWG database. The app includes features for authentication, selecting genres, and accessing detailed game information. 
+The choosed design is more or less like the one presented in the web page: https://rawg.io/
 # App overview
 
 ## Part I
@@ -17,7 +18,7 @@ https://github.com/angecas/gameApp/assets/72696978/6a7ca485-7dc7-4194-a352-9698e
 
 ## Part II
 
-- With user defaults, the app remembers the previously selected genre when reopened.
+- With user defaults, the app remembers the previously selected genre when reopened. To remove this genre preselection, one only needs to go back to the genres menu selection.
 
 
 https://github.com/angecas/gameApp/assets/72696978/9c8b138c-92f3-4c7d-ba74-063ae05ba791
