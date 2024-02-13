@@ -12,7 +12,9 @@ class GameHeaderView: UIView {
     
     // MARK: - Props
 
-    let image: String?
+    private let image: String?
+    private var snapshots: [String]
+    private var snapshotCounter = 0
     
     private lazy var headerImage: UIImageView = {
         let imageView = UIImageView()
@@ -26,8 +28,9 @@ class GameHeaderView: UIView {
     
     // MARK: - inits
     
-    init(image: String?) {
+    init(image: String?, snapshots: [String]) {
         self.image = image
+        self.snapshots = snapshots
         super.init(frame: .zero)
         
         headerImage.sd_imageIndicator = SDWebImageActivityIndicator.white
@@ -52,5 +55,17 @@ class GameHeaderView: UIView {
             headerImage.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
     }
-        
+    
+    func updateImage() {
+        snapshotCounter += 1
+        if snapshotCounter < snapshots.count {
+            headerImage.sd_imageIndicator = SDWebImageActivityIndicator.white
+            headerImage.sd_setImage(with: URL(string: snapshots[snapshotCounter]))
+        } else {
+            if let image = self.image {
+                self.snapshots.insert(image, at: 0)
+            }
+            snapshotCounter = 0
+        }
+    }
 }

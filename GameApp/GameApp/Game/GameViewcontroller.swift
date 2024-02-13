@@ -14,10 +14,7 @@ import SDWebImage
 class GameViewController: UIViewController {
     
     // MARK: - Properties
-//    private let game: Game
-//    private var gameProperties: [String] = []
-//    private var gamePropertiesInfo: [String] = []
-    
+
     private let viewModel: GameViewModel
     
     private lazy var pageTitle: UILabel = {
@@ -47,36 +44,14 @@ class GameViewController: UIViewController {
     // MARK: - Inits
     
     init(game: Game) {
-//        self.game = game
         self.viewModel = GameViewModel(game: game)
-        self.headerView = GameHeaderView(image: game.background_image)
-        
-//        if let releasedString = game.releasedtoString() {
-//            gameProperties.append("Release date:")
-//            gamePropertiesInfo.append(releasedString)
-//        }
-//        
-//        if let updatedString = game.updatedToString() {
-//            gameProperties.append("Updated date:")
-//            gamePropertiesInfo.append(updatedString)
-//        }
-//        
-//        if let rating = game.ratingsToString() {
-//            gameProperties.append("Rating:")
-//            gamePropertiesInfo.append(rating)
-//        }
-//                
-//        if let metaScore = game.metacritic {
-//            gameProperties.append("MetaScore:")
-//            gamePropertiesInfo.append("\(metaScore)")
-//        }
-//        
-//        if let esrb = game.esrb_rating?.name {
-//            gameProperties.append("ESRB rating:")
-//            gamePropertiesInfo.append("\(esrb)")
-//        }
-        
+        self.headerView = GameHeaderView(image: game.background_image, snapshots: game.short_screenshots?.compactMap({$0.image}) ?? [])
+
         super.init(nibName: nil, bundle: nil)
+        
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeLeft(_:)))
+        swipeLeftGesture.direction = .left
+        headerView.addGestureRecognizer(swipeLeftGesture)
         
     }
     
@@ -115,6 +90,14 @@ class GameViewController: UIViewController {
         ])
         
     }
+    
+    @objc func handleSwipeLeft(_ gesture: UISwipeGestureRecognizer) {
+        headerView.updateImage()
+        
+        tableView.reloadData()
+
+    }
+
     
     private func setNavigationActions() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward.circle.fill"), style: .plain,
@@ -156,14 +139,14 @@ extension GameViewController: UITableViewDelegate {
 
 extension GameViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.gameProperties.count
+        return viewModel.gamePropertiesForm.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "gameCell", for: indexPath) as! GameCell
                 
-        cell.configure(form: viewModel.gameProperties[indexPath.row], with: viewModel.gamePropertiesInfo[indexPath.row])
+        cell.configure(form: viewModel.gamePropertiesForm[indexPath.row].0, with: viewModel.gamePropertiesForm[indexPath.row].1)
         
         return cell
 

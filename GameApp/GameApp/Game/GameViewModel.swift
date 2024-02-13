@@ -9,35 +9,30 @@ import Foundation
 
 class GameViewModel {
     let game: Game
-    var gameProperties: [String] = []
-    var gamePropertiesInfo: [String] = []
+    var gamePropertiesForm: [(String, String)] = []
 
     init(game: Game) {
         self.game = game
 
         if let releasedString = game.releasedToString() {
-            gameProperties.append(NSLocalizedString("released-date", comment: ""))
-            gamePropertiesInfo.append(releasedString)
+            gamePropertiesForm.append((NSLocalizedString("released-date", comment: ""), releasedString))
         }
 
         if let updatedString = game.updatedToString() {
-            gameProperties.append(NSLocalizedString("update-date", comment: ""))
-            gamePropertiesInfo.append(updatedString)
+            gamePropertiesForm.append((NSLocalizedString("update-date", comment: ""), updatedString))
         }
 
         if let rating = game.ratingsToString() {
-            gameProperties.append(NSLocalizedString("rating", comment: ""))
-            gamePropertiesInfo.append(rating)
+            gamePropertiesForm.append((NSLocalizedString("rating", comment: ""), rating))
         }
 
         if let metaScore = game.metacritic {
-            gameProperties.append(NSLocalizedString("metascore", comment: ""))
-            gamePropertiesInfo.append("\(metaScore)")
+            gamePropertiesForm.append((NSLocalizedString("metascore", comment: ""), String(metaScore)))
+
         }
         
         if let esrb = game.esrb_rating?.name {
-            gameProperties.append(NSLocalizedString("esrb-rating", comment: ""))
-            gamePropertiesInfo.append("\(esrb)")
+            gamePropertiesForm.append((NSLocalizedString("esrb-rating", comment: ""), esrb))
         }
     }
 }

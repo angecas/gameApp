@@ -3,4 +3,69 @@
    uuid = "50458C53-62B1-4647-81BF-1D032D32A996"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DAAA4E36-F351-4033-A0CD-13F91F5E4E9C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameApp/Game/GameViewcontroller.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "handleSwipeLeft(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DAAA4E36-F351-4033-A0CD-13F91F5E4E9C - c65e08a242e9a5e1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GameViewController.handleSwipeLeft(__C.UISwipeGestureRecognizer) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/Game/GameViewcontroller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  uuid = "DAAA4E36-F351-4033-A0CD-13F91F5E4E9C - c65e08a242e9a5e1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GameViewController.handleSwipeLeft(__C.UISwipeGestureRecognizer) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/Game/GameViewcontroller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "67">
+               </Location>
+               <Location
+                  uuid = "DAAA4E36-F351-4033-A0CD-13F91F5E4E9C - c65e08a242e9a5e1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GameViewController.handleSwipeLeft(__C.UISwipeGestureRecognizer) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/Game/GameViewcontroller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "71">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
