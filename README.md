@@ -27,8 +27,14 @@ https://github.com/angecas/gameApp/assets/72696978/18b2e3e1-a5f4-4787-9fc4-b147f
 ## Part III
 
 - Utilizes global toaster alerts to inform users about app limitations, such as a maximum of 5 favorite genre selections or authentication errors.
-- Additionally, users can view some details of each game by selecting the game and opening detailed information.
+- Additionally, users can view some details of each game by selecting the game and opening detailed information. By swiping, the user can also see the game's associated images.
 
 
 https://github.com/angecas/gameApp/assets/72696978/956baf90-f188-43be-9986-e676dc4f9c5c
+
+
+https://github.com/angecas/gameApp/assets/72696978/a83abb98-bdb5-42a5-9e66-701011102c54
+
+
+
 
