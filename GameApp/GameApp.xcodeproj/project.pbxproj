@@ -51,6 +51,8 @@
 		79CCE4D62B71C1A000F9F31E /* GameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AA1232B6DADAF00771AB3 /* GameAppTests.swift */; };
 		79CCE4D92B71C5D300F9F31E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CCE4D82B71C5D300F9F31E /* SignupViewController.swift */; };
 		79F0ABB52B7A568D00946F85 /* GameViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F0ABB42B7A568D00946F85 /* GameViewcontroller.swift */; };
+		79FAF19E2B803353008BCD73 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FAF19D2B803353008BCD73 /* FavoritesViewController.swift */; };
+		79FAF1A02B80336C008BCD73 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FAF19F2B80336C008BCD73 /* ProfileViewController.swift */; };
 		79FFA86B2B74314E00104BE4 /* GamesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FFA86A2B74314E00104BE4 /* GamesCell.swift */; };
 		79FFA86F2B7583BB00104BE4 /* ToastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FFA86E2B7583BB00104BE4 /* ToastViewController.swift */; };
 /* End PBXBuildFile section */
@@ -121,6 +123,8 @@
 		79CCE4D02B71B7EB00F9F31E /* UITextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldView.swift; sourceTree = "<group>"; };
 		79CCE4D82B71C5D300F9F31E /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		79F0ABB42B7A568D00946F85 /* GameViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewcontroller.swift; sourceTree = "<group>"; };
+		79FAF19D2B803353008BCD73 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		79FAF19F2B80336C008BCD73 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		79FFA86A2B74314E00104BE4 /* GamesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesCell.swift; sourceTree = "<group>"; };
 		79FFA86E2B7583BB00104BE4 /* ToastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewController.swift; sourceTree = "<group>"; };
 		A074781D28E090C29D6066A6 /* Pods-GameApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameApp.debug.xcconfig"; path = "Target Support Files/Pods-GameApp/Pods-GameApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -195,6 +199,9 @@
 		792AA10B2B6DADAC00771AB3 /* GameApp */ = {
 			isa = PBXGroup;
 			children = (
+				79FAF19C2B801274008BCD73 /* GamesSection */,
+				79FAF19B2B801262008BCD73 /* FavoritesSection */,
+				79FAF19A2B801252008BCD73 /* ProfileSection */,
 				792AA1592B6EA9FE00771AB3 /* DesignSystem */,
 				792AA13C2B6DB9BC00771AB3 /* NetworkLayer */,
 				792AA1532B6DE31500771AB3 /* SplashScreen */,
@@ -361,6 +368,29 @@
 				7960D2492B7AC9A60039DEA6 /* GameViewModel.swift */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		79FAF19A2B801252008BCD73 /* ProfileSection */ = {
+			isa = PBXGroup;
+			children = (
+				79FAF19F2B80336C008BCD73 /* ProfileViewController.swift */,
+			);
+			path = ProfileSection;
+			sourceTree = "<group>";
+		};
+		79FAF19B2B801262008BCD73 /* FavoritesSection */ = {
+			isa = PBXGroup;
+			children = (
+				79FAF19D2B803353008BCD73 /* FavoritesViewController.swift */,
+			);
+			path = FavoritesSection;
+			sourceTree = "<group>";
+		};
+		79FAF19C2B801274008BCD73 /* GamesSection */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GamesSection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -555,6 +585,7 @@
 				792AA10D2B6DADAC00771AB3 /* AppDelegate.swift in Sources */,
 				79FFA86F2B7583BB00104BE4 /* ToastViewController.swift in Sources */,
 				792AA16A2B6F524700771AB3 /* GamesViewController.swift in Sources */,
+				79FAF19E2B803353008BCD73 /* FavoritesViewController.swift in Sources */,
 				792AA10F2B6DADAC00771AB3 /* SceneDelegate.swift in Sources */,
 				792AA1632B6EF02700771AB3 /* GenresCell.swift in Sources */,
 				799D2FE52B79766600474C02 /* GenresViewModel.swift in Sources */,
@@ -572,6 +603,7 @@
 				793E86002B703F77004E0685 /* SharedHelpers.swift in Sources */,
 				79CCE4C52B719CAA00F9F31E /* LoadingManager.swift in Sources */,
 				792AA15B2B6EAA2700771AB3 /* Color.swift in Sources */,
+				79FAF1A02B80336C008BCD73 /* ProfileViewController.swift in Sources */,
 				792AA15F2B6ECFCF00771AB3 /* GenresManager.swift in Sources */,
 				7960D2482B7A9E260039DEA6 /* GameCell.swift in Sources */,
 				792AA1612B6ED20500771AB3 /* GamesGenresModel.swift in Sources */,

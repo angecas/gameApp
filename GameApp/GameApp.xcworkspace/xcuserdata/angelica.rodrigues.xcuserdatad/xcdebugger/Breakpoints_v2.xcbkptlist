@@ -7,64 +7,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DAAA4E36-F351-4033-A0CD-13F91F5E4E9C"
+            uuid = "F21FE7DB-FC0A-4F50-B08E-AE65BB48D6D0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GameApp/Game/GameViewcontroller.swift"
+            filePath = "GameApp/GenresMenu/GenresViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "handleSwipeLeft(_:)"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "DAAA4E36-F351-4033-A0CD-13F91F5E4E9C - c65e08a242e9a5e1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GameViewController.handleSwipeLeft(__C.UISwipeGestureRecognizer) -&gt; ()"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/Game/GameViewcontroller.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
-                  offsetFromSymbolStart = "65">
-               </Location>
-               <Location
-                  uuid = "DAAA4E36-F351-4033-A0CD-13F91F5E4E9C - c65e08a242e9a5e1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GameViewController.handleSwipeLeft(__C.UISwipeGestureRecognizer) -&gt; ()"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/Game/GameViewcontroller.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
-                  offsetFromSymbolStart = "67">
-               </Location>
-               <Location
-                  uuid = "DAAA4E36-F351-4033-A0CD-13F91F5E4E9C - c65e08a242e9a5e1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GameViewController.handleSwipeLeft(__C.UISwipeGestureRecognizer) -&gt; ()"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/Game/GameViewcontroller.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
-                  offsetFromSymbolStart = "71">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CC8954FF-9697-4CF0-8CC1-4DACE875B93D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameApp/GenresMenu/GenresViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

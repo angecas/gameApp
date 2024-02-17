@@ -6,21 +6,69 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+//        guard let windowScene = (scene as? UIWindowScene) else { return }
+//        let window = UIWindow(windowScene: windowScene)
+//        self.window = window
+//
+//        let rootViewController = SplashViewController()
+//        window.rootViewController = rootViewController
+//    
+//        window.makeKeyAndVisible()
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
-        self.window = window
+            let window = UIWindow(windowScene: windowScene)
+            self.window = window
 
-        let rootViewController = SplashViewController()
-        window.rootViewController = rootViewController
-    
-        window.makeKeyAndVisible()
+            let rootViewController = determineRootViewController()
+            window.rootViewController = rootViewController
+            
+            window.makeKeyAndVisible()
     }
+    
+    func determineRootViewController() -> UIViewController {
+        if Auth.auth().currentUser == nil {
+            return UINavigationController(rootViewController: LoginViewController())
+        } else {
+            let selectedGenreId = UserDefaultsHelper.getSelectedGenre()
+            return createMainTabBarController(selectedGenreId)
+        }
+    }
+    
+    private func createMainTabBarController(_ selectedGenreId: Int?) -> UIViewController {
+        let tabBarController = UITabBarController()
+        let genresViewController = GenresViewController()
+        let favoritesViewController = FavoritesViewController()
+        let profileViewController = ProfileViewController()
+        
+        genresViewController.tabBarItem = UITabBarItem(title: "Genres", image: UIImage(systemName: "gamecontroller.fill"), selectedImage: nil)
+        
+        let navigationController = UINavigationController(rootViewController: genresViewController)
+
+        favoritesViewController.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "heart.fill"), selectedImage: nil)
+        profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle.fill"), selectedImage: nil)
+
+        
+        if let selectedGenreId = selectedGenreId {
+            
+//            let mainViewController = GenresViewController()
+            
+            navigationController.pushViewController(GamesViewController(id: selectedGenreId), animated: false)
+            navigationController.modalPresentationStyle = .fullScreen
+            
+//            self.present(navigationController, animated: true, completion: nil)
+        }
+        tabBarController.viewControllers = [navigationController, favoritesViewController, profileViewController]
+        
+        return tabBarController
+    }
+
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

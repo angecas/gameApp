@@ -114,6 +114,15 @@ class LoginViewController: UIViewController {
         SharedHelpers().shakeView(uiView: loginImageView)
     }  
     
+    private func showRootViewController() {
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            let rootViewController = sceneDelegate.determineRootViewController()
+            rootViewController.modalPresentationStyle = .fullScreen
+            self.present(rootViewController, animated: true, completion: nil)
+        }
+    }
+
+    
     @objc private func tapLogin() {
         if let email = emailTextField.text, let password = passwordTextField.text {
             AuthService.shared.login(email: email, password: password) { error in
@@ -121,12 +130,14 @@ class LoginViewController: UIViewController {
                     SharedHelpers().showCustomToast(self, loginMessage: error.localizedDescription)
                 } else {
                      DispatchQueue.main.async {
-                         let mainViewController = GenresViewController()
-                         let navigationController = UINavigationController(rootViewController: mainViewController)
+                         self.showRootViewController()
                          
-                         navigationController.modalPresentationStyle = .fullScreen
-                         
-                         self.present(navigationController, animated: true, completion: nil)
+//                         let mainViewController = GenresViewController()
+//                         let navigationController = UINavigationController(rootViewController: mainViewController)
+//                         
+//                         navigationController.modalPresentationStyle = .fullScreen
+//                         
+//                         self.present(navigationController, animated: true, completion: nil)
                      }
                 }
             }

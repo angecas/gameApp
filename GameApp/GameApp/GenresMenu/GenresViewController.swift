@@ -14,17 +14,6 @@ class GenresViewController: UIViewController {
     
     private var viewModel: GenresViewModel
     
-    private lazy var floatingButton: UIButton = {
-        let floatingButton = UIButton()
-        floatingButton.setTitle(NSLocalizedString("logout", comment: ""), for: .normal)
-        floatingButton.setTitleColor(.white, for: .normal)
-        floatingButton.backgroundColor = Color.darkGrey
-        floatingButton.layer.cornerRadius = 25
-        floatingButton.titleLabel?.font = Font.bodyFont
-        floatingButton.translatesAutoresizingMaskIntoConstraints = false
-        return floatingButton
-    }()
-    
     private lazy var pageTitle: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("genres", comment: "")
@@ -79,12 +68,9 @@ class GenresViewController: UIViewController {
     
     private func setupUI(){
         view.backgroundColor = Color.darkBlue
-        view.addSubview(floatingButton)
         view.addSubview(pageTitle)
         view.addSubview(collectionView)
-        
-        floatingButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
-        
+                
         NSLayoutConstraint.activate([
             pageTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             pageTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -92,33 +78,12 @@ class GenresViewController: UIViewController {
             
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            collectionView.bottomAnchor.constraint(equalTo: floatingButton.topAnchor),
-            collectionView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 8),
-            
-            floatingButton.widthAnchor.constraint(equalToConstant: 70),
-            floatingButton.heightAnchor.constraint(equalToConstant: 50),
-            floatingButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-
-            floatingButton.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -10),
-        ])
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 8)
+            ])
     }
 
-    
-    @objc private func logout() {
-        do {
-            UserDefaultsHelper.resetUserDefaults()
-            try Auth.auth().signOut()
-            self.navigationController?.popToRootViewController(animated: true)
-            DispatchQueue.main.async {
-                let navigationController = UINavigationController(rootViewController: LoginViewController())
-                navigationController.modalPresentationStyle = .fullScreen
-                self.present(navigationController, animated: true)
-            }
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
+        
     @objc func didDoubleTapCollectionView() {
            let pointInCollectionView = doubleTapGesture.location(in: collectionView)
            if let selectedIndexPath = collectionView.indexPathForItem(at: pointInCollectionView) {
@@ -193,7 +158,9 @@ extension GenresViewController: UICollectionViewDelegate {
             UserDefaultsHelper.setSelectedGenre(genreId: id)
             
             let gamesViewController = GamesViewController(id: id)
-            navigationController?.pushViewController(gamesViewController, animated: true)
+//            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(gamesViewController, animated: true)
+//            }
         }
     }
 }

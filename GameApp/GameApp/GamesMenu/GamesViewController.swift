@@ -50,6 +50,8 @@ class GamesViewController: UIViewController {
         self.viewModel = GamesviewModel(id: id)
         super.init(nibName: nil, bundle: nil)
         
+        self.hidesBottomBarWhenPushed = true
+        
         self.viewModel.delegate = self
     }
     
@@ -61,7 +63,7 @@ class GamesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.hidesBottomBarWhenPushed = true
         LoadingManager.shared.showLoading()
         
         gamesCollectionView.delegate = self
@@ -72,6 +74,11 @@ class GamesViewController: UIViewController {
         setupUI()
         setNavigationActions()
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//        self.hidesBottomBarWhenPushed = true
+//    }
     // MARK: - Helpers
     private func setupUI() {
         gamesCollectionView.reloadData()
