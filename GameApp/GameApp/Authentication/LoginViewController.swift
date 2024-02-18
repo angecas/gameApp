@@ -110,10 +110,6 @@ class LoginViewController: UIViewController {
         ])
     }
     
-    @objc private func shakeIcon() {
-        SharedHelpers().shakeView(uiView: loginImageView)
-    }  
-    
     private func showRootViewController() {
         if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
             let rootViewController = sceneDelegate.determineRootViewController()
@@ -121,8 +117,11 @@ class LoginViewController: UIViewController {
             self.present(rootViewController, animated: true, completion: nil)
         }
     }
-
     
+    @objc private func shakeIcon() {
+        SharedHelpers().shakeView(uiView: loginImageView)
+    }  
+        
     @objc private func tapLogin() {
         if let email = emailTextField.text, let password = passwordTextField.text {
             AuthService.shared.login(email: email, password: password) { error in
@@ -132,12 +131,6 @@ class LoginViewController: UIViewController {
                      DispatchQueue.main.async {
                          self.showRootViewController()
                          
-//                         let mainViewController = GenresViewController()
-//                         let navigationController = UINavigationController(rootViewController: mainViewController)
-//                         
-//                         navigationController.modalPresentationStyle = .fullScreen
-//                         
-//                         self.present(navigationController, animated: true, completion: nil)
                      }
                 }
             }

@@ -97,11 +97,6 @@ class SignupViewController: UIViewController {
         ])
     }
     
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    
     private func showRootViewController() {
         if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
             let rootViewController = sceneDelegate.determineRootViewController()
@@ -109,7 +104,10 @@ class SignupViewController: UIViewController {
             self.present(rootViewController, animated: true, completion: nil)
         }
     }
-
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
     @objc func tapSignup() {
         

@@ -21,7 +21,6 @@ class GenresViewModel {
     
     // MARK: - Fetch Data
     
-    
     func fetchData() {
          guard !isLoadingData else { return }
          isLoadingData = true

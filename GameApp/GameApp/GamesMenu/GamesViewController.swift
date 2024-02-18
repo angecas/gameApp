@@ -74,10 +74,7 @@ class GamesViewController: UIViewController {
         setupUI()
         setNavigationActions()
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(true)
-//        self.hidesBottomBarWhenPushed = true
+
 //    }
     // MARK: - Helpers
     private func setupUI() {

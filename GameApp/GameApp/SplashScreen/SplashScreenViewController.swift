@@ -26,21 +26,12 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//            self.authenticatUserAndSeteUI()
             self.showRootViewController()
 
         }
     }
 
     // MARK: - Helpers
-    private func showRootViewController() {
-        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-            let rootViewController = sceneDelegate.determineRootViewController()
-            rootViewController.modalPresentationStyle = .fullScreen
-            self.present(rootViewController, animated: true, completion: nil)
-        }
-    }
-
     
     private func setupUI() {
         view.backgroundColor = Color.darkBlue
@@ -57,52 +48,13 @@ class SplashViewController: UIViewController {
             splashImageView.widthAnchor.constraint(equalToConstant: 85),
         ])
     }
-    /*
-    private func authenticatUserAndSeteUI() {
-        if Auth.auth().currentUser == nil {
-            DispatchQueue.main.async {
-                let navigationController = UINavigationController(rootViewController: LoginViewController())
-                navigationController.modalPresentationStyle = .fullScreen
-                self.present(navigationController, animated: true)
-            }
-        } else {            
-            if UserDefaultsHelper.getSelectedGenre() != nil {
-                if let selectedGenredId = UserDefaultsHelper.getSelectedGenre() {
-                    
-                    DispatchQueue.main.async {
-                        let mainViewController = GenresViewController()
-                        let navigationController = UINavigationController(rootViewController: mainViewController)
-                        
-                        navigationController.pushViewController(GamesViewController(id: selectedGenredId), animated: false)
-                        navigationController.modalPresentationStyle = .fullScreen
-                        
-                        self.present(navigationController, animated: true, completion: nil)
-                    }
-                }
-            } else {
-               DispatchQueue.main.async {
-                   let navigationController = UINavigationController(rootViewController: GenresViewController())
-                   navigationController.modalPresentationStyle = .fullScreen
-                   self.present(navigationController, animated: true)
-               }
-           }
+    
+    private func showRootViewController() {
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            let rootViewController = sceneDelegate.determineRootViewController()
+            rootViewController.modalPresentationStyle = .fullScreen
+            self.present(rootViewController, animated: true, completion: nil)
         }
     }
-    */
-    
-    
-//    private func createMainTabBarController(_ selectedGenreId: Int) -> UIViewController {
-//
-//        let tabBarController = UITabBarController()
-//
-//        let genresViewController = GenresViewController()
-//
-//        let favoritesViewController = FavoritesViewController()
-//        let profileViewController = ProfileViewController()
-//
-//        tabBarController.viewControllers = [genresViewController, favoritesViewController, profileViewController]
-//
-//        return tabBarController
-//    }
 
 }
