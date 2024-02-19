@@ -13,6 +13,7 @@ class GenresViewController: UIViewController {
     // MARK: - Properties
     
     private var viewModel: GenresViewModel
+    private var teste: [Int] = []
     
     private lazy var pageTitle: UILabel = {
         let label = UILabel()
@@ -54,6 +55,17 @@ class GenresViewController: UIViewController {
     
     // MARK: - LyfeCycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FirestoreManager.shared.getFavoriteGenres { (fetchedGenres, error) in
+            if let error = error {
+                print("Error fetching favorite genres: \(error.localizedDescription)")
+            } else {
+                self.teste = fetchedGenres.compactMap({$0.id})
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel.delegate = self
@@ -62,6 +74,7 @@ class GenresViewController: UIViewController {
         viewModel.fetchData()
         setupUI()
         setUpDoubleTap()
+        
     }
     
     // MARK: - Helpers
@@ -88,20 +101,49 @@ class GenresViewController: UIViewController {
            let pointInCollectionView = doubleTapGesture.location(in: collectionView)
            if let selectedIndexPath = collectionView.indexPathForItem(at: pointInCollectionView) {
                let tappedGenredId = viewModel.genres?.results[selectedIndexPath.row].id
+               let tappedGenredName = viewModel.genres?.results[selectedIndexPath.row].name
+                              
 
-               let favoriteGenres = UserDefaultsHelper.getFavoriteGenres()
+               
+               //               let favoriteGenres = UserDefaultsHelper.getFavoriteGenres()
                                   
-                   if let tappedGenredId = tappedGenredId {
-                       if !favoriteGenres.contains(tappedGenredId) {
+                   if let tappedGenredId = tappedGenredId, let tappedGenredName = tappedGenredName {
+                       
+                       let isGenreAlreadyAdded = teste.contains(tappedGenredId)
+
+                       if !isGenreAlreadyAdded {
+                       
+//                       if !favoriteGenres.contains { $0.id == tappedGenredId {
                            
-                           if favoriteGenres.count < 5 {
-                               UserDefaultsHelper.setFavoriteGenres(genreId: tappedGenredId)
+                           if teste.count < 5 {
+                               
+                               FirestoreManager.shared.saveFavorites(id: tappedGenredId, name: tappedGenredName) { error in
+                                   if let error = error {
+                                       print("Error saving favorite: \(error.localizedDescription)")
+                                   } else {
+                                       print("Favorite saved successfully")
+                                       self.teste.append(tappedGenredId)
+                                       self.collectionView.reloadData()
+
+                                   }
+                               }
+
+//                               UserDefaultsHelper.setFavoriteGenres(genreId: tappedGenredId)
                                collectionView.reloadData()
                            } else {
                                SharedHelpers().showCustomToast(self, loginMessage: NSLocalizedString("add-up-to-genres", comment: ""))
                            }
                        } else {
-                           UserDefaultsHelper.removeFavoriteGenre(genreId: tappedGenredId)
+//                           UserDefaultsHelper.removeFavoriteGenre(genreId: tappedGenredId)
+                           FirestoreManager.shared.removeFavoriteGenre(id: tappedGenredId) { error in
+                               if let error = error {
+                                   print("Error removing favorite genre: \(error.localizedDescription)")
+                               } else {
+                                   self.teste = self.teste.filter { $0 != tappedGenredId }
+                                   self.collectionView.reloadData()
+
+                               }
+                           }
                            collectionView.reloadData()
                        }
                    }
@@ -140,7 +182,13 @@ extension GenresViewController: UICollectionViewDataSource {
         if let genres = viewModel.genres {
             if indexPath.row < genres.results.count {
                 let genre = genres.results[indexPath.row]
-                let isFavorite = UserDefaultsHelper.getFavoriteGenres().contains(genre.id)
+                
+                let isFavorite = self.teste.contains(genre.id)
+                
+                print(isFavorite, "isFavorite")
+                print(genre, "genre")
+                
+//                let isFavorite = UserDefaultsHelper.getFavoriteGenres().contains(genre.id)
                 cell.configure(genre: genre, isFavoriteGenre: isFavorite)
             }
         }

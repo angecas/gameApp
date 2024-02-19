@@ -41,7 +41,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         genresViewController.tabBarItem = UITabBarItem(title: "Genres", image: UIImage(systemName: "gamecontroller.fill"), selectedImage: nil)
         
-        let navigationController = UINavigationController(rootViewController: genresViewController)
+        let genresNavigationController = UINavigationController(rootViewController: genresViewController)
+
+        let favoritesNavigationController = UINavigationController(rootViewController: favoritesViewController)
 
         favoritesViewController.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "heart.fill"), selectedImage: nil)
         profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle.fill"), selectedImage: nil)
@@ -50,7 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let selectedGenreId = selectedGenreId {
             
         }
-        tabBarController.viewControllers = [navigationController, favoritesViewController, profileViewController]
+        tabBarController.viewControllers = [genresNavigationController, favoritesNavigationController, profileViewController]
         
         return tabBarController
     }

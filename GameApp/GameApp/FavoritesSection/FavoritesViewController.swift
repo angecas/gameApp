@@ -11,6 +11,8 @@ import UIKit
 class FavoritesViewController: UIViewController {
     // MARK: - Properties
     
+    private var favoriteGenres: [FavoriteGenre] = []
+    
     private let favoritesTitleLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("Favorites", comment: "")
@@ -26,13 +28,50 @@ class FavoritesViewController: UIViewController {
         
         return uiView
     }()
-
     
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(ListCell.self, forCellReuseIdentifier: "favoritesCell")
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        tableView.allowsSelection = true
+        tableView.separatorColor = Color.darkBlue
+        tableView.backgroundColor = Color.darkBlue
+        tableView.isUserInteractionEnabled = true
+
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return tableView
+    }()
+
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        FirestoreManager.shared.getFavoriteGenres { (fetchedGenres, error) in
+            if let error = error {
+                print("Error fetching favorite genres: \(error.localizedDescription)")
+            } else {
+                self.favoriteGenres = fetchedGenres
+                
+                DispatchQueue.main.async {
+                    if self.favoriteGenres.count > 0 {
+                        self.emptyFavoritesView.isHidden = true
+                    } else {
+                        self.tableView.isHidden = true
+                    }
+                    self.tableView.reloadData()
+                }
+
+            }
+        }
     }
     
     // MARK: - Helpers
@@ -42,6 +81,7 @@ class FavoritesViewController: UIViewController {
         
         view.addSubview(favoritesTitleLabel)
         view.addSubview(emptyFavoritesView)
+        view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
             favoritesTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 42),
@@ -52,8 +92,40 @@ class FavoritesViewController: UIViewController {
             emptyFavoritesView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             emptyFavoritesView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             emptyFavoritesView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
+                        
+            tableView.topAnchor.constraint(equalTo: favoritesTitleLabel.bottomAnchor, constant: 32),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+                        
         ])
         
     }
     
+}
+
+extension FavoritesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "favoritesCell", for: indexPath) as! ListCell
+        cell.configure(genreName: favoriteGenres[indexPath.row].name ?? "")
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected")
+        
+        guard let id = favoriteGenres[indexPath.row].id else {return}
+        let gamesViewController = GamesViewController(id: id)
+            self.navigationController?.pushViewController(gamesViewController, animated: true)
+    }
+}
+
+extension FavoritesViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        let favoriteGenres = UserDefaultsHelper.getFavoriteGenres()
+
+        return favoriteGenres.count
+    }
 }

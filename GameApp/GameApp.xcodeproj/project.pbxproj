@@ -55,6 +55,8 @@
 		79FAF1A02B80336C008BCD73 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FAF19F2B80336C008BCD73 /* ProfileViewController.swift */; };
 		79FAF1A22B817D82008BCD73 /* EmptyFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FAF1A12B817D82008BCD73 /* EmptyFavoritesView.swift */; };
 		79FAF1A42B81960C008BCD73 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FAF1A32B81960C008BCD73 /* FavoritesView.swift */; };
+		79FAF1A62B82AB8A008BCD73 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FAF1A52B82AB8A008BCD73 /* ListCell.swift */; };
+		79FAF1A82B82D8EB008BCD73 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FAF1A72B82D8EB008BCD73 /* FirestoreManager.swift */; };
 		79FFA86B2B74314E00104BE4 /* GamesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FFA86A2B74314E00104BE4 /* GamesCell.swift */; };
 		79FFA86F2B7583BB00104BE4 /* ToastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FFA86E2B7583BB00104BE4 /* ToastViewController.swift */; };
 /* End PBXBuildFile section */
@@ -129,6 +131,8 @@
 		79FAF19F2B80336C008BCD73 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		79FAF1A12B817D82008BCD73 /* EmptyFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFavoritesView.swift; sourceTree = "<group>"; };
 		79FAF1A32B81960C008BCD73 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		79FAF1A52B82AB8A008BCD73 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
+		79FAF1A72B82D8EB008BCD73 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		79FFA86A2B74314E00104BE4 /* GamesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesCell.swift; sourceTree = "<group>"; };
 		79FFA86E2B7583BB00104BE4 /* ToastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewController.swift; sourceTree = "<group>"; };
 		A074781D28E090C29D6066A6 /* Pods-GameApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameApp.debug.xcconfig"; path = "Target Support Files/Pods-GameApp/Pods-GameApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -331,6 +335,7 @@
 				793E85FF2B703F77004E0685 /* SharedHelpers.swift */,
 				79CCE4C02B71721200F9F31E /* UserDefaultsHelper.swift */,
 				79A7633C2B72C8C700B78146 /* ResultReusableView.swift */,
+				79FAF1A72B82D8EB008BCD73 /* FirestoreManager.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -388,6 +393,7 @@
 				79FAF19D2B803353008BCD73 /* FavoritesViewController.swift */,
 				79FAF1A12B817D82008BCD73 /* EmptyFavoritesView.swift */,
 				79FAF1A32B81960C008BCD73 /* FavoritesView.swift */,
+				79FAF1A52B82AB8A008BCD73 /* ListCell.swift */,
 			);
 			path = FavoritesSection;
 			sourceTree = "<group>";
@@ -589,7 +595,9 @@
 				79FAF1A22B817D82008BCD73 /* EmptyFavoritesView.swift in Sources */,
 				792AA1552B6DE33400771AB3 /* SplashScreenViewController.swift in Sources */,
 				7979EA962B786400003A9B53 /* APIKey.plist in Sources */,
+				79FAF1A82B82D8EB008BCD73 /* FirestoreManager.swift in Sources */,
 				792AA1652B6F120F00771AB3 /* Font.swift in Sources */,
+				79FAF1A62B82AB8A008BCD73 /* ListCell.swift in Sources */,
 				792AA10D2B6DADAC00771AB3 /* AppDelegate.swift in Sources */,
 				79FFA86F2B7583BB00104BE4 /* ToastViewController.swift in Sources */,
 				792AA16A2B6F524700771AB3 /* GamesViewController.swift in Sources */,

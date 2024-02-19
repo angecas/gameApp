@@ -23,30 +23,30 @@ struct UserDefaultsHelper {
         UserDefaults.standard.removeObject(forKey: "selectedGenre")
     }
     
-    static func getFavoriteGenres() -> [Int] {
-        if let genreIds = UserDefaults.standard.array(forKey: "selectedFavoriteGenres") as? [Int] {
-            return genreIds
-        }
-        return []
-    }
+//    static func getFavoriteGenres() -> [Int] {
+//        if let genreIds = UserDefaults.standard.array(forKey: "selectedFavoriteGenres") as? [Int] {
+//            return genreIds
+//        }
+//        return []
+//    }
     
-    static func setFavoriteGenres(genreId: Int) {
-        var favoriteGenres = getFavoriteGenres()
-        
-        if !favoriteGenres.contains(genreId) {
-                favoriteGenres.append(genreId)
-                UserDefaults.standard.set(favoriteGenres, forKey: "selectedFavoriteGenres")
-        }
-    }
+//    static func setFavoriteGenres(genreId: Int) {
+//        var favoriteGenres = getFavoriteGenres()
+//        
+//        if !favoriteGenres.contains(genreId) {
+//                favoriteGenres.append(genreId)
+//                UserDefaults.standard.set(favoriteGenres, forKey: "selectedFavoriteGenres")
+//        }
+//    }
     
-    static func removeFavoriteGenre(genreId: Int) {
-        var favoriteGenres = getFavoriteGenres()
-        
-        if let index = favoriteGenres.firstIndex(of: genreId) {
-            favoriteGenres.remove(at: index)
-            UserDefaults.standard.set(favoriteGenres, forKey: "selectedFavoriteGenres")
-        }
-    }
+//    static func removeFavoriteGenre(genreId: Int) {
+//        var favoriteGenres = getFavoriteGenres()
+//        
+//        if let index = favoriteGenres.firstIndex(of: genreId) {
+//            favoriteGenres.remove(at: index)
+//            UserDefaults.standard.set(favoriteGenres, forKey: "selectedFavoriteGenres")
+//        }
+//    }
     
     
     static func resetUserDefaults() {
