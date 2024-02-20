@@ -54,7 +54,6 @@
 		79FAF19E2B803353008BCD73 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FAF19D2B803353008BCD73 /* FavoritesViewController.swift */; };
 		79FAF1A02B80336C008BCD73 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FAF19F2B80336C008BCD73 /* ProfileViewController.swift */; };
 		79FAF1A22B817D82008BCD73 /* EmptyFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FAF1A12B817D82008BCD73 /* EmptyFavoritesView.swift */; };
-		79FAF1A42B81960C008BCD73 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FAF1A32B81960C008BCD73 /* FavoritesView.swift */; };
 		79FAF1A62B82AB8A008BCD73 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FAF1A52B82AB8A008BCD73 /* ListCell.swift */; };
 		79FAF1A82B82D8EB008BCD73 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FAF1A72B82D8EB008BCD73 /* FirestoreManager.swift */; };
 		79FFA86B2B74314E00104BE4 /* GamesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FFA86A2B74314E00104BE4 /* GamesCell.swift */; };
@@ -130,7 +129,6 @@
 		79FAF19D2B803353008BCD73 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		79FAF19F2B80336C008BCD73 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		79FAF1A12B817D82008BCD73 /* EmptyFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFavoritesView.swift; sourceTree = "<group>"; };
-		79FAF1A32B81960C008BCD73 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		79FAF1A52B82AB8A008BCD73 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		79FAF1A72B82D8EB008BCD73 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		79FFA86A2B74314E00104BE4 /* GamesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesCell.swift; sourceTree = "<group>"; };
@@ -392,7 +390,6 @@
 			children = (
 				79FAF19D2B803353008BCD73 /* FavoritesViewController.swift */,
 				79FAF1A12B817D82008BCD73 /* EmptyFavoritesView.swift */,
-				79FAF1A32B81960C008BCD73 /* FavoritesView.swift */,
 				79FAF1A52B82AB8A008BCD73 /* ListCell.swift */,
 			);
 			path = FavoritesSection;
@@ -579,7 +576,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79FAF1A42B81960C008BCD73 /* FavoritesView.swift in Sources */,
 				79A763422B72F96000B78146 /* AuthService.swift in Sources */,
 				79CCE4D92B71C5D300F9F31E /* SignupViewController.swift in Sources */,
 				79CCE4C12B71721200F9F31E /* UserDefaultsHelper.swift in Sources */,

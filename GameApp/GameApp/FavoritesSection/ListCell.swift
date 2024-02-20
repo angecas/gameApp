@@ -20,14 +20,13 @@ class ListCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+
     private lazy var genreLabel: UILabel = {
         let label = UILabel()
         label.text = "Action"
-        label.textColor = .white
+        label.textColor = Color.blueishWhite
         label.textAlignment = .left
         label.font = Font.subTitleFont
-        label.textColor = .black
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -47,11 +46,11 @@ class ListCell: UITableViewCell {
     override func prepareForReuse() {
         
         super.prepareForReuse()
-        
     }
-    
+
     private func setupUI() {
         
+        contentView.backgroundColor = Color.darkBlue
         contentView.addSubview(chevronImageView)
         contentView.addSubview(genreLabel)
         
@@ -61,7 +60,6 @@ class ListCell: UITableViewCell {
         
         contentView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
         
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),

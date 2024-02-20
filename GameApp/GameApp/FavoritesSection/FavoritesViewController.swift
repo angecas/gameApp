@@ -36,7 +36,7 @@ class FavoritesViewController: UIViewController {
         tableView.register(ListCell.self, forCellReuseIdentifier: "favoritesCell")
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         tableView.allowsSelection = true
-        tableView.separatorColor = Color.darkBlue
+        tableView.separatorColor = .systemBlue
         tableView.backgroundColor = Color.darkBlue
         tableView.isUserInteractionEnabled = true
 
@@ -64,8 +64,10 @@ class FavoritesViewController: UIViewController {
                 DispatchQueue.main.async {
                     if self.favoriteGenres.count > 0 {
                         self.emptyFavoritesView.isHidden = true
+                        self.tableView.isHidden = false
                     } else {
                         self.tableView.isHidden = true
+                        self.emptyFavoritesView.isHidden = false
                     }
                     self.tableView.reloadData()
                 }
@@ -120,11 +122,36 @@ extension FavoritesViewController: UITableViewDelegate {
         let gamesViewController = GamesViewController(id: id)
             self.navigationController?.pushViewController(gamesViewController, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, handler) in
+            guard let id = self.favoriteGenres[indexPath.row].id else {return}
+            FirestoreManager.shared.removeFavoriteGenre(id: id) { error in
+                if let error = error {
+                    print("Error removing favorite genre: \(error.localizedDescription)")
+                } else {
+                    self.favoriteGenres = self.favoriteGenres.filter { $0.id != id }
+                    self.tableView.reloadData()
+                    //TODO: make a did delete in a DT to reload and also a diddelete in VC to update collection in genresVC
+                }
+            }
+        }
+        deleteAction.backgroundColor = .red
+        deleteAction.image = UIImage(systemName: "trash")
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
+
+    }
 }
 
 extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let favoriteGenres = UserDefaultsHelper.getFavoriteGenres()
 
         return favoriteGenres.count
     }

@@ -87,7 +87,6 @@ class FirestoreManager {
             if let error = error {
                 completion(error)
             } else {
-                // Iterate through the documents and remove them
                 for document in snapshot!.documents {
                     document.reference.delete { error in
                         completion(error)
@@ -107,12 +106,10 @@ class FirestoreManager {
             }
 
             guard let snapshot = snapshot, !snapshot.isEmpty else {
-                // No matching documents found
                 completion(nil)
                 return
             }
 
-            // Assuming there's only one document with the given genreId
             let document = snapshot.documents.first!
 
             document.reference.delete { error in

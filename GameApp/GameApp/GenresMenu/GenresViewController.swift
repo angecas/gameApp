@@ -104,19 +104,12 @@ class GenresViewController: UIViewController {
                let tappedGenredName = viewModel.genres?.results[selectedIndexPath.row].name
                               
 
-               
-               //               let favoriteGenres = UserDefaultsHelper.getFavoriteGenres()
-                                  
                    if let tappedGenredId = tappedGenredId, let tappedGenredName = tappedGenredName {
                        
                        let isGenreAlreadyAdded = teste.contains(tappedGenredId)
 
                        if !isGenreAlreadyAdded {
-                       
-//                       if !favoriteGenres.contains { $0.id == tappedGenredId {
-                           
-                           if teste.count < 5 {
-                               
+                                                  
                                FirestoreManager.shared.saveFavorites(id: tappedGenredId, name: tappedGenredName) { error in
                                    if let error = error {
                                        print("Error saving favorite: \(error.localizedDescription)")
@@ -127,14 +120,10 @@ class GenresViewController: UIViewController {
 
                                    }
                                }
-
-//                               UserDefaultsHelper.setFavoriteGenres(genreId: tappedGenredId)
                                collectionView.reloadData()
-                           } else {
-                               SharedHelpers().showCustomToast(self, loginMessage: NSLocalizedString("add-up-to-genres", comment: ""))
-                           }
                        } else {
-//                           UserDefaultsHelper.removeFavoriteGenre(genreId: tappedGenredId)
+                           //TODO: put in datasource and make a didfetch delegate here to reload data
+
                            FirestoreManager.shared.removeFavoriteGenre(id: tappedGenredId) { error in
                                if let error = error {
                                    print("Error removing favorite genre: \(error.localizedDescription)")
@@ -184,11 +173,7 @@ extension GenresViewController: UICollectionViewDataSource {
                 let genre = genres.results[indexPath.row]
                 
                 let isFavorite = self.teste.contains(genre.id)
-                
-                print(isFavorite, "isFavorite")
-                print(genre, "genre")
-                
-//                let isFavorite = UserDefaultsHelper.getFavoriteGenres().contains(genre.id)
+                                
                 cell.configure(genre: genre, isFavoriteGenre: isFavorite)
             }
         }
@@ -206,9 +191,7 @@ extension GenresViewController: UICollectionViewDelegate {
             UserDefaultsHelper.setSelectedGenre(genreId: id)
             
             let gamesViewController = GamesViewController(id: id)
-//            DispatchQueue.main.async {
                 self.navigationController?.pushViewController(gamesViewController, animated: true)
-//            }
         }
     }
 }
