@@ -10,8 +10,7 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
     // MARK: - Properties
-    
-    private var favoriteGenres: [FavoriteGenre] = []
+    private let viewModel: FavoritesViewModel
     
     private let favoritesTitleLabel: UILabel = {
         let label = UILabel()
@@ -39,48 +38,38 @@ class FavoritesViewController: UIViewController {
         tableView.separatorColor = .systemBlue
         tableView.backgroundColor = Color.darkBlue
         tableView.isUserInteractionEnabled = true
-
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
     }()
 
+    // MARK: - Init
+    init() {
+        self.viewModel = FavoritesViewModel()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
         setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-        FirestoreManager.shared.getFavoriteGenres { (fetchedGenres, error) in
-            if let error = error {
-                print("Error fetching favorite genres: \(error.localizedDescription)")
-            } else {
-                self.favoriteGenres = fetchedGenres
-                
-                DispatchQueue.main.async {
-                    if self.favoriteGenres.count > 0 {
-                        self.emptyFavoritesView.isHidden = true
-                        self.tableView.isHidden = false
-                    } else {
-                        self.tableView.isHidden = true
-                        self.emptyFavoritesView.isHidden = false
-                    }
-                    self.tableView.reloadData()
-                }
-
-            }
-        }
+        viewModel.fetchFavoriteGenres()
     }
     
     // MARK: - Helpers
     
     private func setupUI() {
         view.backgroundColor = Color.darkBlue
-        
         view.addSubview(favoritesTitleLabel)
         view.addSubview(emptyFavoritesView)
         view.addSubview(tableView)
@@ -94,7 +83,6 @@ class FavoritesViewController: UIViewController {
             emptyFavoritesView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             emptyFavoritesView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             emptyFavoritesView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            
                         
             tableView.topAnchor.constraint(equalTo: favoritesTitleLabel.bottomAnchor, constant: 32),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -110,15 +98,14 @@ class FavoritesViewController: UIViewController {
 extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoritesCell", for: indexPath) as! ListCell
-        cell.configure(genreName: favoriteGenres[indexPath.row].name ?? "")
+        cell.configure(genreName: viewModel.favoriteGenres[indexPath.row].name ?? "")
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected")
         
-        guard let id = favoriteGenres[indexPath.row].id else {return}
+        guard let id = viewModel.favoriteGenres[indexPath.row].id else {return}
         let gamesViewController = GamesViewController(id: id)
             self.navigationController?.pushViewController(gamesViewController, animated: true)
     }
@@ -129,16 +116,9 @@ extension FavoritesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, handler) in
-            guard let id = self.favoriteGenres[indexPath.row].id else {return}
-            FirestoreManager.shared.removeFavoriteGenre(id: id) { error in
-                if let error = error {
-                    print("Error removing favorite genre: \(error.localizedDescription)")
-                } else {
-                    self.favoriteGenres = self.favoriteGenres.filter { $0.id != id }
-                    self.tableView.reloadData()
-                    //TODO: make a did delete in a DT to reload and also a diddelete in VC to update collection in genresVC
-                }
-            }
+            guard let id = self.viewModel.favoriteGenres[indexPath.row].id else {return}
+            
+            self.viewModel.removeFavoriteGenre(id: id)
         }
         deleteAction.backgroundColor = .red
         deleteAction.image = UIImage(systemName: "trash")
@@ -153,6 +133,23 @@ extension FavoritesViewController: UITableViewDelegate {
 extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return favoriteGenres.count
+        return viewModel.favoriteGenres.count
     }
 }
+extension FavoritesViewController: FavoritesViewModelDelegate {
+    func didFetchFavoriteGenres(_ model: FavoritesViewModel) {
+        if self.viewModel.favoriteGenres.count > 0 {
+            self.emptyFavoritesView.isHidden = true
+            self.tableView.isHidden = false
+        } else {
+            self.tableView.isHidden = true
+            self.emptyFavoritesView.isHidden = false
+        }
+        self.tableView.reloadData()
+    }
+    
+    func didRemoveFavoriteGenres(_ model: FavoritesViewModel) {
+        self.tableView.reloadData()
+    }
+}
+//TODO: when delete all genres show a the empty view

@@ -103,7 +103,6 @@ class GenresViewController: UIViewController {
                let tappedGenredId = viewModel.genres?.results[selectedIndexPath.row].id
                let tappedGenredName = viewModel.genres?.results[selectedIndexPath.row].name
                               
-
                    if let tappedGenredId = tappedGenredId, let tappedGenredName = tappedGenredName {
                        
                        let isGenreAlreadyAdded = teste.contains(tappedGenredId)
@@ -130,7 +129,6 @@ class GenresViewController: UIViewController {
                                } else {
                                    self.teste = self.teste.filter { $0 != tappedGenredId }
                                    self.collectionView.reloadData()
-
                                }
                            }
                            collectionView.reloadData()

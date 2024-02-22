@@ -7,35 +7,163 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CE4B1975-3998-4B14-9604-4A47AB88026A"
+            uuid = "984F7859-BD98-4E95-9A99-AA0B61298779"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameApp/FavoritesSection/FavoritesViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "fetchFavoriteGenres()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "919DFDAA-8D55-47F2-B808-1AEC7F6EA555"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameApp/FavoritesSection/FavoritesViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "fetchFavoriteGenres()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DC4F926B-019C-4D74-8E8D-13CAAA44F230"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameApp/FavoritesSection/FavoritesViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "removeFavoriteGenre(id:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DC4F926B-019C-4D74-8E8D-13CAAA44F230 - 71195658bbe3dc82"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (Swift.Array&lt;GameApp.FavoriteGenre&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in GameApp.FavoritesViewModel.fetchFavoriteGenres() -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/FavoritesSection/FavoritesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  uuid = "DC4F926B-019C-4D74-8E8D-13CAAA44F230 - 599ace3adc11a637"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in GameApp.FavoritesViewModel.removeFavoriteGenre(id: Swift.Int) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/FavoritesSection/FavoritesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "392">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DBBC73B5-4EAF-4CDF-8DB7-387D4A20E683"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameApp/FavoritesSection/FavoritesViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "removeFavoriteGenre(id:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DBBC73B5-4EAF-4CDF-8DB7-387D4A20E683 - 396480f51cf4cb1f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;GameApp.FavoriteGenre&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in GameApp.FavoritesViewModel.fetchFavoriteGenres() -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/FavoritesSection/FavoritesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "509">
+               </Location>
+               <Location
+                  uuid = "DBBC73B5-4EAF-4CDF-8DB7-387D4A20E683 - 599ace3adc11a5f5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in GameApp.FavoritesViewModel.removeFavoriteGenre(id: Swift.Int) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/FavoritesSection/FavoritesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "169">
+               </Location>
+               <Location
+                  uuid = "DBBC73B5-4EAF-4CDF-8DB7-387D4A20E683 - 7309eeb81e46d21c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (GameApp.FavoriteGenre) -&gt; Swift.Bool in closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in GameApp.FavoritesViewModel.removeFavoriteGenre(id: Swift.Int) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/FavoritesSection/FavoritesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "77">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "62B0FF28-456F-444F-B9F8-422C7A6D4B36"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GameApp/FavoritesSection/FavoritesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "tableView(_:leadingSwipeActionsConfigurationForRowAt:)"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "didRemoveFavoriteGenres(_:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "CE4B1975-3998-4B14-9604-4A47AB88026A - ef993a946c9b283d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.FavoritesViewController.tableView(_: __C.UITableView, leadingSwipeActionsConfigurationForRowAt: Foundation.IndexPath) -&gt; Swift.Optional&lt;__C.UISwipeActionsConfiguration&gt;"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/FavoritesSection/FavoritesViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "137"
-                  endingLineNumber = "137"
-                  offsetFromSymbolStart = "237">
-               </Location>
-               <Location
-                  uuid = "CE4B1975-3998-4B14-9604-4A47AB88026A - ce15af944c27ca46"
+                  uuid = "62B0FF28-456F-444F-B9F8-422C7A6D4B36 - ce15af944c27c855"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -45,24 +173,120 @@
                   urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/FavoritesSection/FavoritesViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "137"
-                  endingLineNumber = "137"
-                  offsetFromSymbolStart = "169">
+                  startingLineNumber = "152"
+                  endingLineNumber = "152"
+                  offsetFromSymbolStart = "1193">
                </Location>
                <Location
-                  uuid = "CE4B1975-3998-4B14-9604-4A47AB88026A - 7157a69266554992"
+                  uuid = "62B0FF28-456F-444F-B9F8-422C7A6D4B36 - 1be3a832cfe6e1b5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (GameApp.FavoriteGenre) -&gt; Swift.Bool in closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (__C.UIContextualAction, __C.UIView, (Swift.Bool) -&gt; ()) -&gt; () in GameApp.FavoritesViewController.tableView(_: __C.UITableView, leadingSwipeActionsConfigurationForRowAt: Foundation.IndexPath) -&gt; Swift.Optional&lt;__C.UISwipeActionsConfiguration&gt;"
+                  symbolName = "GameApp.FavoritesViewController.didRemoveFavoriteGenres(GameApp.FavoritesViewModel) -&gt; ()"
                   moduleName = "GameApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/FavoritesSection/FavoritesViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "137"
-                  endingLineNumber = "137"
-                  offsetFromSymbolStart = "77">
+                  startingLineNumber = "152"
+                  endingLineNumber = "152"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3580A6E3-B83D-42E2-8984-1CC9E76E8AD1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameApp/FavoritesSection/FavoritesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "didFetchFavoriteGenres(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3580A6E3-B83D-42E2-8984-1CC9E76E8AD1 - a192bf0fc1f24aa2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.UIContextualAction, __C.UIView, (Swift.Bool) -&gt; ()) -&gt; () in GameApp.FavoritesViewController.tableView(_: __C.UITableView, leadingSwipeActionsConfigurationForRowAt: Foundation.IndexPath) -&gt; Swift.Optional&lt;__C.UISwipeActionsConfiguration&gt;"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/FavoritesSection/FavoritesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "475">
+               </Location>
+               <Location
+                  uuid = "3580A6E3-B83D-42E2-8984-1CC9E76E8AD1 - cb81a7c2d38e2174"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.FavoritesViewController.didFetchFavoriteGenres(GameApp.FavoritesViewModel) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/FavoritesSection/FavoritesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "142"
+                  endingLineNumber = "142"
+                  offsetFromSymbolStart = "153">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F9AA6F4A-A2E3-4B3E-A148-71DB1F4799C7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameApp/FavoritesSection/FavoritesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "didFetchFavoriteGenres(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F9AA6F4A-A2E3-4B3E-A148-71DB1F4799C7 - ce15af944c27cb7e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (__C.UIContextualAction, __C.UIView, (Swift.Bool) -&gt; ()) -&gt; () in GameApp.FavoritesViewController.tableView(_: __C.UITableView, leadingSwipeActionsConfigurationForRowAt: Foundation.IndexPath) -&gt; Swift.Optional&lt;__C.UISwipeActionsConfiguration&gt;"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/FavoritesSection/FavoritesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "118">
+               </Location>
+               <Location
+                  uuid = "F9AA6F4A-A2E3-4B3E-A148-71DB1F4799C7 - cb81a7c2d38e2111"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.FavoritesViewController.didFetchFavoriteGenres(GameApp.FavoritesViewModel) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelica.rodrigues/Desktop/teste2/gameApp/GameApp/GameApp/FavoritesSection/FavoritesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "238">
                </Location>
             </Locations>
          </BreakpointContent>

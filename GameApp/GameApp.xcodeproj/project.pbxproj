@@ -50,6 +50,7 @@
 		79CCE4D12B71B7EB00F9F31E /* UITextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CCE4D02B71B7EB00F9F31E /* UITextFieldView.swift */; };
 		79CCE4D62B71C1A000F9F31E /* GameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AA1232B6DADAF00771AB3 /* GameAppTests.swift */; };
 		79CCE4D92B71C5D300F9F31E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CCE4D82B71C5D300F9F31E /* SignupViewController.swift */; };
+		79D5681C2B87FD540086808F /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D5681B2B87FD540086808F /* FavoritesViewModel.swift */; };
 		79F0ABB52B7A568D00946F85 /* GameViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F0ABB42B7A568D00946F85 /* GameViewcontroller.swift */; };
 		79FAF19E2B803353008BCD73 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FAF19D2B803353008BCD73 /* FavoritesViewController.swift */; };
 		79FAF1A02B80336C008BCD73 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FAF19F2B80336C008BCD73 /* ProfileViewController.swift */; };
@@ -125,6 +126,7 @@
 		79CCE4C92B71A0DA00F9F31E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		79CCE4D02B71B7EB00F9F31E /* UITextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldView.swift; sourceTree = "<group>"; };
 		79CCE4D82B71C5D300F9F31E /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		79D5681B2B87FD540086808F /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		79F0ABB42B7A568D00946F85 /* GameViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewcontroller.swift; sourceTree = "<group>"; };
 		79FAF19D2B803353008BCD73 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		79FAF19F2B80336C008BCD73 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		792AA10B2B6DADAC00771AB3 /* GameApp */ = {
 			isa = PBXGroup;
 			children = (
+				79D5681D2B8800120086808F /* ErrorViews */,
 				79FAF19C2B801274008BCD73 /* GamesSection */,
 				79FAF19B2B801262008BCD73 /* FavoritesSection */,
 				79FAF19A2B801252008BCD73 /* ProfileSection */,
@@ -366,6 +369,13 @@
 			path = UIComponentes;
 			sourceTree = "<group>";
 		};
+		79D5681D2B8800120086808F /* ErrorViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ErrorViews;
+			sourceTree = "<group>";
+		};
 		79F0ABB32B7A565F00946F85 /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +401,7 @@
 				79FAF19D2B803353008BCD73 /* FavoritesViewController.swift */,
 				79FAF1A12B817D82008BCD73 /* EmptyFavoritesView.swift */,
 				79FAF1A52B82AB8A008BCD73 /* ListCell.swift */,
+				79D5681B2B87FD540086808F /* FavoritesViewModel.swift */,
 			);
 			path = FavoritesSection;
 			sourceTree = "<group>";
@@ -606,6 +617,7 @@
 				79CCE4CA2B71A0DA00F9F31E /* LoginViewController.swift in Sources */,
 				79CCE4BB2B71653F00F9F31E /* GamesManager.swift in Sources */,
 				792AA14D2B6DC54400771AB3 /* ApiLayerHelpers.swift in Sources */,
+				79D5681C2B87FD540086808F /* FavoritesViewModel.swift in Sources */,
 				792AA15D2B6ECCED00771AB3 /* GenresApi.swift in Sources */,
 				7960D2462B7A992D0039DEA6 /* GameHeaderView.swift in Sources */,
 				792AA14B2B6DC3F100771AB3 /* CreatorRolesApi.swift in Sources */,
