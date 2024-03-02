@@ -90,9 +90,10 @@ class GamesViewController: UIViewController {
             pageTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             pageTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 
-            gamesDescriptionHeaderView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 8),
+            gamesDescriptionHeaderView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 16),
             gamesDescriptionHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             gamesDescriptionHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+//            gamesDescriptionHeaderView.heightAnchor.constraint(equalToConstant: 500),
 
             gamesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             gamesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
@@ -198,7 +199,7 @@ extension GamesViewController: GamesviewModelDelegate {
     func didFetchDetail(_ model: GamesviewModel, genre: Genre) {
         self.pageTitle.text = genre.name
         let description = SharedHelpers().removeHtmlTagsAndDecodeEntities(from: genre.description)
-        
+                
         gamesDescriptionHeaderView.setContent(with: description ?? "")
         gamesDescriptionHeaderView.isUserInteractionEnabled = true
     }

@@ -10,6 +10,7 @@ import UIKit
 
 protocol PillsContainerUIViewDelegate: AnyObject {
     func didTapCell(_ view: PillsContainerUIView)
+    func didTapShowMore(_ view: PillsContainerUIView, didTapShowMore: Bool)
 }
 
 class PillsContainerUIView: UIView {
@@ -120,8 +121,8 @@ class PillsContainerUIView: UIView {
         pillsCollectionView.isHidden = true
 
         NSLayoutConstraint.activate([
-            hStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            hStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            hStack.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            hStack.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             hStack.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             
             pillsCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
@@ -137,6 +138,7 @@ class PillsContainerUIView: UIView {
     
     @objc private func ellipsisTapGesture() {
         didTapEllipsis.toggle()
+        delegate?.didTapShowMore(self, didTapShowMore: didTapEllipsis)
         
         pillsHstack.isHidden = didTapEllipsis
         

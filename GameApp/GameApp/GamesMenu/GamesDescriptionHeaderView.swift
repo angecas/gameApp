@@ -14,9 +14,13 @@ protocol GamesDescriptionHeaderViewDelegate: AnyObject {
 class GamesDescriptionHeaderView: UIView {
     // MARK: properties
     weak var delegate: GamesDescriptionHeaderViewDelegate?
+    
+    private var pillsContainerView: PillsContainerUIView
+    
     private var headerHeight: CGFloat = 0
     private var showMore: Bool = false
     private var heightConstraint: NSLayoutConstraint!
+    private var pillsContainerHeightConstraint: NSLayoutConstraint!
 
     private lazy var gamesInfo: UITextView = {
         let text = UITextView()
@@ -51,8 +55,11 @@ class GamesDescriptionHeaderView: UIView {
     
     // MARK: inits
     init() {
+        self.pillsContainerView =  PillsContainerUIView(pillStringsList: ["Action", "Drama", "Action", "Drama", "Action", "Drama", "Suspense", "Action", "Drama", "Suspense"])
+
         super.init(frame: CGRectZero)
         configureUI()
+        pillsContainerView.delegate = self
     }
     
     func calculateHeaderSize() -> CGSize {
@@ -72,6 +79,8 @@ class GamesDescriptionHeaderView: UIView {
     private func configureUI() {
         addSubview(gamesInfo)
         addSubview(toggleTextLabel)
+        addSubview(pillsContainerView)
+        
         toggleTextLabel.isUserInteractionEnabled = true
                 
         let toggleTap = UITapGestureRecognizer(target: self, action: #selector(toggleTapAction))
@@ -81,17 +90,30 @@ class GamesDescriptionHeaderView: UIView {
         heightConstraint =
         gamesInfo.heightAnchor.constraint(equalToConstant: 60)
         heightConstraint.isActive = true
+        
+        pillsContainerHeightConstraint =
+        pillsContainerView.heightAnchor.constraint(equalToConstant: 50)
+        pillsContainerHeightConstraint.isActive = true
+                
+        pillsContainerView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             gamesInfo.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             gamesInfo.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             gamesInfo.topAnchor.constraint(equalTo: self.topAnchor),
-            heightConstraint,
             
             toggleTextLabel.topAnchor.constraint(equalTo: gamesInfo.bottomAnchor, constant: 8),
+            toggleTextLabel.bottomAnchor.constraint(equalTo: pillsContainerView.topAnchor, constant: -8),
+            toggleTextLabel.heightAnchor.constraint(equalToConstant: 20),
+
             toggleTextLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            toggleTextLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+
+            pillsContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            pillsContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            pillsContainerView.topAnchor.constraint(equalTo: toggleTextLabel.bottomAnchor, constant: 16),
+            pillsContainerView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
+
     }
     
     required init?(coder: NSCoder) {
@@ -135,4 +157,19 @@ class GamesDescriptionHeaderView: UIView {
             updateConstraints()
         }
     }
+}
+
+extension GamesDescriptionHeaderView: PillsContainerUIViewDelegate {
+    func didTapShowMore(_ view: PillsContainerUIView, didTapShowMore: Bool) {
+        
+        pillsContainerHeightConstraint.constant = didTapShowMore ? 150 : 50
+        
+        updateConstraints()
+
+    }
+    
+    func didTapCell(_ view: PillsContainerUIView) {
+        print("tap")
+    }
+    
 }
