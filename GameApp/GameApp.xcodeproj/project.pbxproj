@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		605DB637B015F6C2ABDD2557 /* Pods_GameApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25127AA37EB54F42D1A0A7D /* Pods_GameApp.framework */; };
+		740286EE2B8EAA5B00F3788D /* SomethingWentWrongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740286ED2B8EAA5B00F3788D /* SomethingWentWrongView.swift */; };
+		740286F02B8FCA1000F3788D /* PillsContainerUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740286EF2B8FCA1000F3788D /* PillsContainerUIView.swift */; };
+		740286F22B912B8D00F3788D /* PillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740286F12B912B8D00F3788D /* PillView.swift */; };
+		740286F42B93981B00F3788D /* PillViewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740286F32B93981B00F3788D /* PillViewCollectionCell.swift */; };
 		792AA10D2B6DADAC00771AB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AA10C2B6DADAC00771AB3 /* AppDelegate.swift */; };
 		792AA10F2B6DADAC00771AB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AA10E2B6DADAC00771AB3 /* SceneDelegate.swift */; };
 		792AA1162B6DADAE00771AB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 792AA1152B6DADAE00771AB3 /* Assets.xcassets */; };
@@ -79,6 +83,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		740286ED2B8EAA5B00F3788D /* SomethingWentWrongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomethingWentWrongView.swift; sourceTree = "<group>"; };
+		740286EF2B8FCA1000F3788D /* PillsContainerUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsContainerUIView.swift; sourceTree = "<group>"; };
+		740286F12B912B8D00F3788D /* PillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillView.swift; sourceTree = "<group>"; };
+		740286F32B93981B00F3788D /* PillViewCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillViewCollectionCell.swift; sourceTree = "<group>"; };
 		77F195BE8A4A2A3EDE7D69CF /* Pods-GameApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameApp.release.xcconfig"; path = "Target Support Files/Pods-GameApp/Pods-GameApp.release.xcconfig"; sourceTree = "<group>"; };
 		792AA1092B6DADAC00771AB3 /* GameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		792AA10C2B6DADAC00771AB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -182,6 +190,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		740286EC2B8EA36B00F3788D /* ErrorViews */ = {
+			isa = PBXGroup;
+			children = (
+				740286ED2B8EAA5B00F3788D /* SomethingWentWrongView.swift */,
+			);
+			path = ErrorViews;
+			sourceTree = "<group>";
+		};
 		792AA1002B6DADAC00771AB3 = {
 			isa = PBXGroup;
 			children = (
@@ -207,8 +223,7 @@
 		792AA10B2B6DADAC00771AB3 /* GameApp */ = {
 			isa = PBXGroup;
 			children = (
-				79D5681D2B8800120086808F /* ErrorViews */,
-				79FAF19C2B801274008BCD73 /* GamesSection */,
+				740286EC2B8EA36B00F3788D /* ErrorViews */,
 				79FAF19B2B801262008BCD73 /* FavoritesSection */,
 				79FAF19A2B801252008BCD73 /* ProfileSection */,
 				792AA1592B6EA9FE00771AB3 /* DesignSystem */,
@@ -365,15 +380,11 @@
 				79CCE4D02B71B7EB00F9F31E /* UITextFieldView.swift */,
 				79A7632E2B726D4900B78146 /* LightUIButtonView.swift */,
 				79FFA86E2B7583BB00104BE4 /* ToastViewController.swift */,
+				740286EF2B8FCA1000F3788D /* PillsContainerUIView.swift */,
+				740286F12B912B8D00F3788D /* PillView.swift */,
+				740286F32B93981B00F3788D /* PillViewCollectionCell.swift */,
 			);
 			path = UIComponentes;
-			sourceTree = "<group>";
-		};
-		79D5681D2B8800120086808F /* ErrorViews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ErrorViews;
 			sourceTree = "<group>";
 		};
 		79F0ABB32B7A565F00946F85 /* Game */ = {
@@ -404,13 +415,6 @@
 				79D5681B2B87FD540086808F /* FavoritesViewModel.swift */,
 			);
 			path = FavoritesSection;
-			sourceTree = "<group>";
-		};
-		79FAF19C2B801274008BCD73 /* GamesSection */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = GamesSection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -590,6 +594,7 @@
 				79A763422B72F96000B78146 /* AuthService.swift in Sources */,
 				79CCE4D92B71C5D300F9F31E /* SignupViewController.swift in Sources */,
 				79CCE4C12B71721200F9F31E /* UserDefaultsHelper.swift in Sources */,
+				740286F02B8FCA1000F3788D /* PillsContainerUIView.swift in Sources */,
 				799D2FE72B7976B100474C02 /* GamesViewModel.swift in Sources */,
 				79CCE4D12B71B7EB00F9F31E /* UITextFieldView.swift in Sources */,
 				79FFA86B2B74314E00104BE4 /* GamesCell.swift in Sources */,
@@ -608,6 +613,7 @@
 				792AA10D2B6DADAC00771AB3 /* AppDelegate.swift in Sources */,
 				79FFA86F2B7583BB00104BE4 /* ToastViewController.swift in Sources */,
 				792AA16A2B6F524700771AB3 /* GamesViewController.swift in Sources */,
+				740286EE2B8EAA5B00F3788D /* SomethingWentWrongView.swift in Sources */,
 				79FAF19E2B803353008BCD73 /* FavoritesViewController.swift in Sources */,
 				792AA10F2B6DADAC00771AB3 /* SceneDelegate.swift in Sources */,
 				792AA1632B6EF02700771AB3 /* GenresCell.swift in Sources */,
@@ -621,6 +627,8 @@
 				792AA15D2B6ECCED00771AB3 /* GenresApi.swift in Sources */,
 				7960D2462B7A992D0039DEA6 /* GameHeaderView.swift in Sources */,
 				792AA14B2B6DC3F100771AB3 /* CreatorRolesApi.swift in Sources */,
+				740286F42B93981B00F3788D /* PillViewCollectionCell.swift in Sources */,
+				740286F22B912B8D00F3788D /* PillView.swift in Sources */,
 				79CCE4B92B71651500F9F31E /* GamesApi.swift in Sources */,
 				79A7633D2B72C8C700B78146 /* ResultReusableView.swift in Sources */,
 				792AA1522B6DD5F200771AB3 /* CreatorRolesModel.swift in Sources */,

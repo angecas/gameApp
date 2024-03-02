@@ -9,6 +9,7 @@ import Foundation
 
 protocol GenresViewModelDelegate: AnyObject {
     func didFetchData(_ model: GenresViewModel)
+    func didFetchDataWithError(_ model: GenresViewModel)
 }
 
 class GenresViewModel {
@@ -50,6 +51,8 @@ class GenresViewModel {
                      self.isLoadingData = false
                      LoadingManager.shared.hideLoading()
                      print("Error: \(error)")
+                     //add error view
+                     self.delegate?.didFetchDataWithError(self)
                  }
              }
          }

@@ -14,6 +14,7 @@ class GenresViewController: UIViewController {
     
     private var viewModel: GenresViewModel
     private var teste: [Int] = []
+//    private var pillsContainerView = PillsContainerUIView(pillStringsList: ["Action", "Drama", "Suspense"])
     
     private lazy var pageTitle: UILabel = {
         let label = UILabel()
@@ -230,6 +231,11 @@ extension GenresViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension GenresViewController: GenresViewModelDelegate {
+    func didFetchDataWithError(_ model: GenresViewModel) {
+//        let view = SomethingWentWrongView()
+
+    }
+    
     func didFetchData(_ model: GenresViewModel) {
         self.collectionView.reloadData()
     }
