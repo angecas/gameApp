@@ -31,6 +31,7 @@ class GameHeaderView: UIView {
         imageView.backgroundColor = .green
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 8
+        imageView.backgroundColor = Color.darkGrey
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
@@ -68,7 +69,6 @@ class GameHeaderView: UIView {
                 
         pillsContainerView.translatesAutoresizingMaskIntoConstraints = false
         
-        headerImage.backgroundColor = .purple
         NSLayoutConstraint.activate([
             headerImage.topAnchor.constraint(equalTo: topAnchor),
 //            headerImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),

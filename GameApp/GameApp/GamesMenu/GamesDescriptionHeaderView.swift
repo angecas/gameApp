@@ -143,6 +143,11 @@ class GamesDescriptionHeaderView: UIView {
             updateConstraints()
         }
     }
+    
+    func setTags(pillStringsList: [String]) {
+        self.pillsContainerView =  PillsContainerUIView(pillStringsList: ["Action", "Drama", "Action", "Drama", "Action", "Drama", "Suspense", "Action", "Drama", "Suspense"])
+        
+    }
 }
 
 extension GamesDescriptionHeaderView: PillsContainerUIViewDelegate {

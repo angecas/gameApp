@@ -14,7 +14,6 @@ class GenresViewController: UIViewController {
     
     private var viewModel: GenresViewModel
     private var teste: [Int] = []
-//    private var pillsContainerView = PillsContainerUIView(pillStringsList: ["Action", "Drama", "Suspense"])
     
     private lazy var pageTitle: UILabel = {
         let label = UILabel()
@@ -73,6 +72,7 @@ class GenresViewController: UIViewController {
         collectionView.refreshControl = refreshControl
         LoadingManager.shared.showLoading()
         viewModel.fetchData()
+        viewModel.fetchTags()
         setupUI()
         setUpDoubleTap()
         
@@ -188,8 +188,8 @@ extension GenresViewController: UICollectionViewDelegate {
         
         if let id = viewModel.genres?.results[indexPath.row].id {
             UserDefaultsHelper.setSelectedGenre(genreId: id)
-            
-            let gamesViewController = GamesViewController(id: id)
+            let aa = viewModel.tags?.results
+            let gamesViewController = GamesViewController(id: id, tags: viewModel.tags?.results)
                 self.navigationController?.pushViewController(gamesViewController, animated: true)
         }
     }

@@ -12,6 +12,7 @@ class GamesViewController: UIViewController {
     // MARK: - Properties
     private let id: Int
     private var viewModel: GamesviewModel
+    private let tags: [Tags2]?
 
     private lazy var gamesDescriptionHeaderView: GamesDescriptionHeaderView = {
         let view = GamesDescriptionHeaderView()
@@ -45,8 +46,9 @@ class GamesViewController: UIViewController {
     
     // MARK: - Inits
     
-    init(id: Int) {
+    init(id: Int, tags: [Tags2]?) {
         self.id = id
+        self.tags = tags
         self.viewModel = GamesviewModel(id: id)
         super.init(nibName: nil, bundle: nil)
         
@@ -198,8 +200,12 @@ extension GamesViewController: GamesviewModelDelegate {
     func didFetchDetail(_ model: GamesviewModel, genre: Genre) {
         self.pageTitle.text = genre.name
         let description = SharedHelpers().removeHtmlTagsAndDecodeEntities(from: genre.description)
+        
+        
+//        print(tags?.compactMap({$0.name}), "<<<<<<<<<")
                 
         gamesDescriptionHeaderView.setContent(with: description ?? "")
+//        gamesDescriptionHeaderView.setTags(pillStringsList: tags?.compactMap({$0.name}) ?? [])
         gamesDescriptionHeaderView.isUserInteractionEnabled = true
     }
 }

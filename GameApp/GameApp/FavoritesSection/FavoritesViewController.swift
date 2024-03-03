@@ -106,7 +106,7 @@ extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         guard let id = viewModel.favoriteGenres[indexPath.row].id else {return}
-        let gamesViewController = GamesViewController(id: id)
+        let gamesViewController = GamesViewController(id: id, tags: [])
             self.navigationController?.pushViewController(gamesViewController, animated: true)
     }
     

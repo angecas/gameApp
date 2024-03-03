@@ -7,33 +7,188 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5501B739-551E-43EC-A09D-56D35148181A"
+            uuid = "8F76FCF4-86F5-4664-8DB9-4FE3753761AC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GameApp/Game/GameViewcontroller.swift"
+            filePath = "GameApp/GamesMenu/GamesDescriptionHeaderView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "tableView(_:viewForHeaderInSection:)"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "setTags(pillStringsList:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0D871AEE-D8EA-49A1-B137-AC5806DF2CA0"
+            uuid = "8769D515-9AD0-4E45-BFA1-FB4B115802A6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GameApp/Game/GameViewcontroller.swift"
+            filePath = "GameApp/GamesMenu/GamesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
-            landmarkName = "didShowMore(_:didShowMore:)"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "didFetchDetail(_:genre:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8769D515-9AD0-4E45-BFA1-FB4B115802A6 - 65d1ed19c79c125a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.didFetchDetail(_: GameApp.GamesviewModel, genre: GameApp.Genre) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "368">
+               </Location>
+               <Location
+                  uuid = "8769D515-9AD0-4E45-BFA1-FB4B115802A6 - 65d1ed19c79c12f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.didFetchDetail(_: GameApp.GamesviewModel, genre: GameApp.Genre) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "207"
+                  endingLineNumber = "207"
+                  offsetFromSymbolStart = "904">
+               </Location>
+               <Location
+                  uuid = "8769D515-9AD0-4E45-BFA1-FB4B115802A6 - 65d1ed19c79c12f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.didFetchDetail(_: GameApp.GamesviewModel, genre: GameApp.Genre) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "207"
+                  endingLineNumber = "207"
+                  offsetFromSymbolStart = "772">
+               </Location>
+               <Location
+                  uuid = "8769D515-9AD0-4E45-BFA1-FB4B115802A6 - c1526ab11334cae9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (GameApp.Tags2) -&gt; Swift.Optional&lt;Swift.String&gt; in GameApp.GamesViewController.didFetchDetail(_: GameApp.GamesviewModel, genre: GameApp.Genre) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "207"
+                  endingLineNumber = "207"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "8769D515-9AD0-4E45-BFA1-FB4B115802A6 - 65d1ed19c79c12f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.didFetchDetail(_: GameApp.GamesviewModel, genre: GameApp.Genre) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "207"
+                  endingLineNumber = "207"
+                  offsetFromSymbolStart = "356">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DF91A94D-58B2-4041-B2F4-FF7C69B28953"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameApp/GamesMenu/GamesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "didFetchDetail(_:genre:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DF91A94D-58B2-4041-B2F4-FF7C69B28953 - 65d1ed19c79c12bb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.didFetchDetail(_: GameApp.GamesviewModel, genre: GameApp.Genre) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "205"
+                  endingLineNumber = "205"
+                  offsetFromSymbolStart = "560">
+               </Location>
+               <Location
+                  uuid = "DF91A94D-58B2-4041-B2F4-FF7C69B28953 - f5d5d2d2e1fb9cac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (GameApp.Tags2) -&gt; Swift.Optional&lt;Swift.String&gt; in GameApp.GamesViewController.didFetchDetail(_: GameApp.GamesviewModel, genre: GameApp.Genre) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "205"
+                  endingLineNumber = "205"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "DF91A94D-58B2-4041-B2F4-FF7C69B28953 - 65d1ed19c79c1327"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.didFetchDetail(_: GameApp.GamesviewModel, genre: GameApp.Genre) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "209"
+                  endingLineNumber = "209"
+                  offsetFromSymbolStart = "1256">
+               </Location>
+               <Location
+                  uuid = "DF91A94D-58B2-4041-B2F4-FF7C69B28953 - 65d1ed19c79c1327"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.didFetchDetail(_: GameApp.GamesviewModel, genre: GameApp.Genre) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "209"
+                  endingLineNumber = "209"
+                  offsetFromSymbolStart = "548">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
