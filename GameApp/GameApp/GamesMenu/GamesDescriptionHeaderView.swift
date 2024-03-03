@@ -15,11 +15,11 @@ class GamesDescriptionHeaderView: UIView {
     // MARK: properties
     weak var delegate: GamesDescriptionHeaderViewDelegate?
     
-    private var pillsContainerView: PillsContainerUIView
-    
+    private var pillsContainerView: PillsContainerUIView?
     private var headerHeight: CGFloat = 0
     private var showMore: Bool = false
     private var heightConstraint: NSLayoutConstraint!
+    private var bottomConstraint: NSLayoutConstraint!
     private var pillsContainerHeightConstraint: NSLayoutConstraint!
 
     private lazy var gamesInfo: UITextView = {
@@ -55,18 +55,39 @@ class GamesDescriptionHeaderView: UIView {
     
     // MARK: inits
     init() {
-        self.pillsContainerView =  PillsContainerUIView(pillStringsList: ["Action", "Drama", "Action", "Drama", "Action", "Drama", "Suspense", "Action", "Drama", "Suspense"])
-
         super.init(frame: CGRectZero)
         configureUI()
+    }
+    
+    func setTags(pillStringsList: [String]) {
+        self.pillsContainerView =  PillsContainerUIView(pillStringsList: pillStringsList)
+        
+        bottomConstraint.isActive = false
+        
+        guard let pillsContainerView = pillsContainerView else {return}
         pillsContainerView.delegate = self
+        
+        addSubview(pillsContainerView)
+
+        pillsContainerHeightConstraint =
+        pillsContainerView.heightAnchor.constraint(equalToConstant: 50)
+        pillsContainerHeightConstraint.isActive = true
+        pillsContainerView.translatesAutoresizingMaskIntoConstraints = false
+                
+        NSLayoutConstraint.activate([
+            toggleTextLabel.bottomAnchor.constraint(equalTo: pillsContainerView.topAnchor, constant: -8),
+            pillsContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            pillsContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            pillsContainerView.topAnchor.constraint(equalTo: toggleTextLabel.bottomAnchor, constant: 16),
+            pillsContainerView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+        ])
+        self.updateConstraints()
     }
     
     
     private func configureUI() {
         addSubview(gamesInfo)
         addSubview(toggleTextLabel)
-        addSubview(pillsContainerView)
         
         toggleTextLabel.isUserInteractionEnabled = true
                 
@@ -78,28 +99,21 @@ class GamesDescriptionHeaderView: UIView {
         gamesInfo.heightAnchor.constraint(equalToConstant: 60)
         heightConstraint.isActive = true
         
-        pillsContainerHeightConstraint =
-        pillsContainerView.heightAnchor.constraint(equalToConstant: 50)
-        pillsContainerHeightConstraint.isActive = true
-        pillsContainerView.translatesAutoresizingMaskIntoConstraints = false
-
+        bottomConstraint =
+        toggleTextLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        
         NSLayoutConstraint.activate([
             gamesInfo.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             gamesInfo.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             gamesInfo.topAnchor.constraint(equalTo: self.topAnchor),
             
             toggleTextLabel.topAnchor.constraint(equalTo: gamesInfo.bottomAnchor, constant: 8),
-            toggleTextLabel.bottomAnchor.constraint(equalTo: pillsContainerView.topAnchor, constant: -8),
+            
+            bottomConstraint,
             toggleTextLabel.heightAnchor.constraint(equalToConstant: 20),
 
             toggleTextLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-
-            pillsContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            pillsContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            pillsContainerView.topAnchor.constraint(equalTo: toggleTextLabel.bottomAnchor, constant: 16),
-            pillsContainerView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
-
     }
     
     required init?(coder: NSCoder) {
@@ -144,10 +158,6 @@ class GamesDescriptionHeaderView: UIView {
         }
     }
     
-    func setTags(pillStringsList: [String]) {
-        self.pillsContainerView =  PillsContainerUIView(pillStringsList: ["Action", "Drama", "Action", "Drama", "Action", "Drama", "Suspense", "Action", "Drama", "Suspense"])
-        
-    }
 }
 
 extension GamesDescriptionHeaderView: PillsContainerUIViewDelegate {

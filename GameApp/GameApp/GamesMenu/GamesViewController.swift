@@ -95,6 +95,7 @@ class GamesViewController: UIViewController {
             gamesDescriptionHeaderView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 16),
             gamesDescriptionHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             gamesDescriptionHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+//            gamesDescriptionHeaderView.heightAnchor.constraint(equalToConstant: 400),
 
             gamesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             gamesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
@@ -205,7 +206,11 @@ extension GamesViewController: GamesviewModelDelegate {
 //        print(tags?.compactMap({$0.name}), "<<<<<<<<<")
                 
         gamesDescriptionHeaderView.setContent(with: description ?? "")
-//        gamesDescriptionHeaderView.setTags(pillStringsList: tags?.compactMap({$0.name}) ?? [])
+        
+        
+        gamesDescriptionHeaderView.setTags(pillStringsList: tags?.compactMap({$0.name}) ?? [])
+        
+        
         gamesDescriptionHeaderView.isUserInteractionEnabled = true
     }
 }
