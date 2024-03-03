@@ -7,78 +7,77 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "955CA05A-E12A-43DB-B911-70DB9AA445AD"
+            uuid = "638B0F72-C1FE-4351-A730-CE9094B41D9D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GameApp/GamesMenu/GamesDescriptionHeaderView.swift"
+            filePath = "GameApp/GamesMenu/GamesViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "setTags(pillStringsList:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6EA389A6-CA3E-489D-8723-4837DBBC20DF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GameApp/GamesMenu/GamesViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "didFetchDetail(_:genre:)"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "fetchData(freeSearch:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "6EA389A6-CA3E-489D-8723-4837DBBC20DF - 65d1ed19c79c13a3"
+                  uuid = "638B0F72-C1FE-4351-A730-CE9094B41D9D - e72aaa8d7c6701a5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GamesViewController.didFetchDetail(_: GameApp.GamesviewModel, genre: GameApp.Genre) -&gt; ()"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in GameApp.GamesviewModel.fetchData(freeSearch: Swift.String) -&gt; ()"
                   moduleName = "GameApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "213"
-                  endingLineNumber = "213"
-                  offsetFromSymbolStart = "548">
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "120">
                </Location>
                <Location
-                  uuid = "6EA389A6-CA3E-489D-8723-4837DBBC20DF - 65d1ed19c79c1304"
+                  uuid = "638B0F72-C1FE-4351-A730-CE9094B41D9D - df6ca562c444db73"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GamesViewController.didFetchDetail(_: GameApp.GamesviewModel, genre: GameApp.Genre) -&gt; ()"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in GameApp.GamesviewModel.fetchData(freeSearch: Swift.String) -&gt; ()"
                   moduleName = "GameApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "210"
-                  endingLineNumber = "210"
-                  offsetFromSymbolStart = "560">
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "36">
                </Location>
                <Location
-                  uuid = "6EA389A6-CA3E-489D-8723-4837DBBC20DF - f5d5d2d2e1fb9d13"
+                  uuid = "638B0F72-C1FE-4351-A730-CE9094B41D9D - 4d8fd047b48fc5a7"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (GameApp.Tags2) -&gt; Swift.Optional&lt;Swift.String&gt; in GameApp.GamesViewController.didFetchDetail(_: GameApp.GamesviewModel, genre: GameApp.Genre) -&gt; ()"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in GameApp.GamesviewModel.fetchData(freeSearch: Swift.String) -&gt; ()"
                   moduleName = "GameApp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "210"
-                  endingLineNumber = "210"
-                  offsetFromSymbolStart = "48">
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  uuid = "638B0F72-C1FE-4351-A730-CE9094B41D9D - 1ea2aca368a39ba8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async -&gt; () in GameApp.GamesviewModel.fetchData(freeSearch: Swift.String) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "144">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -86,17 +85,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E1727EEB-A15B-4066-A61D-F3D47606AA12"
+            uuid = "7DCFB65C-75C2-45F3-B60A-DA8FC6498CD4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GameApp/GamesMenu/GamesDescriptionHeaderView.swift"
+            filePath = "GameApp/GamesMenu/GamesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "GamesDescriptionHeaderView"
-            landmarkType = "3">
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "didFetchData(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7DCFB65C-75C2-45F3-B60A-DA8FC6498CD4 - 65d1ed19c79c1155"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.didFetchDetail(_: GameApp.GamesviewModel, genre: GameApp.Genre) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "7DCFB65C-75C2-45F3-B60A-DA8FC6498CD4 - 1f30f927e604d78d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.didFetchData(GameApp.GamesviewModel) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "226"
+                  endingLineNumber = "226"
+                  offsetFromSymbolStart = "684">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C131699B-ECF3-4ED2-96CA-E08C44948B0B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameApp/GamesMenu/GamesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
+            landmarkName = "didTapRightView(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

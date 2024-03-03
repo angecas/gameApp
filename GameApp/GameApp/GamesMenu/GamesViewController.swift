@@ -13,7 +13,11 @@ class GamesViewController: UIViewController {
     private let id: Int
     private var viewModel: GamesviewModel
     private let tags: [Tags2]?
+    
+    private var freeSearchText = ""
 
+    private let freeSearch: UITextFieldView =  UITextFieldView(placeholder: NSLocalizedString("Free search...", comment: ""), isSearch: true)
+    
     private lazy var gamesDescriptionHeaderView: GamesDescriptionHeaderView = {
         let view = GamesDescriptionHeaderView()
         view.isUserInteractionEnabled = true
@@ -44,6 +48,13 @@ class GamesViewController: UIViewController {
         return collection
     }()
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: .valueChanged)
+        return refreshControl
+    }()
+
+    
     // MARK: - Inits
     
     init(id: Int, tags: [Tags2]?) {
@@ -54,6 +65,7 @@ class GamesViewController: UIViewController {
         
         self.hidesBottomBarWhenPushed = true
         
+        self.freeSearch.delegate2 = self
         self.viewModel.delegate = self
     }
     
@@ -70,9 +82,9 @@ class GamesViewController: UIViewController {
         
         gamesCollectionView.delegate = self
         gamesCollectionView.dataSource = self
+        gamesCollectionView.refreshControl = refreshControl
         viewModel.fetchDetail()
-        viewModel.fetchData()
-
+        viewModel.fetchData(freeSearch: freeSearchText)
         setupUI()
         setNavigationActions()
     }
@@ -83,25 +95,36 @@ class GamesViewController: UIViewController {
         gamesCollectionView.reloadData()
 
         view.backgroundColor = Color.darkBlue
+        view.addSubview(freeSearch)
         view.addSubview(pageTitle)
         view.addSubview(gamesDescriptionHeaderView)
         view.addSubview(gamesCollectionView)
 
         NSLayoutConstraint.activate([
-            pageTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            freeSearch.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            freeSearch.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            freeSearch.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            freeSearch.heightAnchor.constraint(equalToConstant: 50),
+
+            pageTitle.topAnchor.constraint(equalTo: freeSearch.bottomAnchor, constant: 16),
             pageTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             pageTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 
             gamesDescriptionHeaderView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 16),
             gamesDescriptionHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             gamesDescriptionHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-//            gamesDescriptionHeaderView.heightAnchor.constraint(equalToConstant: 400),
 
             gamesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             gamesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             gamesCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             gamesCollectionView.topAnchor.constraint(equalTo: gamesDescriptionHeaderView.bottomAnchor, constant: 8)
         ])
+    }
+    
+    @objc private func handleRefresh(_ sender: UIRefreshControl) {
+        refreshControl.endRefreshing()
+        viewModel.fetchData(freeSearch: freeSearchText)
+        gamesCollectionView.reloadData()
     }
 
     @objc
@@ -187,30 +210,38 @@ extension GamesViewController: UICollectionViewDelegateFlowLayout {
         let lastItem = indexPath.item
         let totalItems = collectionView.numberOfItems(inSection: 0)
 
-        self.viewModel.fetchMoreData(lastItem: lastItem, totalItems: totalItems)
+        if lastItem == totalItems - 1 {
+            self.viewModel.currentPage += 1
+            self.viewModel.fetchMoreData(lastItem: lastItem, freeSearch: freeSearchText, totalItems: totalItems)
+        }
     }
 }
 
 
 extension GamesViewController: GamesviewModelDelegate {
     func didFetchData(_ model: GamesviewModel) {
+        print("-----------")
+        print(viewModel.games?.count)
+        print("-----------")
         self.gamesCollectionView.reloadData()
-
     }
     
     func didFetchDetail(_ model: GamesviewModel, genre: Genre) {
         self.pageTitle.text = genre.name
         let description = SharedHelpers().removeHtmlTagsAndDecodeEntities(from: genre.description)
         
-        
-//        print(tags?.compactMap({$0.name}), "<<<<<<<<<")
-                
         gamesDescriptionHeaderView.setContent(with: description ?? "")
-        
         
         gamesDescriptionHeaderView.setTags(pillStringsList: tags?.compactMap({$0.name}) ?? [])
         
-        
         gamesDescriptionHeaderView.isUserInteractionEnabled = true
+    }
+}
+
+extension GamesViewController: UITextFieldViewDelegate {
+    func didTapRightView(_ view: UITextFieldView) {
+        
+        viewModel.games = []
+        viewModel.fetchData(freeSearch: freeSearch.text ?? "")
     }
 }

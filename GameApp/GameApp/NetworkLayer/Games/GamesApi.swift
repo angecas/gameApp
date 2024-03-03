@@ -8,14 +8,14 @@
 import Foundation
 
 enum GamesApi {
-    case fetchListOfGames(genres: Int, page: Int)
+    case fetchListOfGames(genres: Int, freeSearch: String?, page: Int)
 }
 
 extension GamesApi: EndpointDescriptor {
     
     var page: Int {
          switch self {
-         case .fetchListOfGames(_, let page):
+         case .fetchListOfGames(_, _, let page):
              return page
          }
      }
@@ -36,8 +36,8 @@ extension GamesApi: EndpointDescriptor {
     
     var parameters: Parameters? {
         switch self {
-        case .fetchListOfGames(let genres, _):
-            return ["genres": genres as Any]
+        case .fetchListOfGames(let genres, let freeSearch, _):
+            return ["genres": genres as Any, "search": freeSearch]
         }
     }
     
@@ -45,7 +45,7 @@ extension GamesApi: EndpointDescriptor {
         let path = commonPath + "/games"
 
         switch self {
-        case .fetchListOfGames(_, _):
+        case .fetchListOfGames(_, _, _):
             return path
         }
     }

@@ -7,18 +7,30 @@
 
 import UIKit
 
-class UITextFieldView: UITextField {
+protocol UITextFieldViewDelegate: AnyObject {
+    func didTapRightView(_ view: UITextFieldView)
+}
 
-    init(placeholder: String, isSecured: Bool = false) {
-        super.init(frame: .zero)
-        configureUI(placeholder: placeholder, isSecured: isSecured)
-    }
+extension UITextFieldViewDelegate {}
+
+class UITextFieldView: UITextField {
     
+    weak var delegate2: UITextFieldViewDelegate?
+    
+    private var isSearch: Bool = false
+
+    init(placeholder: String, isSecured: Bool = false, isSearch: Bool = false) {
+        self.isSearch = isSearch
+        super.init(frame: .zero)
+
+        configureUI(placeholder: placeholder, isSecured: isSecured, isSearch: isSearch)
+    }
+        
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    private func configureUI(placeholder: String, isSecured: Bool) {
+    private func configureUI(placeholder: String, isSecured: Bool, isSearch: Bool) {
         self.isSecureTextEntry = isSecured
         self.placeholder = placeholder
         self.textColor = UIColor.black
@@ -40,13 +52,28 @@ class UITextFieldView: UITextField {
             self.rightViewMode = .always
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(togglePasswordVisibility))
             eyeImageView.addGestureRecognizer(tapGesture)
+        } else if isSearch {
+            let searchImageView = UIImageView(image: UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate).withTintColor(Color.darkBlue))
+            searchImageView.tintColor = UIColor.lightGray
+            searchImageView.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+            searchImageView.contentMode = .center
+            searchImageView.isUserInteractionEnabled = true
+            self.rightView = searchImageView
+            self.rightViewMode = .always
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(togglePasswordVisibility))
+            searchImageView.addGestureRecognizer(tapGesture)
         }
     }
-
+    
     @objc private func togglePasswordVisibility() {
-        self.isSecureTextEntry.toggle()
-        if let eyeImageView = self.rightView as? UIImageView {
-            eyeImageView.tintColor = self.isSecureTextEntry ? UIColor.lightGray : Color.darkBlue
+        
+        if isSearch {
+            delegate2?.didTapRightView(self)
+        } else {
+            self.isSecureTextEntry.toggle()
+            if let eyeImageView = self.rightView as? UIImageView {
+                eyeImageView.tintColor = self.isSecureTextEntry ? UIColor.lightGray : Color.darkBlue
+            }
         }
     }
 }
