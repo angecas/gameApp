@@ -120,7 +120,6 @@ extension FavoritesViewController: UITableViewDelegate {
             
             self.viewModel.removeFavoriteGenre(id: id)
         }
-        deleteAction.backgroundColor = .red
         deleteAction.image = UIImage(systemName: "trash")
         
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])

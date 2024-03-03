@@ -50,7 +50,6 @@ class SomethingWentWrongView: UIView {
     private func setupLayout() {
         addSubview(imageView)
         addSubview(somethingWentWrongLabel)
-        self.backgroundColor = .red
         
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),

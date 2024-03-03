@@ -62,19 +62,6 @@ class GamesDescriptionHeaderView: UIView {
         pillsContainerView.delegate = self
     }
     
-    func calculateHeaderSize() -> CGSize {
-         let headerView = GamesDescriptionHeaderView()
-         headerView.setContent(with: "")
-
-         let width = UIScreen.main.bounds.width
-         let size = headerView.systemLayoutSizeFitting(
-             CGSize(width: width, height: UIView.layoutFittingExpandedSize.height),
-             withHorizontalFittingPriority: .required,
-             verticalFittingPriority: .fittingSizeLevel
-         )
-
-         return size
-     }
     
     private func configureUI() {
         addSubview(gamesInfo)
@@ -94,7 +81,6 @@ class GamesDescriptionHeaderView: UIView {
         pillsContainerHeightConstraint =
         pillsContainerView.heightAnchor.constraint(equalToConstant: 50)
         pillsContainerHeightConstraint.isActive = true
-                
         pillsContainerView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([

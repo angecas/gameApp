@@ -14,6 +14,8 @@ import SDWebImage
 class GameViewController: UIViewController {
     
     // MARK: - Properties
+    
+    private var teste123: CGFloat = 280
 
     private let viewModel: GameViewModel
     
@@ -42,13 +44,15 @@ class GameViewController: UIViewController {
     private let headerView: GameHeaderView
     
     // MARK: - Inits
-    
+        
     init(game: Game) {
         self.viewModel = GameViewModel(game: game)
-        self.headerView = GameHeaderView(image: game.background_image, snapshots: game.short_screenshots?.compactMap({$0.image}) ?? [])
-
+        self.headerView = GameHeaderView(image: game.background_image, snapshots: game.short_screenshots?.compactMap({$0.image}) ?? [], tags: game.tags?.filter { $0.language == "eng" }.compactMap { $0.name } ?? [])
+        
         super.init(nibName: nil, bundle: nil)
         
+        headerView.delegate = self
+
         let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeLeft(_:)))
         swipeLeftGesture.direction = .left
         headerView.addGestureRecognizer(swipeLeftGesture)
@@ -88,7 +92,6 @@ class GameViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        
     }
     
     @objc func handleSwipeLeft(_ gesture: UISwipeGestureRecognizer) {
@@ -112,24 +115,26 @@ class GameViewController: UIViewController {
 // MARK: - TableView delegate
 
 extension GameViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            let headerTableView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 200))
-                    
-        headerTableView.addSubview(headerView)
-        NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: headerTableView.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: headerTableView.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: headerTableView.trailingAnchor),
-            headerView.bottomAnchor.constraint(equalTo: headerTableView.bottomAnchor)
-        ])
+//        let headerTableView = UIView()
+//        let headerTableView = headerView
         
-            return headerView
-        }
-
-    
+        
+//        headerTableView.addSubview(headerView)
+        
+//        headerView.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            headerView.topAnchor.constraint(equalTo: headerTableView.topAnchor),
+//            headerView.leadingAnchor.constraint(equalTo: headerTableView.leadingAnchor),
+//            headerView.trailingAnchor.constraint(equalTo: headerTableView.trailingAnchor),
+//            headerView.bottomAnchor.constraint(equalTo: headerTableView.bottomAnchor)
+//        ])
+        
+        return headerView
+//        return headerTableView
+    }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-            return 200
+        return teste123
         }
     
 }
@@ -149,6 +154,14 @@ extension GameViewController: UITableViewDataSource {
         cell.configure(form: viewModel.gamePropertiesForm[indexPath.row].0, with: viewModel.gamePropertiesForm[indexPath.row].1)
         
         return cell
+    }
+}
 
+
+extension GameViewController: GameHeaderViewDelegate {
+    func didShowMore(_ view: GameHeaderView, didShowMore: Bool) {
+        print("123 teste")
+        teste123 = didShowMore ? 420 : 280
+        tableView.reloadData()
     }
 }

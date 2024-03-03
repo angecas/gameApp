@@ -93,7 +93,6 @@ class GamesViewController: UIViewController {
             gamesDescriptionHeaderView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 16),
             gamesDescriptionHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             gamesDescriptionHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-//            gamesDescriptionHeaderView.heightAnchor.constraint(equalToConstant: 500),
 
             gamesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             gamesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
