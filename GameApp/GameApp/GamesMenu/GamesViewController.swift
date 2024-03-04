@@ -76,7 +76,7 @@ class GamesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hidesBottomBarWhenPushed = true
-        LoadingManager.shared.showLoading()
+//        LoadingManager.shared.showLoading()
         
         gamesCollectionView.delegate = self
         gamesCollectionView.dataSource = self

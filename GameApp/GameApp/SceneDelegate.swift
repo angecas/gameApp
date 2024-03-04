@@ -51,8 +51,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let selectedGenreId = selectedGenreId {
             
+            genresNavigationController.pushViewController( GamesViewController(id: selectedGenreId, tags: nil), animated: true)
+            
+            tabBarController.viewControllers = [genresNavigationController, favoritesNavigationController, profileViewController]
+
+        } else {
+            tabBarController.viewControllers = [genresNavigationController, favoritesNavigationController, profileViewController]
         }
-        tabBarController.viewControllers = [genresNavigationController, favoritesNavigationController, profileViewController]
         
         return tabBarController
     }

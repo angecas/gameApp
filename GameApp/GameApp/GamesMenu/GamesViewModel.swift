@@ -23,12 +23,15 @@ class GamesviewModel {
     
     init(id: Int) {
         self.id = id
+//        LoadingManager.shared.showLoading()
     }
 
     
     func fetchDetail() {
+
         Task {
             do {
+
                 let genre = GenresManager()
                 let response = try await genre.fetchGenresById(self.id)
                 DispatchQueue.main.async {
@@ -37,7 +40,6 @@ class GamesviewModel {
                     self.delegate?.didFetchDetail(self, genre: response)
                     
                     LoadingManager.shared.hideLoading()
-                    
                 }
                 
             } catch {

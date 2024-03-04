@@ -7,51 +7,39 @@
 
 import Foundation
 
+protocol UserDefaultsProtocol {
+    func string(forKey defaultName: String) -> String?
+    func set(_ value: Any?, forKey defaultName: String)
+    func removeObject(forKey defaultName: String)
+    func synchronize() -> Bool
+}
+
+extension UserDefaults: UserDefaultsProtocol {}
+
 struct UserDefaultsHelper {
+    private static var userDefaults: UserDefaultsProtocol = UserDefaults.standard
+    
+    static func setUserDefaults(_ userDefaults: UserDefaultsProtocol) {
+        self.userDefaults = userDefaults
+    }
+    
     static func getSelectedGenre() -> Int? {
-        if let genreId = UserDefaults.standard.string(forKey: "selectedGenre") {
+        if let genreId = userDefaults.string(forKey: "selectedGenre") {
             return Int(genreId)
         }
         return nil
     }
     
     static func setSelectedGenre(genreId: Int) {
-        UserDefaults.standard.set(String(genreId), forKey: "selectedGenre")
+        userDefaults.set(String(genreId), forKey: "selectedGenre")
     }
     
     static func removeSelectedGenre() {
-        UserDefaults.standard.removeObject(forKey: "selectedGenre")
+        userDefaults.removeObject(forKey: "selectedGenre")
     }
     
-//    static func getFavoriteGenres() -> [Int] {
-//        if let genreIds = UserDefaults.standard.array(forKey: "selectedFavoriteGenres") as? [Int] {
-//            return genreIds
-//        }
-//        return []
-//    }
-    
-//    static func setFavoriteGenres(genreId: Int) {
-//        var favoriteGenres = getFavoriteGenres()
-//        
-//        if !favoriteGenres.contains(genreId) {
-//                favoriteGenres.append(genreId)
-//                UserDefaults.standard.set(favoriteGenres, forKey: "selectedFavoriteGenres")
-//        }
-//    }
-    
-//    static func removeFavoriteGenre(genreId: Int) {
-//        var favoriteGenres = getFavoriteGenres()
-//        
-//        if let index = favoriteGenres.firstIndex(of: genreId) {
-//            favoriteGenres.remove(at: index)
-//            UserDefaults.standard.set(favoriteGenres, forKey: "selectedFavoriteGenres")
-//        }
-//    }
-    
-    
     static func resetUserDefaults() {
-            UserDefaults.standard.removeObject(forKey: "selectedGenre")
-            UserDefaults.standard.removeObject(forKey: "selectedFavoriteGenres")
-            UserDefaults.standard.synchronize()
+        userDefaults.removeObject(forKey: "selectedGenre")
+        userDefaults.synchronize()
     }
 }

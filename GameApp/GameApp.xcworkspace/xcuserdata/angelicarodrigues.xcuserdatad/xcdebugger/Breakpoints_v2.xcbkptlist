@@ -7,49 +7,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DF9A6D27-2024-4DB6-84DF-570CD6210F14"
+            uuid = "C11A6CB8-0805-43D3-892E-61F637CDF32D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GameApp/Game/GameViewModel.swift"
+            filePath = "GameAppTests/UserDefaultsHelperTest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "init(game:)"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "testRemoveSelectedGenre()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "DF9A6D27-2024-4DB6-84DF-570CD6210F14 - 17b76e33ec4378bb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GameViewModel.init(game: GameApp.Game) -&gt; GameApp.GameViewModel"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/Game/GameViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "212">
-               </Location>
-               <Location
-                  uuid = "DF9A6D27-2024-4DB6-84DF-570CD6210F14 - 17b76e33ec4378bb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GameApp.GameViewModel.init(game: GameApp.Game) -&gt; GameApp.GameViewModel"
-                  moduleName = "GameApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/Game/GameViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "232">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3169F87B-5517-42A0-AA09-C5A1024E8E40"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameAppTests/UserDefaultsHelperTest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "testSetSelectedGenre()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CD2E78D4-6A05-44A1-A8D0-1E7F5203793E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GameAppTests/UserDefaultsHelperTest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "testGetSelectedGenre()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
