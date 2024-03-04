@@ -51,14 +51,14 @@ class GamesviewModel {
         
     }
     
-    func fetchMoreData(lastItem: Int, freeSearch: String, totalItems: Int) {
+    func fetchMoreData(lastItem: Int, freeSearch: String, preciseSearch: Bool, totalItems: Int) {
         if lastItem == totalItems - 1 {
             currentPage += 1
 
             Task {
                 do {
                     let games = GamesManager()
-                    let response = try await games.fetchListOfGames(id: self.id, freeSearch: freeSearch, page: self.currentPage)
+                    let response = try await games.fetchListOfGames(id: self.id, freeSearch: freeSearch, preciseSearch: preciseSearch, page: self.currentPage)
 
                     DispatchQueue.main.async {
                         if let results = response.results, !results.isEmpty {
@@ -74,14 +74,14 @@ class GamesviewModel {
         }
     }
     
-    func fetchData(freeSearch: String) {
+    func fetchData(freeSearch: String, preciseSearch: Bool) {
         guard !isLoadingData else { return }
         isLoadingData = true
         
         Task {
             do {
                 let games = GamesManager()
-                let response = try await games.fetchListOfGames(id: self.id, freeSearch: freeSearch, page: self.currentPage)
+                let response = try await games.fetchListOfGames(id: self.id, freeSearch: freeSearch, preciseSearch: preciseSearch, page: self.currentPage)
                 
                 DispatchQueue.main.async {
                     if self.games != nil {

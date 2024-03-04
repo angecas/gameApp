@@ -160,7 +160,6 @@ extension GameViewController: UITableViewDataSource {
 
 extension GameViewController: GameHeaderViewDelegate {
     func didShowMore(_ view: GameHeaderView, didShowMore: Bool) {
-        print("123 teste")
         teste123 = didShowMore ? 420 : 280
         tableView.reloadData()
     }

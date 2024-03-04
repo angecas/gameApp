@@ -14,9 +14,9 @@ class GamesViewController: UIViewController {
     private var viewModel: GamesviewModel
     private let tags: [Tags2]?
     
-    private var freeSearchText = ""
+//    private var freeSearchText = ""
 
-    private let freeSearch: UITextFieldView =  UITextFieldView(placeholder: NSLocalizedString("Free search...", comment: ""), isSearch: true)
+    private let freeSearch: UITextFieldView =  UITextFieldView(placeholder: NSLocalizedString("Search...", comment: ""), isSearch: true)
     
     private lazy var gamesDescriptionHeaderView: GamesDescriptionHeaderView = {
         let view = GamesDescriptionHeaderView()
@@ -84,7 +84,7 @@ class GamesViewController: UIViewController {
         gamesCollectionView.dataSource = self
         gamesCollectionView.refreshControl = refreshControl
         viewModel.fetchDetail()
-        viewModel.fetchData(freeSearch: freeSearchText)
+        viewModel.fetchData(freeSearch: "", preciseSearch: false)
         setupUI()
         setNavigationActions()
     }
@@ -123,7 +123,7 @@ class GamesViewController: UIViewController {
     
     @objc private func handleRefresh(_ sender: UIRefreshControl) {
         refreshControl.endRefreshing()
-        viewModel.fetchData(freeSearch: freeSearchText)
+        viewModel.fetchData(freeSearch: "", preciseSearch: false)
         gamesCollectionView.reloadData()
     }
 
@@ -212,7 +212,7 @@ extension GamesViewController: UICollectionViewDelegateFlowLayout {
 
         if lastItem == totalItems - 1 {
             self.viewModel.currentPage += 1
-            self.viewModel.fetchMoreData(lastItem: lastItem, freeSearch: freeSearchText, totalItems: totalItems)
+            self.viewModel.fetchMoreData(lastItem: lastItem, freeSearch: "", preciseSearch: false, totalItems: totalItems)
         }
     }
 }
@@ -220,9 +220,6 @@ extension GamesViewController: UICollectionViewDelegateFlowLayout {
 
 extension GamesViewController: GamesviewModelDelegate {
     func didFetchData(_ model: GamesviewModel) {
-        print("-----------")
-        print(viewModel.games?.count)
-        print("-----------")
         self.gamesCollectionView.reloadData()
     }
     
@@ -232,7 +229,9 @@ extension GamesViewController: GamesviewModelDelegate {
         
         gamesDescriptionHeaderView.setContent(with: description ?? "")
         
-        gamesDescriptionHeaderView.setTags(pillStringsList: tags?.compactMap({$0.name}) ?? [])
+        if let tagsList = tags?.compactMap({$0.name}) {
+            gamesDescriptionHeaderView.setTags(pillStringsList: tagsList)
+        }
         
         gamesDescriptionHeaderView.isUserInteractionEnabled = true
     }
@@ -242,6 +241,7 @@ extension GamesViewController: UITextFieldViewDelegate {
     func didTapRightView(_ view: UITextFieldView) {
         
         viewModel.games = []
-        viewModel.fetchData(freeSearch: freeSearch.text ?? "")
+        
+        viewModel.fetchData(freeSearch: freeSearch.text ?? "", preciseSearch: true)
     }
 }
