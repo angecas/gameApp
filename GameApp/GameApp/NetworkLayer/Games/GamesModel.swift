@@ -202,3 +202,9 @@ struct Game: Codable {
     }
 }
 
+struct GameVideosModel: Codable {
+    let id: Int?
+    let name: String?
+    let preview: String?
+    let data: Data?
+}

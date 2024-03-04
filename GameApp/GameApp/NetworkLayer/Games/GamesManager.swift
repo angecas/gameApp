@@ -26,4 +26,16 @@ struct GamesManager {
             throw error
         }
     }
+    
+    func fetchGameTrailers(id: Int) async throws -> GameVideosModel {
+        
+        let endpoint = GamesApi.fetchGameTrailers(gameId: id)
+        
+        do {
+            let response = try await sessionProvider.request(endpoint, responseType: GameVideosModel.self)
+            return response
+        } catch {
+            throw error
+        }
+    }
 }

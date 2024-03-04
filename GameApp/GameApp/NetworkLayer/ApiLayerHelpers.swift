@@ -23,6 +23,7 @@ enum HTTPMethod: String {
 class SessionProvider {
     func request<T: Decodable>(_ endpoint: EndpointDescriptor, responseType: T.Type) async throws -> T {
         
+        
         guard var urlComponents = URLComponents(string: endpoint.path) else {
             throw NetworkError.invalidURL
         }

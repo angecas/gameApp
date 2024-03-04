@@ -116,22 +116,7 @@ class GameViewController: UIViewController {
 
 extension GameViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headerTableView = UIView()
-//        let headerTableView = headerView
-        
-        
-//        headerTableView.addSubview(headerView)
-        
-//        headerView.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            headerView.topAnchor.constraint(equalTo: headerTableView.topAnchor),
-//            headerView.leadingAnchor.constraint(equalTo: headerTableView.leadingAnchor),
-//            headerView.trailingAnchor.constraint(equalTo: headerTableView.trailingAnchor),
-//            headerView.bottomAnchor.constraint(equalTo: headerTableView.bottomAnchor)
-//        ])
-        
         return headerView
-//        return headerTableView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return teste123

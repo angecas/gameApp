@@ -14,8 +14,6 @@ class GamesViewController: UIViewController {
     private var viewModel: GamesviewModel
     private let tags: [Tags2]?
     
-//    private var freeSearchText = ""
-
     private let freeSearch: UITextFieldView =  UITextFieldView(placeholder: NSLocalizedString("Search...", comment: ""), isSearch: true)
     
     private lazy var gamesDescriptionHeaderView: GamesDescriptionHeaderView = {

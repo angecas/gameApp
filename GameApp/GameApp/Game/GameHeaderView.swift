@@ -75,15 +75,9 @@ class GameHeaderView: UIView {
             headerImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             headerImage.trailingAnchor.constraint(equalTo: trailingAnchor),
             headerImage.heightAnchor.constraint(equalToConstant: 200),
-//            headerImage.bottomAnchor.constraint(equalTo: pillsContainerView.topAnchor, constant: -8), // Adjust the constant as needed
-
-//            headerImage.heightAnchor.constraint(equalToConstant: 55),
-            
             pillsContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             pillsContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             pillsContainerView.topAnchor.constraint(equalTo: headerImage.bottomAnchor, constant: 8),
-//            pillsContainerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
-
         ])
     }
     

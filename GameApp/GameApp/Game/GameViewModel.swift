@@ -9,10 +9,16 @@ import Foundation
 
 class GameViewModel {
     let game: Game
+    var gameVideos: GameVideosModel?
     var gamePropertiesForm: [(String, String)] = []
 
     init(game: Game) {
+        
         self.game = game
+        
+        if let gameId = game.id {
+            fetchGameVideos(id: gameId)
+        }
 
         if let releasedString = game.releasedToString() {
             gamePropertiesForm.append((NSLocalizedString("released-date", comment: ""), releasedString))
@@ -28,11 +34,35 @@ class GameViewModel {
 
         if let metaScore = game.metacritic {
             gamePropertiesForm.append((NSLocalizedString("metascore", comment: ""), String(metaScore)))
-
         }
         
         if let esrb = game.esrb_rating?.name {
             gamePropertiesForm.append((NSLocalizedString("esrb-rating", comment: ""), esrb))
         }
+    }
+        
+    private func fetchGameVideos(id: Int) {
+        Task {
+            do {
+                let videos = GamesManager()
+                let response = try await videos.fetchGameTrailers(id: id)
+                
+                DispatchQueue.main.async {
+                    
+                    self.gameVideos = response
+//                    self.delegate?.didFetchDetail(self, genre: response)
+                    
+                    LoadingManager.shared.hideLoading()
+                }
+                
+            } catch {
+                DispatchQueue.main.async {
+                    
+                    LoadingManager.shared.hideLoading()
+                    print("Error: \(error)")
+                }
+            }
+        }
+        
     }
 }
