@@ -13,6 +13,15 @@ struct FavoriteGenre {
     let name: String?
 }
 
+protocol FirestoreManagingProtocol {
+    func saveFavorites(id: Int, name: String, completion: @escaping (Error?) -> Void)
+    func favoriteGenresCollection() -> CollectionReference
+    func getFavoriteGenres(completion: @escaping ([FavoriteGenre], Error?) -> Void)
+    func removeAllFavorites(completion: @escaping (Error?) -> Void)
+    func removeFavoriteGenre(id: Int, completion: @escaping (Error?) -> Void)
+    func removeFavorite(by genreId: String, completion: @escaping (Error?) -> Void)
+}
+
 
 class FirestoreManager {
     static let shared = FirestoreManager()
