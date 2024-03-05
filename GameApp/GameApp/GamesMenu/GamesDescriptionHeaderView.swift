@@ -9,6 +9,7 @@ import UIKit
 
 protocol GamesDescriptionHeaderViewDelegate: AnyObject {
     func didToggleShowMore(_ view: GamesDescriptionHeaderView)
+    func didTapPillCell(_ view: GamesDescriptionHeaderView, selectedObj: CommonObject)
 }
 
 class GamesDescriptionHeaderView: UIView {
@@ -59,7 +60,7 @@ class GamesDescriptionHeaderView: UIView {
         configureUI()
     }
     
-    func setTags(pillStringsList: [String]) {
+    func setTags(pillStringsList: [CommonObject]) {
         self.pillsContainerView =  PillsContainerUIView(pillStringsList: pillStringsList)
         
         bottomConstraint.isActive = false
@@ -161,16 +162,17 @@ class GamesDescriptionHeaderView: UIView {
 }
 
 extension GamesDescriptionHeaderView: PillsContainerUIViewDelegate {
+    func didTapCell(_ view: PillsContainerUIView, selectedObj: CommonObject) {
+        delegate?.didTapPillCell(self, selectedObj: selectedObj)
+
+    }
+    
     func didTapShowMore(_ view: PillsContainerUIView, didTapShowMore: Bool) {
         
         pillsContainerHeightConstraint.constant = didTapShowMore ? 150 : 50
         
         updateConstraints()
 
-    }
-    
-    func didTapCell(_ view: PillsContainerUIView) {
-        print("tap")
     }
     
 }

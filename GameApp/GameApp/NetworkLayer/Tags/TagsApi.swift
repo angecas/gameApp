@@ -13,14 +13,14 @@ enum TagsApi {
 
 extension TagsApi: EndpointDescriptor {
     
-    var page: Int {
+    var page: Int? {
          switch self {
          case .fetchListOfTags(let page):
              return page
          }
      }
     
-    var pageSize: Int {
+    var pageSize: Int? {
         return 9
     }
 

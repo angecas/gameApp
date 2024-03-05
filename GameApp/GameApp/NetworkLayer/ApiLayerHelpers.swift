@@ -27,6 +27,9 @@ class SessionProvider {
         guard var urlComponents = URLComponents(string: endpoint.path) else {
             throw NetworkError.invalidURL
         }
+        
+        print("-------", endpoint.path)
+        print("<<<<-------")
 
         // Load API key from plist
         guard let apiKey = Bundle.main.path(forResource: "APIKey", ofType: "plist"),
@@ -37,11 +40,18 @@ class SessionProvider {
 
         urlComponents.queryItems = [
             URLQueryItem(name: "key", value: apiKeyValue),
-            URLQueryItem(name: "page", value: "\(endpoint.page)"),
-            URLQueryItem(name: "page_size", value: "\(endpoint.pageSize)")
         ]
+        
+        if let page = endpoint.page {
+            urlComponents.queryItems?.append(URLQueryItem(name: "page", value: "\(page)"))
+        }
+        if let pageSize = endpoint.pageSize {
+            urlComponents.queryItems?.append(URLQueryItem(name: "page_size", value: "\(pageSize)"))
+        }
 
         if let parameters = endpoint.parameters {
+            
+            
             for (key, value) in parameters {
                 if let stringValue = "\(value)" as? String {
                     urlComponents.queryItems?.append(URLQueryItem(name: key, value: stringValue))
@@ -58,27 +68,36 @@ class SessionProvider {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
 
         do {
-            let (data, httpResponse) = try await URLSession.shared.data(for: request)
+            let (data, response) = try await URLSession.shared.data(for: request)
 
-            // Check HTTP status code for success or failure
-            guard let httpResponse = httpResponse as? HTTPURLResponse, (200..<300).contains(httpResponse.statusCode) else {
-                if let jsonString = String(data: data, encoding: .utf8) {
-                    print("Received JSON data:\n\(jsonString)")
-                }
+            guard let httpResponse = response as? HTTPURLResponse else {
+//                print("No valid HTTP response")
+//                print("Response Data Size: \(data.count) bytes")
+                throw NetworkError.invalidResponse
+            }
 
+            print("HTTP Status Code: \(httpResponse.statusCode)")
+
+            if let jsonString = String(data: data, encoding: .utf8) {
+//                print("Received JSON data:\n\(jsonString)")
+            } else {
+//                print("No response data")
+            }
+
+            if (200..<300).contains(httpResponse.statusCode) {
+                let decoder = JSONDecoder()
+                let response = try decoder.decode(T.self, from: data)
+                return response
+            } else {
                 if let errorResponse = try? JSONDecoder().decode([String: String].self, from: data),
                    let errorMessage = errorResponse["error"] {
+//                    print("API Error: \(errorMessage)")
                     throw NetworkError.apiError(errorMessage)
                 } else {
+                    print("Unknown API error")
                     throw NetworkError.apiError("Unknown API error")
                 }
             }
-
-
-            let decoder = JSONDecoder()
-            let response = try decoder.decode(T.self, from: data)
-            
-            return response
         } catch {
             print("Error performing request: \(error)")
             throw error
@@ -98,8 +117,8 @@ protocol EndpointDescriptor {
     var HTTPMethod: HTTPMethod { get }
     var parameters: Parameters? { get }
     var body: Data? { get }
-    var page: Int { get }
-    var pageSize: Int { get }
+    var page: Int? { get }
+    var pageSize: Int? { get }
 }
 
 extension EndpointDescriptor {

@@ -47,7 +47,7 @@ class GameViewController: UIViewController {
         
     init(game: Game) {
         self.viewModel = GameViewModel(game: game)
-        self.headerView = GameHeaderView(image: game.background_image, snapshots: game.short_screenshots?.compactMap({$0.image}) ?? [], tags: game.tags?.filter { $0.language == "eng" }.compactMap { $0.name } ?? [])
+        self.headerView = GameHeaderView(image: game.background_image, snapshots: game.short_screenshots?.compactMap({$0.image}) ?? [], tags: game.tags?.filter { $0.language == "eng" }.compactMap { CommonObject(id: $0.id, name: $0.name)} ?? [])
         
         super.init(nibName: nil, bundle: nil)
         

@@ -60,12 +60,15 @@ class PillView: UIView {
             pillLabel.bottomAnchor.constraint(equalTo: pillContainerView.bottomAnchor),
             pillLabel.leadingAnchor.constraint(equalTo: pillContainerView.leadingAnchor),
             pillLabel.trailingAnchor.constraint(equalTo: pillContainerView.trailingAnchor),
-
         ])
     }
     
     func setLabelString(pillsString: String) {
         self.pillLabel.text = pillsString
+    }
+    
+    func setColor() {
+        self.pillContainerView.backgroundColor = .systemBlue
     }
 }
 

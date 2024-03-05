@@ -12,12 +12,13 @@ class GamesViewController: UIViewController {
     // MARK: - Properties
     private let id: Int
     private var viewModel: GamesviewModel
-    private let tags: [Tags2]?
+    private var tags: [Tags2]?
     
     private let freeSearch: UITextFieldView =  UITextFieldView(placeholder: NSLocalizedString("Search...", comment: ""), isSearch: true)
     
     private lazy var gamesDescriptionHeaderView: GamesDescriptionHeaderView = {
         let view = GamesDescriptionHeaderView()
+        view.delegate = self
         view.isUserInteractionEnabled = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -195,6 +196,14 @@ extension GamesViewController: UICollectionViewDelegate {
 // MARK: - GamesDescriptionHeaderView Delegate
 
 extension GamesViewController: GamesDescriptionHeaderViewDelegate {
+    func didTapPillCell(_ view: GamesDescriptionHeaderView, selectedObj: CommonObject) {
+        
+        viewModel.games = []
+//        viewModel.tags = selectedObj.id
+        viewModel.fetchData(freeSearch: "", preciseSearch: false, tags: selectedObj.id)
+//        viewModel.tags = nil
+    }
+    
     func didToggleShowMore(_ view: GamesDescriptionHeaderView) {
         gamesCollectionView.collectionViewLayout.invalidateLayout()
         gamesCollectionView.setContentOffset(CGPoint(x: 0, y: -gamesCollectionView.contentInset.top), animated: false)
@@ -227,7 +236,7 @@ extension GamesViewController: GamesviewModelDelegate {
         
         gamesDescriptionHeaderView.setContent(with: description ?? "")
         
-        if let tagsList = tags?.compactMap({$0.name}) {
+        if let tagsList = tags?.compactMap({CommonObject(id: $0.id, name: $0.name)}) {
             gamesDescriptionHeaderView.setTags(pillStringsList: tagsList)
         }
         

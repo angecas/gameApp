@@ -22,7 +22,7 @@ class GameHeaderView: UIView {
 
     private let image: String?
     private var snapshots: [String]
-    private var tags: [String]
+    private var tags: [CommonObject]
     private var snapshotCounter = 0
     
     private lazy var headerImage: UIImageView = {
@@ -39,7 +39,7 @@ class GameHeaderView: UIView {
     
     // MARK: - inits
     
-    init(image: String?, snapshots: [String], tags: [String]) {
+    init(image: String?, snapshots: [String], tags: [CommonObject]) {
         self.pillsContainerView =  PillsContainerUIView(pillStringsList: tags)
         self.tags = tags
         self.image = image
@@ -96,10 +96,10 @@ class GameHeaderView: UIView {
 }
 
 extension GameHeaderView: PillsContainerUIViewDelegate {
-    func didTapCell(_ view: PillsContainerUIView) {
-        
+    func didTapCell(_ view: PillsContainerUIView, selectedObj: CommonObject) {
+        print("--->>>", selectedObj)
     }
-    
+        
     func didTapShowMore(_ view: PillsContainerUIView, didTapShowMore: Bool) {
         delegate?.didShowMore(self, didShowMore: didTapShowMore)
         

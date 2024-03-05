@@ -10,6 +10,8 @@ import Foundation
 class GameViewModel {
     let game: Game
     var gameVideos: GameVideosModel?
+    var gameTwitch: TwitchModel?
+    var gameYoutube: YoutubeVideoModel?
     var gamePropertiesForm: [(String, String)] = []
 
     init(game: Game) {
@@ -17,7 +19,15 @@ class GameViewModel {
         self.game = game
         
         if let gameId = game.id {
+            fetchGameTwitch(id: gameId)
+        }
+        
+        if let gameId = game.id {
             fetchGameVideos(id: gameId)
+        }
+
+        if let gameId = game.id {
+            fetchGameYoutubeVideos(id: gameId)
         }
 
         if let releasedString = game.releasedToString() {
@@ -47,9 +57,64 @@ class GameViewModel {
                 let videos = GamesManager()
                 let response = try await videos.fetchGameTrailers(id: id)
                 
+                print(response, "<<<<")
+                
                 DispatchQueue.main.async {
                     
                     self.gameVideos = response
+//                    self.delegate?.didFetchDetail(self, genre: response)
+                    
+                    LoadingManager.shared.hideLoading()
+                }
+                
+            } catch {
+                DispatchQueue.main.async {
+                    
+                    LoadingManager.shared.hideLoading()
+                    print("Error: \(error)")
+                }
+            }
+        }
+        
+    }
+    
+    private func fetchGameTwitch(id: Int) {
+        Task {
+            do {
+                let videos = GamesManager()
+                let response = try await videos.fetchGameTwitch(id: id)
+                
+                print(response, "<<<<")
+                
+                DispatchQueue.main.async {
+                    
+                    self.gameTwitch = response
+//                    self.delegate?.didFetchDetail(self, genre: response)
+                    
+                    LoadingManager.shared.hideLoading()
+                }
+                
+            } catch {
+                DispatchQueue.main.async {
+                    
+                    LoadingManager.shared.hideLoading()
+                    print("Error: \(error)")
+                }
+            }
+        }
+        
+    }    
+    private func fetchGameYoutubeVideos(id: Int) {
+        Task {
+            do {
+                let videos = GamesManager()
+                let response = try await videos.fetchGameYoutubeVideos(id: id)
+                
+                print(response, "<<<<----")
+                
+                DispatchQueue.main.async {
+                    
+                    self.gameYoutube = response
 //                    self.delegate?.didFetchDetail(self, genre: response)
                     
                     LoadingManager.shared.hideLoading()

@@ -8,8 +8,13 @@
 import Foundation
 import UIKit
 
+struct CommonObject {
+    let id: Int
+    let name: String
+}
+
 protocol PillsContainerUIViewDelegate: AnyObject {
-    func didTapCell(_ view: PillsContainerUIView)
+    func didTapCell(_ view: PillsContainerUIView, selectedObj: CommonObject)
     func didTapShowMore(_ view: PillsContainerUIView, didTapShowMore: Bool)
 }
 
@@ -20,7 +25,8 @@ class PillsContainerUIView: UIView {
 
     private var didTapEllipsis: Bool = false
     
-    private let pillStringsList: [String]
+    private let pillStringsList: [CommonObject]
+    private var selectedPill: CommonObject? = nil
     
     private lazy var pillsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -73,11 +79,18 @@ class PillsContainerUIView: UIView {
                 
     // MARK: - inits
     
-    init(pillStringsList: [String]) {
+    init(pillStringsList: [CommonObject]) {
         self.pillStringsList = pillStringsList
         super.init(frame: .zero)
         setupLayout()
     }
+    
+//
+//    init(pillStringsList: [String]) {
+//        self.pillStringsList = pillStringsList
+//        super.init(frame: .zero)
+//        setupLayout()
+//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -85,21 +98,25 @@ class PillsContainerUIView: UIView {
     // MARK: - Helpers
     
     private func setupLayout() {
-        
-        for stringElement in pillStringsList {
+        for (index, stringElement) in pillStringsList.enumerated() {
+
+//        for stringElement in pillStringsList {
             if pillsHstack.arrangedSubviews.count < 2 {
-                let view = PillView(pillsString: stringElement)
+                let view = PillView(pillsString: stringElement.name)
                 view.heightAnchor.constraint(equalToConstant: 30).isActive = true
                 view.widthAnchor.constraint(equalToConstant: 80).isActive = true
                 
-                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapPill))
+                view.tag = index
+                
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapPill(_:)))
                 
                 view.addGestureRecognizer(tapGesture)
                 view.translatesAutoresizingMaskIntoConstraints = false
                 
                 pillsHstack.addArrangedSubview(view)
-            }
+//            }
         }
+    }
         let hStack = UIStackView(arrangedSubviews: [
             descriptionLabel,
             pillsHstack,
@@ -148,8 +165,20 @@ class PillsContainerUIView: UIView {
         
     }
     
-    @objc private func tapPill() {
-        delegate?.didTapCell(self)
+    @objc private func tapPill(_ sender: UITapGestureRecognizer) {
+        if let pillView = sender.view as? PillView {
+            let tappedIndex = pillView.tag
+            selectedPill = pillStringsList[tappedIndex]
+            
+            if let selectedPill = selectedPill {
+                delegate?.didTapCell(self, selectedObj: selectedPill)
+            }
+        }
+        
+        if let selectedPill = selectedPill {
+            delegate?.didTapCell(self, selectedObj: selectedPill)
+        }
+
     }
 
     
@@ -157,7 +186,7 @@ class PillsContainerUIView: UIView {
         
         for stringElement in pillStringsList {
             if pillsHstack.arrangedSubviews.count < 2 {
-                let view = PillView(pillsString: stringElement)
+                let view = PillView(pillsString: stringElement.name)
                 view.heightAnchor.constraint(equalToConstant: 30).isActive = true
                 view.widthAnchor.constraint(equalToConstant: 80).isActive = true
                 view.translatesAutoresizingMaskIntoConstraints = false
@@ -199,7 +228,7 @@ extension PillsContainerUIView: UICollectionViewDataSource {
             fatalError("Failed to dequeue a cell of type CustomImageCell")
             
         }
-        cell.configure(pillsString: pillStringsList[indexPath.row])
+        cell.configure(pillsString: pillStringsList[indexPath.row].name)
         
         return cell
     }
@@ -207,7 +236,21 @@ extension PillsContainerUIView: UICollectionViewDataSource {
 
 extension PillsContainerUIView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        tapPill()
+        selectedPill = pillStringsList[indexPath.row]
+        if let selectedPill = selectedPill {
+            delegate?.didTapCell(self, selectedObj: selectedPill)
+        }
+        if let selectedCell = collectionView.cellForItem(at: indexPath) {
+            
+            selectedCell.contentView.backgroundColor = .systemBlue
+                        
+//            selectedCell.isHighlighted = true
+            
+//            selectedCell.setColor()
+//            selectedCell.setBackGroundColor()
+//            selectedCell.backgroundColor = UIColor.systemBlue
+        }
+
     }
 }
 extension PillsContainerUIView: UICollectionViewDelegateFlowLayout {

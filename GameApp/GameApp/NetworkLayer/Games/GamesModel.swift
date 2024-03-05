@@ -50,8 +50,8 @@ struct Clip: Codable {
 }
 
 struct Tag: Codable {
-    let id: Int?
-    let name: String?
+    let id: Int
+    let name: String
     let slug: String?
     let language: String?
     let games_count: Int?
@@ -207,4 +207,61 @@ struct GameVideosModel: Codable {
     let name: String?
     let preview: String?
     let data: Data?
+}
+
+
+struct TwitchModel: Codable {
+    let id: Int?
+    let externalId: Int?
+    let name: String?
+    let description: String?
+    let created: String?
+    let published: String?
+    let thumbnail: String?
+    let viewCount: Int?
+    let language: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case externalId = "external_id"
+        case name
+        case description
+        case created
+        case published
+        case thumbnail
+        case viewCount = "view_count"
+        case language
+    }
+}
+
+struct YoutubeVideoModel: Codable {
+    let id: Int?
+    let externalId: String?
+    let channelId: String?
+    let channelTitle: String?
+    let name: String?
+    let description: String?
+    let created: String?
+    let viewCount: Int?
+    let commentsCount: Int?
+    let likeCount: Int?
+    let dislikeCount: Int?
+    let favoriteCount: Int?
+    let thumbnails: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case externalId = "external_id"
+        case channelId = "channel_id"
+        case channelTitle = "channel_title"
+        case name
+        case description
+        case created
+        case viewCount = "view_count"
+        case commentsCount = "comments_count"
+        case likeCount = "like_count"
+        case dislikeCount = "dislike_count"
+        case favoriteCount = "favorite_count"
+        case thumbnails
+    }
 }

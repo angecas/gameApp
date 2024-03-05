@@ -12,11 +12,11 @@ enum CreatorRolesApi {
 }
 
 extension CreatorRolesApi: EndpointDescriptor {
-    var page: Int {
+    var page: Int? {
         return 1
     }
     
-    var pageSize: Int {
+    var pageSize: Int? {
         return 10
     }
 

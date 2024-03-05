@@ -11,7 +11,7 @@ import UIKit
 class PillViewCollectionCell: UICollectionViewCell {    
     static let reuseIdentifier = "PillView"
 
-    let pillView = PillView(pillsString: "ola")
+    let pillView = PillView(pillsString: "")
 
     override init(frame: CGRect) {
         
@@ -39,5 +39,9 @@ class PillViewCollectionCell: UICollectionViewCell {
     
     func configure(pillsString: String) {
         pillView.setLabelString(pillsString: pillsString)
+    }    
+    
+    func setBackGroundColor() {
+        pillView.backgroundColor = .systemBlue
     }
 }

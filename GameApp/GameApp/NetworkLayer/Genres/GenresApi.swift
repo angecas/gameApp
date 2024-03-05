@@ -14,7 +14,7 @@ enum GenresApi {
 
 extension GenresApi: EndpointDescriptor {
     
-    var page: Int {
+    var page: Int? {
          switch self {
          case .fetchListOfGamesGenres(let page):
              return page
@@ -23,7 +23,7 @@ extension GenresApi: EndpointDescriptor {
          }
      }
 
-    var pageSize: Int {
+    var pageSize: Int? {
         return 9
     }
 
