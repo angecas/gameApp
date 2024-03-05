@@ -13,17 +13,7 @@ class GenresViewController: UIViewController {
     // MARK: - Properties
     
     private var viewModel: GenresViewModel
-    
-    private lazy var floatingButton: UIButton = {
-        let floatingButton = UIButton()
-        floatingButton.setTitle(NSLocalizedString("logout", comment: ""), for: .normal)
-        floatingButton.setTitleColor(.white, for: .normal)
-        floatingButton.backgroundColor = Color.darkGrey
-        floatingButton.layer.cornerRadius = 25
-        floatingButton.titleLabel?.font = Font.bodyFont
-        floatingButton.translatesAutoresizingMaskIntoConstraints = false
-        return floatingButton
-    }()
+    private var teste: [Int] = []
     
     private lazy var pageTitle: UILabel = {
         let label = UILabel()
@@ -65,26 +55,36 @@ class GenresViewController: UIViewController {
     
     // MARK: - LyfeCycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FirestoreManager.shared.getFavoriteGenres { (fetchedGenres, error) in
+            if let error = error {
+                print("Error fetching favorite genres: \(error.localizedDescription)")
+            } else {
+                self.teste = fetchedGenres.compactMap({$0.id})
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel.delegate = self
         collectionView.refreshControl = refreshControl
         LoadingManager.shared.showLoading()
         viewModel.fetchData()
+        viewModel.fetchTags()
         setupUI()
         setUpDoubleTap()
+        
     }
     
     // MARK: - Helpers
     
     private func setupUI(){
         view.backgroundColor = Color.darkBlue
-        view.addSubview(floatingButton)
         view.addSubview(pageTitle)
         view.addSubview(collectionView)
-        
-        floatingButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
-        
+                
         NSLayoutConstraint.activate([
             pageTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             pageTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -92,51 +92,46 @@ class GenresViewController: UIViewController {
             
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            collectionView.bottomAnchor.constraint(equalTo: floatingButton.topAnchor),
-            collectionView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 8),
-            
-            floatingButton.widthAnchor.constraint(equalToConstant: 70),
-            floatingButton.heightAnchor.constraint(equalToConstant: 50),
-            floatingButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-
-            floatingButton.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -10),
-        ])
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 8)
+            ])
     }
 
-    
-    @objc private func logout() {
-        do {
-            UserDefaultsHelper.resetUserDefaults()
-            try Auth.auth().signOut()
-            self.navigationController?.popToRootViewController(animated: true)
-            DispatchQueue.main.async {
-                let navigationController = UINavigationController(rootViewController: LoginViewController())
-                navigationController.modalPresentationStyle = .fullScreen
-                self.present(navigationController, animated: true)
-            }
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
+        
     @objc func didDoubleTapCollectionView() {
            let pointInCollectionView = doubleTapGesture.location(in: collectionView)
            if let selectedIndexPath = collectionView.indexPathForItem(at: pointInCollectionView) {
                let tappedGenredId = viewModel.genres?.results[selectedIndexPath.row].id
+               let tappedGenredName = viewModel.genres?.results[selectedIndexPath.row].name
+                              
+                   if let tappedGenredId = tappedGenredId, let tappedGenredName = tappedGenredName {
+                       
+                       let isGenreAlreadyAdded = teste.contains(tappedGenredId)
 
-               let favoriteGenres = UserDefaultsHelper.getFavoriteGenres()
-                                  
-                   if let tappedGenredId = tappedGenredId {
-                       if !favoriteGenres.contains(tappedGenredId) {
-                           
-                           if favoriteGenres.count < 5 {
-                               UserDefaultsHelper.setFavoriteGenres(genreId: tappedGenredId)
+                       if !isGenreAlreadyAdded {
+                                                  
+                               FirestoreManager.shared.saveFavorites(id: tappedGenredId, name: tappedGenredName) { error in
+                                   if let error = error {
+                                       print("Error saving favorite: \(error.localizedDescription)")
+                                   } else {
+                                       print("Favorite saved successfully")
+                                       self.teste.append(tappedGenredId)
+                                       self.collectionView.reloadData()
+
+                                   }
+                               }
                                collectionView.reloadData()
-                           } else {
-                               SharedHelpers().showCustomToast(self, loginMessage: NSLocalizedString("add-up-to-genres", comment: ""))
-                           }
                        } else {
-                           UserDefaultsHelper.removeFavoriteGenre(genreId: tappedGenredId)
+                           //TODO: put in datasource and make a didfetch delegate here to reload data
+
+                           FirestoreManager.shared.removeFavoriteGenre(id: tappedGenredId) { error in
+                               if let error = error {
+                                   print("Error removing favorite genre: \(error.localizedDescription)")
+                               } else {
+                                   self.teste = self.teste.filter { $0 != tappedGenredId }
+                                   self.collectionView.reloadData()
+                               }
+                           }
                            collectionView.reloadData()
                        }
                    }
@@ -175,7 +170,9 @@ extension GenresViewController: UICollectionViewDataSource {
         if let genres = viewModel.genres {
             if indexPath.row < genres.results.count {
                 let genre = genres.results[indexPath.row]
-                let isFavorite = UserDefaultsHelper.getFavoriteGenres().contains(genre.id)
+                
+                let isFavorite = self.teste.contains(genre.id)
+                                
                 cell.configure(genre: genre, isFavoriteGenre: isFavorite)
             }
         }
@@ -191,9 +188,9 @@ extension GenresViewController: UICollectionViewDelegate {
         
         if let id = viewModel.genres?.results[indexPath.row].id {
             UserDefaultsHelper.setSelectedGenre(genreId: id)
-            
-            let gamesViewController = GamesViewController(id: id)
-            navigationController?.pushViewController(gamesViewController, animated: true)
+            let aa = viewModel.tags?.results
+            let gamesViewController = GamesViewController(id: id, tags: viewModel.tags?.results)
+                self.navigationController?.pushViewController(gamesViewController, animated: true)
         }
     }
 }
@@ -234,6 +231,11 @@ extension GenresViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension GenresViewController: GenresViewModelDelegate {
+    func didFetchDataWithError(_ model: GenresViewModel) {
+//        let view = SomethingWentWrongView()
+
+    }
+    
     func didFetchData(_ model: GenresViewModel) {
         self.collectionView.reloadData()
     }

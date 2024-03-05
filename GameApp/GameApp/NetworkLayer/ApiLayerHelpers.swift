@@ -22,6 +22,8 @@ enum HTTPMethod: String {
 
 class SessionProvider {
     func request<T: Decodable>(_ endpoint: EndpointDescriptor, responseType: T.Type) async throws -> T {
+        
+        
         guard var urlComponents = URLComponents(string: endpoint.path) else {
             throw NetworkError.invalidURL
         }
@@ -56,11 +58,22 @@ class SessionProvider {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
 
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, httpResponse) = try await URLSession.shared.data(for: request)
 
-            if let jsonString = String(data: data, encoding: .utf8) {
-                print("Received JSON data:\n\(jsonString)")
+            // Check HTTP status code for success or failure
+            guard let httpResponse = httpResponse as? HTTPURLResponse, (200..<300).contains(httpResponse.statusCode) else {
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print("Received JSON data:\n\(jsonString)")
+                }
+
+                if let errorResponse = try? JSONDecoder().decode([String: String].self, from: data),
+                   let errorMessage = errorResponse["error"] {
+                    throw NetworkError.apiError(errorMessage)
+                } else {
+                    throw NetworkError.apiError("Unknown API error")
+                }
             }
+
 
             let decoder = JSONDecoder()
             let response = try decoder.decode(T.self, from: data)
@@ -76,6 +89,8 @@ enum NetworkError: Error {
     case invalidURL
     case invalidResponse
     case requestFailed
+    case apiError(String)
+    case decodingError
 }
 
 protocol EndpointDescriptor {

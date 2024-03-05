@@ -97,6 +97,14 @@ class SignupViewController: UIViewController {
         ])
     }
     
+    private func showRootViewController() {
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            let rootViewController = sceneDelegate.determineRootViewController()
+            rootViewController.modalPresentationStyle = .fullScreen
+            self.present(rootViewController, animated: true, completion: nil)
+        }
+    }
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -108,10 +116,10 @@ class SignupViewController: UIViewController {
                 if let error = error {
                     SharedHelpers().showCustomToast(self, loginMessage: error.localizedDescription)
                 } else {
+                    
                     DispatchQueue.main.async {
-                        let navigationController = UINavigationController(rootViewController: GenresViewController())
-                        navigationController.modalPresentationStyle = .fullScreen
-                        self.present(navigationController, animated: true)
+                        self.showRootViewController()
+                        
                     }
                 }
             }
