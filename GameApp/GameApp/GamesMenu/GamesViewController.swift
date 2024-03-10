@@ -13,6 +13,9 @@ class GamesViewController: UIViewController {
     private let id: Int
     private var viewModel: GamesviewModel
     private var tags: [Tags2]?
+    private var toggleSearch: Bool = false
+    private var pageTitletopAnchor: NSLayoutConstraint? = nil
+    private var titleHorizontalStack: UIStackView = UIStackView()
     
     private let freeSearch: UITextFieldView =  UITextFieldView(placeholder: NSLocalizedString("Search...", comment: ""), isSearch: true)
     
@@ -26,9 +29,9 @@ class GamesViewController: UIViewController {
     
     private lazy var pageTitle: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = Font.boldLargeTitleFont
         label.textColor = Color.blueishWhite
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
         
@@ -47,6 +50,34 @@ class GamesViewController: UIViewController {
         return collection
     }()
     
+    private lazy var filtersImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "line.3.horizontal.decrease.circle.fill")?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = Color.blueishWhite
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 8
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
+    private lazy var searchImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "magnifyingglass.circle.fill")?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = Color.blueishWhite
+        imageView.contentMode = .scaleAspectFit
+        let searchGesture = UITapGestureRecognizer(target: self, action: #selector(searchTap))
+        imageView.addGestureRecognizer(searchGesture)
+
+        imageView.isUserInteractionEnabled = true
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 8
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: .valueChanged)
@@ -61,6 +92,10 @@ class GamesViewController: UIViewController {
         self.tags = tags
         self.viewModel = GamesviewModel(id: id)
         super.init(nibName: nil, bundle: nil)
+        
+        if tags == nil {
+            viewModel.fetchTags()
+        }
         
         self.hidesBottomBarWhenPushed = true
         
@@ -94,22 +129,39 @@ class GamesViewController: UIViewController {
         gamesCollectionView.reloadData()
 
         view.backgroundColor = Color.darkBlue
-        view.addSubview(freeSearch)
-        view.addSubview(pageTitle)
+//        view.addSubview(freeSearch)
+//        view.addSubview(pageTitle)
         view.addSubview(gamesDescriptionHeaderView)
         view.addSubview(gamesCollectionView)
+        
+        titleHorizontalStack = UIStackView(arrangedSubviews: [pageTitle, filtersImageView, searchImageView])
+        titleHorizontalStack.axis = .horizontal
+        
+        titleHorizontalStack.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(titleHorizontalStack)
 
+        pageTitletopAnchor =             titleHorizontalStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16)
+
+        freeSearch.isHidden = true
         NSLayoutConstraint.activate([
-            freeSearch.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            freeSearch.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            freeSearch.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            freeSearch.heightAnchor.constraint(equalToConstant: 50),
+//            freeSearch.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+//            freeSearch.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+//            freeSearch.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+//            freeSearch.heightAnchor.constraint(equalToConstant: 50),
 
-            pageTitle.topAnchor.constraint(equalTo: freeSearch.bottomAnchor, constant: 16),
-            pageTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            pageTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            pageTitletopAnchor!,
+//            titleHorizontalStack.topAnchor.constraint(equalTo: freeSearch.bottomAnchor, constant: 16),
+            titleHorizontalStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            titleHorizontalStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            titleHorizontalStack.heightAnchor.constraint(equalToConstant: 40),
+            
+            filtersImageView.widthAnchor.constraint(equalToConstant: 24),
+            filtersImageView.heightAnchor.constraint(equalToConstant: 24),
+            
+            searchImageView.widthAnchor.constraint(equalToConstant: 24),
+            searchImageView.heightAnchor.constraint(equalToConstant: 24),
 
-            gamesDescriptionHeaderView.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 16),
+            gamesDescriptionHeaderView.topAnchor.constraint(equalTo: titleHorizontalStack.bottomAnchor, constant: 16),
             gamesDescriptionHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             gamesDescriptionHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 
@@ -124,6 +176,36 @@ class GamesViewController: UIViewController {
         refreshControl.endRefreshing()
         viewModel.fetchData(freeSearch: "", preciseSearch: false)
         gamesCollectionView.reloadData()
+    }
+    @objc private func searchTap() {
+        toggleSearch.toggle()
+        freeSearch.isHidden = !toggleSearch
+        
+        if toggleSearch == true {
+            view.addSubview(freeSearch)
+            
+            self.view.removeConstraint(pageTitletopAnchor!)
+            
+            pageTitletopAnchor = titleHorizontalStack.topAnchor.constraint(equalTo: freeSearch.bottomAnchor, constant: 16)
+
+            
+            NSLayoutConstraint.activate([
+                freeSearch.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+                freeSearch.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+                freeSearch.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+                freeSearch.heightAnchor.constraint(equalToConstant: 50),
+                pageTitletopAnchor!
+            ])
+
+        } else {
+            freeSearch.removeFromSuperview()
+            self.view.removeConstraint(pageTitletopAnchor!)
+
+            pageTitletopAnchor =             titleHorizontalStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16)
+            pageTitletopAnchor?.isActive = true
+        }
+
+        
     }
 
     @objc
@@ -199,9 +281,7 @@ extension GamesViewController: GamesDescriptionHeaderViewDelegate {
     func didTapPillCell(_ view: GamesDescriptionHeaderView, selectedObj: CommonObject) {
         
         viewModel.games = []
-//        viewModel.tags = selectedObj.id
         viewModel.fetchData(freeSearch: "", preciseSearch: false, tags: selectedObj.id)
-//        viewModel.tags = nil
     }
     
     func didToggleShowMore(_ view: GamesDescriptionHeaderView) {
@@ -226,6 +306,14 @@ extension GamesViewController: UICollectionViewDelegateFlowLayout {
 
 
 extension GamesViewController: GamesviewModelDelegate {
+    func didFetchTags(_ model: GamesviewModel) {
+        self.tags = viewModel.tags
+        
+        if let tagsList = tags?.compactMap({CommonObject(id: $0.id, name: $0.name)}) {
+            gamesDescriptionHeaderView.setTags(pillStringsList: tagsList)
+        }
+    }
+    
     func didFetchData(_ model: GamesviewModel) {
         self.gamesCollectionView.reloadData()
     }
@@ -235,7 +323,7 @@ extension GamesViewController: GamesviewModelDelegate {
         let description = SharedHelpers().removeHtmlTagsAndDecodeEntities(from: genre.description)
         
         gamesDescriptionHeaderView.setContent(with: description ?? "")
-        
+                
         if let tagsList = tags?.compactMap({CommonObject(id: $0.id, name: $0.name)}) {
             gamesDescriptionHeaderView.setTags(pillStringsList: tagsList)
         }

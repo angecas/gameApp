@@ -11,6 +11,7 @@ import Foundation
 protocol GamesviewModelDelegate: AnyObject {
     func didFetchDetail(_ model: GamesviewModel, genre: Genre)
     func didFetchData(_ model: GamesviewModel)
+    func didFetchTags(_ model: GamesviewModel)
 //    func didFetchDataWithError(_ model: GamesviewModel)
 }
 
@@ -41,7 +42,7 @@ class GamesviewModel {
                 self.tags = response.results
                 
                 DispatchQueue.main.async {
-                    self.delegate?.didFetchData(self)
+                    self.delegate?.didFetchTags(self)
                     self.isLoadingData = false
                     LoadingManager.shared.hideLoading()
                 }
