@@ -9,8 +9,6 @@ import Foundation
 
 typealias Parameters = [String: Any]
 let commonPath = "https://api.rawg.io/api"
-//let apiKey = "ce61197ae53845159f4f3a9db365fbaf"
-//let apiKey = ProcessInfo.processInfo.environment["RAWG_API_KEY"] ?? ""
 
 
 enum HTTPMethod: String {
@@ -23,23 +21,14 @@ enum HTTPMethod: String {
 class SessionProvider {
     func request<T: Decodable>(_ endpoint: EndpointDescriptor, responseType: T.Type) async throws -> T {
         
-        
+        let apiKey = API_ENV.API_KEY
+
         guard var urlComponents = URLComponents(string: endpoint.path) else {
             throw NetworkError.invalidURL
         }
-        
-        print("-------", endpoint.path)
-        print("<<<<-------")
-
-        // Load API key from plist
-        guard let apiKey = Bundle.main.path(forResource: "APIKey", ofType: "plist"),
-            let contents = NSDictionary(contentsOfFile: apiKey),
-            let apiKeyValue = contents["APIKey"] as? String else {
-                fatalError("APIKey.plist not found or does not contain a valid APIKey")
-        }
-
+                
         urlComponents.queryItems = [
-            URLQueryItem(name: "key", value: apiKeyValue),
+            URLQueryItem(name: "key", value: apiKey),
         ]
         
         if let page = endpoint.page {

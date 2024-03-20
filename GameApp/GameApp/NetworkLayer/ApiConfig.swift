@@ -7,16 +7,27 @@
 
 import Foundation
 
-class APIKeyManager {
+protocol APIKeyable {
+    var API_KEY : String { get }
+}
+
+class APIKeyManager: APIKeyable {
     static let shared = APIKeyManager()
+    
+    let dic: NSDictionary?
 
-    var apiKey: String?
-
-    private init() {
-        if let path = Bundle.main.path(forResource: "APIKey", ofType: "plist"),
-           let apiKeyDictionary = NSDictionary(contentsOfFile: path),
-           let apiKey = apiKeyDictionary["APIKey"] as? String {
-            self.apiKey = apiKey
-        }
+    init() {
+        guard let path = Bundle.main.path(forResource: "Apikey", ofType: "plist"),
+              let plistDic = NSDictionary(contentsOfFile: path) else { fatalError("Failed to load Apikey.plist") }
+        
+        self.dic = plistDic
     }
+    
+    var API_KEY: String {
+        guard let apiKey = dic?.object(forKey: "API_KEY") as? String else {
+            fatalError("API_KEY not found or invalid in Apikey.plist")
+        }
+        return apiKey
+    }
+
 }

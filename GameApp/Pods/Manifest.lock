@@ -758,11 +758,13 @@ PODS:
   - SDWebImage (5.18.10):
     - SDWebImage/Core (= 5.18.10)
   - SDWebImage/Core (5.18.10)
+  - SwiftKeychainWrapper (4.0.1)
 
 DEPENDENCIES:
   - FirebaseAuth
   - FirebaseFirestore
   - SDWebImage
+  - SwiftKeychainWrapper
 
 SPEC REPOS:
   trunk:
@@ -785,6 +787,7 @@ SPEC REPOS:
     - PromisesObjC
     - RecaptchaInterop
     - SDWebImage
+    - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   abseil: 926fb7a82dc6d2b8e1f2ed7f3a718bce691d1e46
@@ -806,7 +809,8 @@ SPEC CHECKSUMS:
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   SDWebImage: fc8f2d48bbfd72ef39d70e981bd24a3f3be53fec
+  SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
 
-PODFILE CHECKSUM: 2b13fba6a45d15d95f2d7dd23ef45f656dfb3a81
+PODFILE CHECKSUM: 14115f239b282550dade639a223a54bcb3a7a985
 
 COCOAPODS: 1.15.2

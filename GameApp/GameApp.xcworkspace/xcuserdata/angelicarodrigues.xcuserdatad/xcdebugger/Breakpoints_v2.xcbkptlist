@@ -66,6 +66,38 @@
             endingLineNumber = "325"
             landmarkName = "didFetchDetail(_:genre:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "032D17BF-90CB-4EF9-8607-FA2DDB97B447 - 65d1ed19c79c2c6c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.didFetchDetail(_: GameApp.GamesviewModel, genre: GameApp.Genre) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "250"
+                  endingLineNumber = "250"
+                  offsetFromSymbolStart = "1084">
+               </Location>
+               <Location
+                  uuid = "032D17BF-90CB-4EF9-8607-FA2DDB97B447 - 65d1ed19c79c2233"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.didFetchDetail(_: GameApp.GamesviewModel, genre: GameApp.Genre) -&gt; ()"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "325"
+                  endingLineNumber = "325"
+                  offsetFromSymbolStart = "384">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -82,6 +114,38 @@
             endingLineNumber = "97"
             landmarkName = "init(id:tags:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D03A1D09-BF43-4B3A-9D9B-0048FE6ADEF2 - 1d759d2630839440"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.init(id: Swift.Int, tags: Swift.Optional&lt;Swift.Array&lt;GameApp.Tags2&gt;&gt;) -&gt; GameApp.GamesViewController"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "1124">
+               </Location>
+               <Location
+                  uuid = "D03A1D09-BF43-4B3A-9D9B-0048FE6ADEF2 - 1d759d2630839043"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.init(id: Swift.Int, tags: Swift.Optional&lt;Swift.Array&lt;GameApp.Tags2&gt;&gt;) -&gt; GameApp.GamesViewController"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "1332">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -98,6 +162,38 @@
             endingLineNumber = "98"
             landmarkName = "init(id:tags:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "94144375-149B-4142-BD7B-180234263722 - 1d759d2630839421"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.init(id: Swift.Int, tags: Swift.Optional&lt;Swift.Array&lt;GameApp.Tags2&gt;&gt;) -&gt; GameApp.GamesViewController"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "1220">
+               </Location>
+               <Location
+                  uuid = "94144375-149B-4142-BD7B-180234263722 - 1d759d2630839020"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GameApp.GamesViewController.init(id: Swift.Int, tags: Swift.Optional&lt;Swift.Array&lt;GameApp.Tags2&gt;&gt;) -&gt; GameApp.GamesViewController"
+                  moduleName = "GameApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelicarodrigues/Desktop/REPO/gameApp/GameApp/GameApp/GamesMenu/GamesViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "1348">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
